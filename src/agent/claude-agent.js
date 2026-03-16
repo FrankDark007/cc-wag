@@ -10,6 +10,30 @@ import { ClaudeProvider } from '../providers/claude-provider.js'
 const SYSTEM_PROMPT_PATH = '/Users/ghost/Projects/cc-wag/config/system-prompt.md'
 const CLAUDE_MD_PATH = path.join(os.homedir(), '.claude', 'CLAUDE.md')
 
+// Prompt template cache — avoids re-reading files on every message
+const promptCache = { template: null, claudeMd: null, initialized: false }
+
+function initPromptCache() {
+  if (promptCache.initialized) return
+  promptCache.template = loadSystemPromptTemplate()
+  promptCache.claudeMd = loadClaudeMd()
+  promptCache.initialized = true
+
+  // Watch for changes with 5s polling interval
+  try {
+    fs.watchFile(SYSTEM_PROMPT_PATH, { interval: 5000 }, () => {
+      console.log('[Agent] System prompt template changed — reloading')
+      promptCache.template = loadSystemPromptTemplate()
+    })
+    fs.watchFile(CLAUDE_MD_PATH, { interval: 5000 }, () => {
+      console.log('[Agent] CLAUDE.md changed — reloading')
+      promptCache.claudeMd = loadClaudeMd()
+    })
+  } catch (err) {
+    console.error('[Agent] File watcher failed:', err.message)
+  }
+}
+
 /**
  * Load the system prompt from config/system-prompt.md
  */
@@ -51,8 +75,9 @@ function buildSystemPrompt(memoryContext, sessionInfo, cronInfo, observationCont
   })
   const timeStr = now.toLocaleTimeString('en-US', { hour12: true })
 
-  const template = loadSystemPromptTemplate()
-  const claudeMd = loadClaudeMd()
+  initPromptCache()
+  const template = promptCache.template
+  const claudeMd = promptCache.claudeMd
 
   return `You are Atlas, Frank Darakhshan's AI executive assistant via WhatsApp. Frank is President of Flood Doctor LLC, a water damage restoration company in Northern Virginia.
 
