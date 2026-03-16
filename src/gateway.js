@@ -226,6 +226,27 @@ class Gateway {
     process.on('SIGINT', () => this.stop())
     process.on('SIGTERM', () => this.stop())
 
+    // Prevent crashes from unhandled errors (Bad MAC, libsignal, etc.)
+    process.on('unhandledRejection', (err) => {
+      const msg = err?.message || String(err)
+      // Bad MAC = WhatsApp session encryption desync — non-fatal, Baileys recovers
+      if (msg.includes('Bad MAC') || msg.includes('Bad encrypted message')) {
+        console.error('[Gateway] WhatsApp decryption error (non-fatal):', msg)
+        return
+      }
+      console.error('[Gateway] Unhandled rejection:', msg)
+    })
+    process.on('uncaughtException', (err) => {
+      const msg = err?.message || String(err)
+      if (msg.includes('Bad MAC') || msg.includes('Bad encrypted message')) {
+        console.error('[Gateway] WhatsApp decryption error (non-fatal):', msg)
+        return
+      }
+      console.error('[Gateway] Uncaught exception:', msg)
+      // For truly unexpected errors, exit cleanly so launchd restarts us
+      setTimeout(() => process.exit(1), 1000)
+    })
+
     // Start HTTP server
     this.startHttpServer()
 
