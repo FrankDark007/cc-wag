@@ -124,8 +124,9 @@ function getWeather() {
 
 /**
  * Build the full morning briefing message
+ * @param {object} [gateway] - Gateway instance for integration sections
  */
-export function buildBriefing() {
+export function buildBriefing(gateway) {
   const now = new Date()
   const dateStr = now.toLocaleDateString('en-US', {
     weekday: 'long',
@@ -146,11 +147,118 @@ export function buildBriefing() {
   parts.push(
     `\n--- SCHEDULE ---\n${calendar}`,
     `\n--- TASKS ---\n${tasks}`,
-    `\n--- EMAIL ---\n${emails}`,
-    `\nReply for details on anything above.`
+    `\n--- EMAIL ---\n${emails}`
   )
 
+  // ── Integration Sections (only if features are loaded) ──────────
+
+  // Job Health section
+  if (gateway && gateway._healthMonitor) {
+    try {
+      const summary = gateway._healthMonitor.getHealthSummary()
+      const all = gateway._healthMonitor.getAllHealth()
+      const topConcerns = all.slice(0, 3)
+      const concernStr = topConcerns.length
+        ? topConcerns.map(h => {
+            const topIssue = h.penalties[0]
+            const detail = topIssue ? topIssue.reason.replace(/^(Missing |No |Stale|Lien deadline|Unpaid|Open)/, '').trim().toLowerCase() : ''
+            return `${h.jobId} (${detail || h.score + ' pts'})`
+          }).join(', ')
+        : 'none'
+
+      parts.push(
+        `\n--- JOB HEALTH ---`,
+        `\uD83C\uDFE5 *Job Health*`,
+        `\uD83D\uDD34 ${summary.red} critical | \uD83D\uDFE0 ${summary.orange} warning | \uD83D\uDFE1 ${summary.yellow} ok | \uD83D\uDFE2 ${summary.green} healthy`,
+        `Top concerns: ${concernStr}`
+      )
+    } catch (err) {
+      console.error('[MorningBriefing] Health section failed:', err.message)
+    }
+  }
+
+  // Revenue section
+  if (gateway && gateway.dataIntegrator) {
+    try {
+      const dashboard = gateway.dataIntegrator.getDashboard()
+      const { revenue } = dashboard
+      const fmtInvoiced = formatDollars(revenue.totalInvoiced)
+      const fmtPaid = formatDollars(revenue.totalPaid)
+      const fmtOutstanding = formatDollars(revenue.totalOutstanding)
+
+      parts.push(
+        `\n--- REVENUE ---`,
+        `\uD83D\uDCB0 *Revenue*`,
+        `Invoiced: ${fmtInvoiced} | Paid: ${fmtPaid} | Outstanding: ${fmtOutstanding}`
+      )
+    } catch (err) {
+      console.error('[MorningBriefing] Revenue section failed:', err.message)
+    }
+  }
+
+  // Equipment section
+  if (gateway && gateway._equipmentTracker) {
+    try {
+      const summary = gateway._equipmentTracker.getEquipmentSummary()
+      const equipLine = `${summary.deployed} deployed | ${summary.available} available | ${summary.maintenance} maintenance`
+      const equipParts = [
+        `\n--- EQUIPMENT ---`,
+        `\uD83D\uDD27 *Equipment*`,
+        equipLine
+      ]
+
+      // Check for long-deployed units via average days
+      if (summary.deployed > 0) {
+        // Count units over 14 days — pull from getActiveEquipmentDays avg
+        const totalDays = gateway._equipmentTracker.getActiveEquipmentDays()
+        const avgDays = summary.deployed > 0 ? Math.round(totalDays / summary.deployed) : 0
+        if (avgDays > 14) {
+          equipParts.push(`\u26A0\uFE0F Avg deployment: ${avgDays} days (high)`)
+        }
+      }
+
+      parts.push(...equipParts)
+    } catch (err) {
+      console.error('[MorningBriefing] Equipment section failed:', err.message)
+    }
+  }
+
+  // Disputes & Liens section
+  if (gateway && gateway.dataIntegrator) {
+    try {
+      const dashboard = gateway.dataIntegrator.getDashboard()
+      const { disputes, liens } = dashboard
+
+      if (disputes.open > 0 || liens.critical > 0) {
+        const disputeStr = disputes.open > 0
+          ? `${disputes.open} open dispute${disputes.open > 1 ? 's' : ''} (${formatDollars(disputes.totalAmount)})`
+          : 'No open disputes'
+        const lienStr = liens.critical > 0
+          ? `${liens.critical} lien${liens.critical > 1 ? 's' : ''} <30 days`
+          : 'No urgent liens'
+
+        parts.push(
+          `\n--- DISPUTES & LIENS ---`,
+          `\u26A0\uFE0F *Disputes & Liens*`,
+          `${disputeStr} | ${lienStr}`
+        )
+      }
+    } catch (err) {
+      console.error('[MorningBriefing] Disputes section failed:', err.message)
+    }
+  }
+
+  parts.push(`\nReply for details on anything above.`)
+
   return parts.join('\n')
+}
+
+/**
+ * Format dollars number as "$X,XXX"
+ */
+function formatDollars(amount) {
+  if (amount == null || isNaN(amount)) return '$0'
+  return '$' + Number(amount).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })
 }
 
 /**
@@ -165,7 +273,7 @@ export function register(gateway) {
 
     if (trimmed === '/briefing' || trimmed === '/briefing now') {
       try {
-        const briefing = buildBriefing()
+        const briefing = buildBriefing(gateway)
         return { handled: true, response: `🔱 *Atlas Morning Briefing*\n\n${briefing}` }
       } catch (err) {
         return { handled: true, response: `Briefing failed: ${err.message}` }
@@ -202,7 +310,7 @@ export function register(gateway) {
     }
 
     try {
-      const briefing = buildBriefing()
+      const briefing = buildBriefing(gateway)
       adapter.sendMessage(FRANK_CHAT_ID, `🔱 *Atlas Morning Briefing*\n\n${briefing}`)
         .then(() => console.log('[MorningBriefing] Sent daily briefing'))
         .catch(err => console.error('[MorningBriefing] Send failed:', err.message))
