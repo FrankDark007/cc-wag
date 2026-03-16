@@ -30,6 +30,9 @@ export default class WhatsAppAdapter extends BaseAdapter {
     // Self-chat config
     this.selfChatPrefix = (selfChatConfig.prefix || 'CC,').toLowerCase()
     this.frankPhone = selfChatConfig.frankPhone || '+17034981581'
+    // Active self-chat sessions: once "CC," activates a conversation, subsequent messages go through without prefix
+    this.activeSelfChatSessions = new Set()
+    this.selfChatTimers = new Map() // jid -> timeout handle
     // Normalize allowedDMs: accept bare numbers, add @s.whatsapp.net if missing
     this.config.allowedDMs = this.config.allowedDMs.map(entry => {
       if (entry === '*') return entry
@@ -276,6 +279,33 @@ export default class WhatsAppAdapter extends BaseAdapter {
   }
 
   /**
+   * Activate self-chat session with 30 minute inactivity timeout
+   */
+  _activateSelfChat(jid) {
+    this.activeSelfChatSessions.add(jid)
+    // Reset the inactivity timer
+    if (this.selfChatTimers.has(jid)) {
+      clearTimeout(this.selfChatTimers.get(jid))
+    }
+    this.selfChatTimers.set(jid, setTimeout(() => {
+      this.activeSelfChatSessions.delete(jid)
+      this.selfChatTimers.delete(jid)
+      console.log(`[WhatsApp] Self-chat session expired (30min inactivity)`)
+    }, 30 * 60 * 1000))
+  }
+
+  /**
+   * Deactivate self-chat session (called by /new command)
+   */
+  deactivateSelfChat(jid) {
+    this.activeSelfChatSessions.delete(jid)
+    if (this.selfChatTimers.has(jid)) {
+      clearTimeout(this.selfChatTimers.get(jid))
+      this.selfChatTimers.delete(jid)
+    }
+  }
+
+  /**
    * Check if this is a self-chat message (from Frank's own number with CC, prefix)
    */
   _isSelfChat(msg, text) {
@@ -310,12 +340,21 @@ export default class WhatsAppAdapter extends BaseAdapter {
         return
       }
 
-      // Self-chat mode: only process if text starts with "CC," prefix
-      if (!isGroup && this._isSelfChat(msg, text)) {
-        text = this._stripSelfChatPrefix(text)
-        console.log(`[WhatsApp] Self-chat detected, stripped prefix: "${text.substring(0, 50)}"`)
+      if (!isGroup) {
+        // Check if "CC," prefix activates the session
+        if (this._isSelfChat(msg, text)) {
+          text = this._stripSelfChatPrefix(text)
+          this._activateSelfChat(jid)
+          console.log(`[WhatsApp] Self-chat activated, stripped prefix: "${text.substring(0, 50)}"`)
+        } else if (this.activeSelfChatSessions.has(jid)) {
+          // Session already active — no prefix needed, refresh timeout
+          this._activateSelfChat(jid)
+          console.log(`[WhatsApp] Self-chat (active session): "${text.substring(0, 50)}"`)
+        } else {
+          // No active session and no prefix — ignore (Frank's regular WhatsApp usage)
+          return
+        }
       } else {
-        // Normal self-message without prefix - ignore (Frank's regular WhatsApp usage)
         return
       }
     }
