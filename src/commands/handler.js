@@ -69,6 +69,9 @@ export default class CommandHandler {
       case 'todo':
         return this.handleTodo(args)
 
+      case 'todos':
+        return this.handleTodos(args)
+
       case 'whereisfrank':
         return this.handleWhereIsFrank(adapter, chatId)
 
@@ -280,39 +283,191 @@ export default class CommandHandler {
    * Usage: /todo <task text>
    * Usage: /todo personal <task text>
    */
+  /**
+   * Parse natural language task input for priority, due date, and category
+   * Examples:
+   *   "urgent: call adjuster about Smith claim by tomorrow"
+   *   "personal high: dentist appointment friday"
+   *   "/todo follow up with StateFarm !high @insurance by 3/20"
+   */
+  parseTodoInput(args) {
+    let text = args
+    let listId = 'WUlnZzdORlJwa01PTEFVSw' // FloodDoctor default
+    let listName = 'FloodDoctor'
+    let priority = null
+    let dueDate = null
+    let category = null
+
+    // Check for personal list
+    if (/^personal\b/i.test(text)) {
+      listId = 'NE1SZ0pXUF9hT2pVczFUQg'
+      listName = 'Personal'
+      text = text.replace(/^personal\s*/i, '')
+    }
+
+    // Extract priority: "urgent:", "!high", "!low", "high:", "critical:"
+    const priorityMatch = text.match(/(?:^|\s)(urgent|critical|!high|!medium|!low|high:|medium:|low:)/i)
+    if (priorityMatch) {
+      const p = priorityMatch[1].toLowerCase().replace(/[!:]/, '')
+      priority = p === 'critical' ? 'urgent' : p
+      text = text.replace(priorityMatch[0], ' ').trim()
+    }
+
+    // Extract category: "@insurance", "@billing", "@crew", "@client"
+    const catMatch = text.match(/@(insurance|billing|crew|client|marketing|seo|admin)/i)
+    if (catMatch) {
+      category = catMatch[1].toLowerCase()
+      text = text.replace(catMatch[0], ' ').trim()
+    }
+
+    // Extract due date: "by tomorrow", "by friday", "by 3/20", "due 2026-03-20"
+    const duePhrases = [
+      { pattern: /\b(?:by|due)\s+today\b/i, resolve: () => this.resolveRelativeDate(0) },
+      { pattern: /\b(?:by|due)\s+tomorrow\b/i, resolve: () => this.resolveRelativeDate(1) },
+      { pattern: /\b(?:by|due)\s+(?:next\s+)?(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/i, resolve: (m) => this.resolveNextDay(m[1]) },
+      { pattern: /\b(?:by|due)\s+(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?\b/, resolve: (m) => this.resolveMMDD(m[1], m[2], m[3]) },
+      { pattern: /\b(?:by|due)\s+(\d{4}-\d{2}-\d{2})\b/, resolve: (m) => m[1] + 'T09:00:00.000Z' },
+    ]
+
+    for (const { pattern, resolve } of duePhrases) {
+      const match = text.match(pattern)
+      if (match) {
+        dueDate = resolve(match)
+        text = text.replace(match[0], ' ').trim()
+        break
+      }
+    }
+
+    // Clean up double spaces
+    const taskTitle = text.replace(/\s{2,}/g, ' ').trim()
+
+    // Build display title with priority prefix
+    let displayTitle = taskTitle
+    if (priority === 'urgent') displayTitle = `🔴 ${taskTitle}`
+    else if (priority === 'high') displayTitle = `🟠 ${taskTitle}`
+    else if (priority === 'medium') displayTitle = `🟡 ${taskTitle}`
+
+    if (category) displayTitle = `[${category}] ${displayTitle}`
+
+    return { listId, listName, taskTitle: displayTitle, dueDate, priority, category }
+  }
+
+  resolveRelativeDate(daysFromNow) {
+    const d = new Date()
+    d.setDate(d.getDate() + daysFromNow)
+    return d.toISOString().split('T')[0] + 'T09:00:00.000Z'
+  }
+
+  resolveNextDay(dayName) {
+    const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+    const target = days.indexOf(dayName.toLowerCase())
+    const today = new Date().getDay()
+    let diff = target - today
+    if (diff <= 0) diff += 7
+    return this.resolveRelativeDate(diff)
+  }
+
+  resolveMMDD(month, day, year) {
+    const now = new Date()
+    const y = year ? (year.length === 2 ? '20' + year : year) : now.getFullYear().toString()
+    const m = month.padStart(2, '0')
+    const d = day.padStart(2, '0')
+    return `${y}-${m}-${d}T09:00:00.000Z`
+  }
+
   handleTodo(args) {
     if (!args) {
       return {
         handled: true,
-        response: 'Usage: /todo <task>\n/todo personal <task>'
+        response: [
+          'Usage: /todo <task>',
+          '/todo personal <task>',
+          '/todo urgent: call adjuster by tomorrow',
+          '/todo !high @insurance follow up with StateFarm by friday',
+          '',
+          'Priorities: urgent, !high, !medium, !low',
+          'Categories: @insurance @billing @crew @client @marketing @seo @admin',
+          'Due: by today, by tomorrow, by friday, by 3/20'
+        ].join('\n')
       }
     }
 
-    let listId = 'WUlnZzdORlJwa01PTEFVSw' // FloodDoctor default
-    let taskTitle = args
+    const { listId, listName, taskTitle, dueDate, priority, category } = this.parseTodoInput(args)
 
-    // Check if first word is "personal"
-    if (args.toLowerCase().startsWith('personal ')) {
-      listId = 'NE1SZ0pXUF9hT2pVczFUQg' // Personal
-      taskTitle = args.slice(9).trim()
+    if (!taskTitle) {
+      return { handled: true, response: 'Task text is empty after parsing.' }
     }
 
     try {
       const escaped = taskTitle.replace(/"/g, '\\"')
-      execSync(`/opt/homebrew/bin/gws tasks tasks insert --tasklist "${listId}" --title "${escaped}"`, {
-        encoding: 'utf-8',
-        timeout: 10000
-      })
-      const listName = listId === 'NE1SZ0pXUF9hT2pVczFUQg' ? 'Personal' : 'FloodDoctor'
-      return {
-        handled: true,
-        response: `Added to ${listName}: ${taskTitle}`
+      let cmd = `/opt/homebrew/bin/gws tasks tasks insert --tasklist "${listId}" --title "${escaped}"`
+      if (dueDate) {
+        cmd += ` --due "${dueDate}"`
       }
+      execSync(cmd, { encoding: 'utf-8', timeout: 10000 })
+
+      const parts = [`Added to ${listName}: ${taskTitle}`]
+      if (dueDate) {
+        const dateStr = new Date(dueDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+        parts.push(`Due: ${dateStr}`)
+      }
+      return { handled: true, response: parts.join('\n') }
     } catch (err) {
-      return {
-        handled: true,
-        response: `Failed to add task: ${err.message}`
+      return { handled: true, response: `Failed to add task: ${err.message}` }
+    }
+  }
+
+  /**
+   * Handle /todos - list pending tasks from Google Tasks
+   * Usage: /todos or /todos personal
+   */
+  handleTodos(args) {
+    let listId = 'WUlnZzdORlJwa01PTEFVSw'
+    let listName = 'FloodDoctor'
+
+    if (args && args.toLowerCase().startsWith('personal')) {
+      listId = 'NE1SZ0pXUF9hT2pVczFUQg'
+      listName = 'Personal'
+    }
+
+    try {
+      const raw = execSync(
+        `/opt/homebrew/bin/gws tasks tasks list --tasklist "${listId}" --showCompleted false`,
+        { encoding: 'utf-8', timeout: 15000 }
+      )
+
+      // Parse the gws output (JSON array)
+      let tasks
+      try {
+        const parsed = JSON.parse(raw)
+        tasks = parsed.items || parsed || []
+      } catch {
+        // Fallback: just show raw output truncated
+        return { handled: true, response: `${listName} Tasks:\n${raw.substring(0, 1500)}` }
       }
+
+      if (!tasks.length) {
+        return { handled: true, response: `${listName}: No pending tasks` }
+      }
+
+      const lines = [`${listName} Tasks (${tasks.length}):`, '']
+      for (const t of tasks.slice(0, 15)) {
+        let line = `${t.title || t.name || 'Untitled'}`
+        if (t.due) {
+          const d = new Date(t.due)
+          const dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+          line += ` (${dateStr})`
+        }
+        lines.push(line)
+      }
+
+      if (tasks.length > 15) {
+        lines.push(`... +${tasks.length - 15} more`)
+      }
+
+      return { handled: true, response: lines.join('\n') }
+    } catch (err) {
+      return { handled: true, response: `Failed to list tasks: ${err.message}` }
     }
   }
 
@@ -372,6 +527,8 @@ export default class CommandHandler {
       '/model 2 - Switch to model by number',
       '/todo <task> - Add to FloodDoctor tasks',
       '/todo personal <task> - Add to Personal tasks',
+      '/todo urgent: <task> by friday - Priority + due date',
+      '/todo !high @insurance <task> - Priority + category',
       '/whereisfrank - Get Frank\'s live GPS location',
       '/stop - Stop current operation',
       '/help - Show this help'
