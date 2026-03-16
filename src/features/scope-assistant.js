@@ -9,14 +9,17 @@ import { execSync } from 'child_process'
  *
  * Commands:
  *   /scope <job-id-or-name> — Full scope analysis
+ *   /scope <job-id> template <template-key> — Analysis with specific IICRC template
  *   /scope list             — Show jobs that have Drive folders linked
+ *   /xact search <term>     — Search Xactimate line items by code or description
+ *   /xact templates         — List available scope templates
  *
  * Flow:
  *   1. Look up job in workspace/jobs.json (by ID or client name)
  *   2. Get the job's Google Drive folder ID
  *   3. List all files in that Drive folder via gws CLI
  *   4. Download PDFs and relevant docs to workspace/scope-temp/<job-id>/
- *   5. Send a detailed analysis prompt to the agent pipeline
+ *   5. Send a detailed analysis prompt to the agent pipeline (with KB context)
  *   6. Agent reads the files with its Read tool and responds via WhatsApp
  *
  * Storage: workspace/scope-temp/ (cleaned up after analysis)
@@ -25,6 +28,7 @@ import { execSync } from 'child_process'
 const GWS = '/opt/homebrew/bin/gws'
 const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
 const SCOPE_TEMP_DIR = '/Users/ghost/Projects/cc-wag/workspace/scope-temp'
+const KB_DIR = '/Users/ghost/Projects/cc-wag/workspace/xactimate-kb'
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 
 // File types we care about for scope analysis
@@ -50,6 +54,101 @@ const GOOGLE_DOC_EXPORTS = {
     exportMime: 'text/csv',
     ext: '.csv'
   },
+}
+
+// ── Knowledge Base ──────────────────────────────────────────────────
+
+let _kb = null
+
+function loadKB() {
+  const kb = {}
+  for (const file of ['line-items.json', 'scope-templates.json', 'equipment-mapping.json', 'pushback-responses.json']) {
+    try {
+      kb[file.replace('.json', '').replace(/-/g, '_')] = JSON.parse(fs.readFileSync(path.join(KB_DIR, file), 'utf-8'))
+    } catch { /* skip if missing */ }
+  }
+  return kb
+}
+
+function getKB() {
+  if (!_kb) _kb = loadKB()
+  return _kb
+}
+
+// ── Rate Calculator ─────────────────────────────────────────────────
+
+/**
+ * Given a Date object, return the rate multiplier and label.
+ * Uses equipment-mapping.json rateMultipliers and holidays list.
+ */
+function getRateMultiplier(dateTime) {
+  const kb = getKB()
+  const mapping = kb.equipment_mapping || {}
+  const multipliers = mapping.rateMultipliers || {}
+  const holidays = mapping.holidays2026 || []
+
+  const d = dateTime instanceof Date ? dateTime : new Date(dateTime)
+
+  // Format date as YYYY-MM-DD for holiday check
+  const dateStr = d.toISOString().split('T')[0]
+  const dayOfWeek = d.getDay() // 0=Sun, 6=Sat
+  const hour = d.getHours()
+
+  // Holiday check first (highest priority alongside Sunday)
+  if (holidays.includes(dateStr)) {
+    const entry = multipliers.holiday || { label: 'Holiday', multiplier: 2.0 }
+    return { multiplier: entry.multiplier, label: entry.label }
+  }
+
+  // Sunday
+  if (dayOfWeek === 0) {
+    const entry = multipliers.sunday || { label: 'Sunday', multiplier: 2.0 }
+    return { multiplier: entry.multiplier, label: entry.label }
+  }
+
+  // Saturday
+  if (dayOfWeek === 6) {
+    const entry = multipliers.saturday || { label: 'Saturday', multiplier: 1.5 }
+    return { multiplier: entry.multiplier, label: entry.label }
+  }
+
+  // Weekday: business hours = 7am-6pm
+  if (hour >= 7 && hour < 18) {
+    const entry = multipliers.businessHours || { label: 'Business Hours (7am-6pm M-F)', multiplier: 1.0 }
+    return { multiplier: entry.multiplier, label: entry.label }
+  }
+
+  // Weekday after hours
+  const entry = multipliers.afterHours || { label: 'After Hours (6pm-7am M-F)', multiplier: 1.5 }
+  return { multiplier: entry.multiplier, label: entry.label }
+}
+
+/**
+ * Given an array of timestamp strings (e.g., from CompanyCam),
+ * calculate hours and rate breakdown.
+ */
+function calculateRateBreakdown(timestamps) {
+  if (!timestamps || timestamps.length < 2) return null
+
+  const sorted = timestamps.map(t => new Date(t)).sort((a, b) => a - b)
+  const results = []
+
+  for (let i = 0; i < sorted.length - 1; i += 2) {
+    const start = sorted[i]
+    const end = sorted[i + 1] || sorted[i]
+    const hours = (end - start) / (1000 * 60 * 60)
+    const rate = getRateMultiplier(start)
+
+    results.push({
+      start: start.toISOString(),
+      end: end.toISOString(),
+      hours: Math.round(hours * 100) / 100,
+      multiplier: rate.multiplier,
+      label: rate.label
+    })
+  }
+
+  return results
 }
 
 // ── Storage ─────────────────────────────────────────────────────────
@@ -247,15 +346,70 @@ function cleanupJobDir(jobId) {
   }
 }
 
-// ── Analysis Prompt ─────────────────────────────────────────────────
+// ── KB-Enhanced Analysis Prompt ─────────────────────────────────────
 
-function buildAnalysisPrompt(job, downloadResult) {
+function buildKBContext(templateKey) {
+  const kb = getKB()
+  const sections = []
+
+  // Build line items reference
+  if (kb.line_items) {
+    const allItems = []
+    for (const [catKey, cat] of Object.entries(kb.line_items.categories || {})) {
+      for (const item of cat.items || []) {
+        allItems.push(`  ${item.code} | ${item.description} | ${item.unit}${item.notes ? ' | ' + item.notes : ''}`)
+      }
+    }
+    if (allItems.length > 0) {
+      sections.push(`XACTIMATE CODE REFERENCE (use these exact codes in your output):\n${allItems.join('\n')}`)
+    }
+  }
+
+  // Build equipment alias mapping
+  if (kb.equipment_mapping) {
+    const mappingLines = (kb.equipment_mapping.mappings || []).map(m =>
+      `  ${m.aliases.join(', ')} -> ${m.code} (${m.description}, ${m.unit})`
+    )
+    if (mappingLines.length > 0) {
+      sections.push(`EQUIPMENT NAME-TO-CODE MAPPING:\nWhen you see these terms in documents, map them to the Xactimate code:\n${mappingLines.join('\n')}`)
+    }
+  }
+
+  // Include specific template if requested
+  if (templateKey && kb.scope_templates) {
+    const template = kb.scope_templates.templates[templateKey]
+    if (template) {
+      const templateItems = template.typicalItems.join(', ')
+      sections.push(`SCOPE TEMPLATE APPLIED: ${template.name}
+Description: ${template.description}
+Standard Drying Days: ${template.standardDryingDays}
+Equipment Ratio: ${template.equipmentRatio}
+Typical Line Items: ${templateItems}
+Notes: ${template.notes}
+
+IMPORTANT: Use this template as a baseline. The typical items listed above should ALL be present unless documents explicitly indicate otherwise. Flag any missing items from this template as potential additions.`)
+    }
+  }
+
+  // Include pushback context
+  if (kb.pushback_responses) {
+    sections.push(`ADJUSTER PUSHBACK AWARENESS:
+When writing the scope, be aware of common adjuster objections and ensure documentation supports each line item. Key areas adjusters challenge:
+${(kb.pushback_responses.responses || []).map(r => `  - ${r.adjusterClaim} (defend with: ${r.references.join(', ')})`).join('\n')}`)
+  }
+
+  return sections.length > 0 ? '\n\n--- XACTIMATE KNOWLEDGE BASE ---\n\n' + sections.join('\n\n') : ''
+}
+
+function buildAnalysisPrompt(job, downloadResult, templateKey) {
   const { dir, downloaded, skipped } = downloadResult
 
   const fileList = downloaded.map(f => `  - ${f.name} -> ${f.path}`).join('\n')
   const skipList = skipped.length > 0
     ? '\nSkipped files:\n' + skipped.map(s => `  - ${s.name}: ${s.reason}`).join('\n')
     : ''
+
+  const kbContext = buildKBContext(templateKey)
 
   return `You are an Xactimate scope analysis expert for water damage restoration, working to IICRC S500/S520 standards. Frank needs you to analyze all project documents for job ${job.id} (${job.client}) and produce a structured line item list for Xactimate entry.
 
@@ -271,31 +425,34 @@ JOB INFO:
 - Address: ${job.address || 'Not specified'}${job.city ? ', ' + job.city : ''}
 - Status: ${job.status}
 - Drive Folder: ${job.driveUrl || 'N/A'}
+${templateKey ? `- Template Applied: ${templateKey}` : ''}
+${kbContext}
 
 ANALYSIS INSTRUCTIONS:
 
-After reading ALL documents, produce a STRUCTURED Xactimate line item list organized into these categories. For each line item include: Xactimate code (if known), description, quantity, unit (SF/LF/EA/HR/DY), and room/area.
+After reading ALL documents, produce a STRUCTURED Xactimate line item list organized into these categories. For each line item include: Xactimate code (use codes from the KB reference above), description, quantity, unit (SF/LF/EA/HR/DY), and room/area.
 
 CATEGORIES TO COVER:
 
 1. EQUIPMENT
    Air movers, dehumidifiers, air scrubbers, generators, heaters, axial fans, negative air machines
    Format: qty x days per room
-   Codes: WTREQUP, WTRDHU, etc.
+   Codes: WTREQUP, WTRDHU, WTRFAN, WTRAHR, WTRHTR
 
 2. DEMOLITION
    Drywall tearout/flood cuts, insulation removal, baseboard removal, flooring removal
    Format: SF/LF per room
-   Codes: WLL-004, INS-001, FLR-014, etc.
+   Codes: DRYRMV, BSBRMV, CPTRMV, PADRMV, FLRRMV, CABRMV, INSLRMV
 
 3. LABOR
    Setup, daily monitoring visits, takedown, decontamination labor
    Format: hours, with normal vs after-hours/weekend/holiday breakdown
-   Codes: CLG-001, GNL-001, etc.
+   Codes: LABMIN, LABGEN, LABTCH, LABSUP
 
 4. SUPERVISORY
    Supervisory hours from labor log or monitoring reports
    Format: hours
+   Codes: LABSUP
 
 5. PPE
    Per tech per day, Cat 2/3 requirements (Tyvek suits, respirators, gloves, booties)
@@ -304,7 +461,7 @@ CATEGORIES TO COVER:
 6. TESTING
    Asbestos testing, mold testing, moisture readings
    Format: actual costs if available, otherwise EA
-   Codes: TST-ASBST, TST-MOLD, etc.
+   Codes: WTRTST, WTRMON
 
 7. DEBRIS REMOVAL
    Truck loads, dumpster, disposal fees
@@ -313,6 +470,7 @@ CATEGORIES TO COVER:
 8. CONTENTS MANIPULATION
    Move-out, move-back, protective covering, content cleaning
    Format: SF for covering, hours for moving
+   Codes: CNTMOV, CNTBLK, CNTPKO
 
 9. APPLIANCES
    Detach, clean, wrap, reset appliances
@@ -321,17 +479,25 @@ CATEGORIES TO COVER:
 10. FLOORING
     Tearout (carpet, vinyl, tile, hardwood), HEPA vacuum subfloor, antimicrobial on subfloor
     Format: SF per room
-    Codes: FLR-*, CLN-HEPA, etc.
+    Codes: CPTRMV, PADRMV, FLRRMV, CPTINS, PADINS
 
 11. ANTIMICROBIAL
     Pre-demo application, post-dry application
     Format: SF per room per application
-    Codes: ANT-001, etc.
+    Codes: WTRAMT, WTRSNT
 
 12. FINAL CLEANING
     Wipe-down, HEPA vacuum, detail clean
 
-13. MISCELLANEOUS
+13. RECONSTRUCTION (if applicable)
+    Drywall install/finish, baseboard, paint, flooring
+    Codes: DRYINS, DRYFIN, BSBINS, PNTINT, PNTCLG, CPTINS, PADINS
+
+14. EMERGENCY SERVICES (if applicable)
+    Emergency call, board up, tarp
+    Codes: EMGSVC, EMGBRD, TARPRF
+
+15. MISCELLANEOUS
     Anything that doesn't fit above
 
 CRITICAL — FLAG THESE SECTIONS:
@@ -346,7 +512,7 @@ FORMAT RULES:
 - Group by category with clear headers
 - Include room/area for every line item
 - Show quantities with units
-- Include Xactimate code where known
+- Include Xactimate code for every line item (use KB codes above)
 - Flag discrepancies prominently
 - At the end, provide a brief summary of total scope (number of rooms, water damage category/class per IICRC, estimated line item count)
 
@@ -395,15 +561,105 @@ function handleScopeList() {
   return { handled: true, response: lines.join('\n') }
 }
 
+// ── Xact Search ─────────────────────────────────────────────────────
+
+function handleXactSearch(term) {
+  const kb = getKB()
+  if (!kb.line_items) {
+    return { handled: true, response: 'Xactimate KB not loaded. Check workspace/xactimate-kb/line-items.json' }
+  }
+
+  const termLower = term.toLowerCase()
+  const results = []
+
+  // Search line items by code or description
+  for (const [catKey, cat] of Object.entries(kb.line_items.categories || {})) {
+    for (const item of cat.items || []) {
+      if (
+        item.code.toLowerCase().includes(termLower) ||
+        item.description.toLowerCase().includes(termLower)
+      ) {
+        results.push(item)
+      }
+    }
+  }
+
+  // Also search equipment aliases
+  if (kb.equipment_mapping) {
+    for (const mapping of kb.equipment_mapping.mappings || []) {
+      const aliasMatch = mapping.aliases.some(a => a.toLowerCase().includes(termLower))
+      if (aliasMatch) {
+        // Find the corresponding line item
+        const existing = results.find(r => r.code === mapping.code)
+        if (!existing) {
+          results.push({ code: mapping.code, description: mapping.description, unit: mapping.unit, category: 'Equipment (alias match)' })
+        }
+      }
+    }
+  }
+
+  if (results.length === 0) {
+    return { handled: true, response: `No Xactimate items found for "${term}"` }
+  }
+
+  const lines = [`*Xactimate Search: "${term}"* (${results.length} result${results.length !== 1 ? 's' : ''})`, '']
+  for (const item of results) {
+    lines.push(`${item.code} | ${item.description} | ${item.unit} | ${item.category}`)
+    if (item.notes) lines.push(`  _${item.notes}_`)
+  }
+
+  return { handled: true, response: lines.join('\n') }
+}
+
+// ── Xact Templates List ────────────────────────────────────────────
+
+function handleXactTemplates() {
+  const kb = getKB()
+  if (!kb.scope_templates) {
+    return { handled: true, response: 'Xactimate KB not loaded. Check workspace/xactimate-kb/scope-templates.json' }
+  }
+
+  const templates = kb.scope_templates.templates || {}
+  const keys = Object.keys(templates)
+
+  if (keys.length === 0) {
+    return { handled: true, response: 'No scope templates defined.' }
+  }
+
+  const lines = [`*Scope Templates* (${keys.length})`, '']
+  for (const key of keys) {
+    const t = templates[key]
+    lines.push(`*${key}* — ${t.name}`)
+    lines.push(`  ${t.description}`)
+    lines.push(`  Drying: ${t.standardDryingDays} days | Items: ${t.typicalItems.length}`)
+    lines.push(`  Equipment: ${t.equipmentRatio}`)
+    lines.push('')
+  }
+
+  lines.push('Usage: /scope FD-002 template cat3-class2')
+
+  return { handled: true, response: lines.join('\n') }
+}
+
 // ── Main Scope Command ──────────────────────────────────────────────
 
 async function handleScope(query, gateway, adapter, chatId, sessionKey) {
+  // Parse template from query: "/scope FD-002 template cat3-class2"
+  let templateKey = null
+  let jobQuery = query
+
+  const templateMatch = query.match(/^(.+?)\s+template\s+(\S+)$/i)
+  if (templateMatch) {
+    jobQuery = templateMatch[1].trim()
+    templateKey = templateMatch[2].trim().toLowerCase()
+  }
+
   // Look up the job
-  const job = findJobByIdOrName(query)
+  const job = findJobByIdOrName(jobQuery)
   if (!job) {
     return {
       handled: true,
-      response: `Job not found: "${query}"\n\nTry /scope list to see available jobs, or use a job ID like /scope FD-002`
+      response: `Job not found: "${jobQuery}"\n\nTry /scope list to see available jobs, or use a job ID like /scope FD-002`
     }
   }
 
@@ -415,13 +671,27 @@ async function handleScope(query, gateway, adapter, chatId, sessionKey) {
     }
   }
 
+  // Validate template key if provided
+  if (templateKey) {
+    const kb = getKB()
+    const templates = kb.scope_templates?.templates || {}
+    if (!templates[templateKey]) {
+      const available = Object.keys(templates).join(', ')
+      return {
+        handled: true,
+        response: `Unknown template: "${templateKey}"\n\nAvailable: ${available}\n\nUsage: /scope ${job.id} template cat3-class2`
+      }
+    }
+  }
+
   // Send acknowledgment
+  const templateNote = templateKey ? ` (template: ${templateKey})` : ''
   await adapter.sendMessage(chatId,
-    `Analyzing scope for *${job.id}* — ${job.client}\n\nDownloading project files from Drive...`
+    `Analyzing scope for *${job.id}* — ${job.client}${templateNote}\n\nDownloading project files from Drive...`
   )
 
   // Download files
-  console.log(`[ScopeAssistant] Starting scope analysis for ${job.id} (${job.client})`)
+  console.log(`[ScopeAssistant] Starting scope analysis for ${job.id} (${job.client})${templateNote}`)
   const downloadResult = downloadJobFiles(job)
 
   if (downloadResult.downloaded.length === 0) {
@@ -444,7 +714,7 @@ async function handleScope(query, gateway, adapter, chatId, sessionKey) {
   await adapter.sendMessage(chatId, dlMsg.join('\n'))
 
   // Build analysis prompt and send through the agent pipeline
-  const analysisPrompt = buildAnalysisPrompt(job, downloadResult)
+  const analysisPrompt = buildAnalysisPrompt(job, downloadResult, templateKey)
 
   // Enqueue the analysis as an agent run — this uses the full streaming pipeline
   // so the response will be sent back via WhatsApp automatically
@@ -493,6 +763,32 @@ function routeScopeCommand(text) {
   return { needsAsync: true, query: rest }
 }
 
+function routeXactCommand(text) {
+  const trimmed = text.trim()
+  const lower = trimmed.toLowerCase()
+
+  if (!lower.startsWith('/xact')) return null
+
+  // Strip "/xact" prefix
+  const rest = trimmed.slice(5).trim()
+  const restLower = rest.toLowerCase()
+
+  // /xact (no args) — show help
+  if (!rest) return xactHelp()
+
+  // /xact search <term>
+  if (restLower.startsWith('search ')) {
+    const term = rest.slice(7).trim()
+    if (!term) return { handled: true, response: 'Usage: /xact search <term>\nExample: /xact search dehu' }
+    return handleXactSearch(term)
+  }
+
+  // /xact templates
+  if (restLower === 'templates') return handleXactTemplates()
+
+  return xactHelp()
+}
+
 function scopeHelp() {
   return {
     handled: true,
@@ -501,12 +797,34 @@ function scopeHelp() {
       '',
       '/scope <job-id> — Analyze project files for Xactimate line items',
       '/scope <client-name> — Search by client name',
+      '/scope <job-id> template <key> — Analyze with IICRC template',
       '/scope list — Show jobs with Drive folders linked',
+      '',
+      '/xact search <term> — Search Xactimate line items',
+      '/xact templates — List scope templates',
       '',
       'Examples:',
       '/scope FD-002',
       '/scope Wigenton',
-      '/scope 2',
+      '/scope FD-002 template cat3-class2',
+      '/xact search dehu',
+    ].join('\n')
+  }
+}
+
+function xactHelp() {
+  return {
+    handled: true,
+    response: [
+      '*Xactimate KB Commands*',
+      '',
+      '/xact search <term> — Search line items by code or description',
+      '/xact templates — List available scope templates',
+      '',
+      'Examples:',
+      '/xact search dehu',
+      '/xact search antimicrobial',
+      '/xact templates',
     ].join('\n')
   }
 }
@@ -519,7 +837,12 @@ export function register(gateway) {
     fs.mkdirSync(SCOPE_TEMP_DIR, { recursive: true })
   }
 
-  // Wrap the command handler to intercept /scope before default routing
+  // Pre-load the knowledge base
+  const kb = getKB()
+  const kbFiles = Object.keys(kb)
+  console.log(`[ScopeAssistant] KB loaded: ${kbFiles.length} file(s) (${kbFiles.join(', ')})`)
+
+  // Wrap the command handler to intercept /scope and /xact before default routing
   const originalExecute = gateway.commandHandler.execute.bind(gateway.commandHandler)
 
   gateway.commandHandler.execute = async function (text, sessionKey, adapter, chatId) {
@@ -536,6 +859,11 @@ export function register(gateway) {
       if (result) return result
     }
 
+    if (lower.startsWith('/xact')) {
+      const result = routeXactCommand(text)
+      if (result) return result
+    }
+
     return originalExecute(text, sessionKey, adapter, chatId)
   }
 
@@ -548,11 +876,18 @@ export function register(gateway) {
       '',
       '--- Scope Assistant ---',
       '/scope <job-id-or-name> — Xactimate scope analysis',
-      '/scope list — Jobs with Drive folders'
+      '/scope <job-id> template <key> — Analysis with IICRC template',
+      '/scope list — Jobs with Drive folders',
+      '/xact search <term> — Search Xactimate codes',
+      '/xact templates — List scope templates'
     ]
     result.response += '\n' + scopeLines.join('\n')
     return result
   }
 
-  console.log('[ScopeAssistant] Loaded — /scope command enabled')
+  console.log('[ScopeAssistant] Loaded — /scope and /xact commands enabled')
 }
+
+// ── Exports for external use ────────────────────────────────────────
+
+export { getRateMultiplier, calculateRateBreakdown, getKB }
