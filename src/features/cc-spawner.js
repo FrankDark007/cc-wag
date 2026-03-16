@@ -22,6 +22,40 @@ const PROJECT_ROOT = '/Users/ghost/Projects/cc-wag'
 const SESSIONS_FILE = path.join(WORKSPACE, 'cc-sessions.json')
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const MAX_WA_OUTPUT = 500
+const AUDIT_FILE = path.join(WORKSPACE, 'cc-audit.jsonl')
+
+// Dangerous patterns that should never be in CC spawn tasks
+const DANGEROUS_PATTERNS = [
+  /rm\s+-rf/i, /curl.*\|.*sh/i, /wget.*\|.*sh/i, /eval\s*\(/i,
+  /process\.env/i, /ANTHROPIC_API_KEY/i, /credentials/i, /\.env\b/i,
+  /auth_whatsapp/i, /ssh\s+/i, /scp\s+/i, /rsync\s+/i
+]
+
+const MAX_TASK_LENGTH = 500
+
+function validateTask(task) {
+  if (!task || typeof task !== 'string') {
+    return { valid: false, reason: 'Task must be a non-empty string' }
+  }
+  if (task.length > MAX_TASK_LENGTH) {
+    return { valid: false, reason: `Task too long (${task.length} chars, max ${MAX_TASK_LENGTH})` }
+  }
+  for (const pattern of DANGEROUS_PATTERNS) {
+    if (pattern.test(task)) {
+      return { valid: false, reason: `Task contains blocked pattern: ${pattern.source}` }
+    }
+  }
+  return { valid: true }
+}
+
+function auditLog(entry) {
+  try {
+    const line = JSON.stringify({ timestamp: new Date().toISOString(), ...entry }) + '\n'
+    fs.appendFileSync(AUDIT_FILE, line)
+  } catch (err) {
+    console.error('[CCSpawner] Audit log failed:', err.message)
+  }
+}
 
 // ── Session Storage ─────────────────────────────────────────────────
 
@@ -208,7 +242,15 @@ function handleCCSpawn(taskDescription, gateway) {
     return 'Please provide a task description.'
   }
 
+  // Validate task
+  const validation = validateTask(task)
+  if (!validation.valid) {
+    auditLog({ task, result: 'rejected', reason: validation.reason })
+    return `Task rejected: ${validation.reason}`
+  }
+
   const sessionId = spawnCCSession(task, gateway)
+  auditLog({ task, sessionId, result: 'spawned' })
   return [
     `*CC Session Spawned*`,
     `ID: ${sessionId}`,
