@@ -4,6 +4,7 @@ import os from 'os'
 
 const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
 const MEMORY_DIR = path.join(WORKSPACE, 'memory')
+const OBSERVATIONS_FILE = path.join(MEMORY_DIR, 'observations.jsonl')
 const CLAUDE_MD_PATH = path.join(os.homedir(), '.claude', 'CLAUDE.md')
 
 /**
@@ -242,5 +243,167 @@ export default class MemoryManager {
     }
 
     return matches.slice(0, 5)
+  }
+
+  // ===========================================
+  // Observation Memory (Layer 2)
+  // ===========================================
+
+  /**
+   * Write an observation to the JSONL file
+   * @param {Object} obs - { domain, fact, source? }
+   */
+  writeObservation(obs) {
+    const entry = {
+      date: new Date().toISOString(),
+      domain: obs.domain || 'general',
+      fact: obs.fact,
+      source: obs.source || 'conversation'
+    }
+
+    try {
+      const line = JSON.stringify(entry) + '\n'
+      fs.appendFileSync(OBSERVATIONS_FILE, line, 'utf-8')
+      return true
+    } catch (err) {
+      console.error('[Memory] Failed to write observation:', err.message)
+      return false
+    }
+  }
+
+  /**
+   * Write multiple observations at once
+   * @param {Array} observations - [{ domain, fact, source? }, ...]
+   */
+  writeObservations(observations) {
+    if (!observations || !observations.length) return 0
+
+    let written = 0
+    for (const obs of observations) {
+      if (this.writeObservation(obs)) written++
+    }
+    return written
+  }
+
+  /**
+   * Read all observations
+   * @returns {Array} Array of observation objects
+   */
+  readAllObservations() {
+    try {
+      if (!fs.existsSync(OBSERVATIONS_FILE)) return []
+      const raw = fs.readFileSync(OBSERVATIONS_FILE, 'utf-8').trim()
+      if (!raw) return []
+
+      return raw.split('\n').map(line => {
+        try { return JSON.parse(line) } catch { return null }
+      }).filter(Boolean)
+    } catch (err) {
+      console.error('[Memory] Failed to read observations:', err.message)
+      return []
+    }
+  }
+
+  /**
+   * Search observations by keyword(s)
+   * Returns matching observations sorted by relevance (recency + keyword match count)
+   * @param {string} query - Space-separated keywords
+   * @param {number} limit - Max results (default 20)
+   */
+  searchObservations(query, limit = 20) {
+    const observations = this.readAllObservations()
+    if (!observations.length || !query) return []
+
+    const keywords = query.toLowerCase().split(/\s+/).filter(k => k.length > 2)
+    if (!keywords.length) return observations.slice(-limit)
+
+    // Score each observation
+    const scored = observations.map(obs => {
+      const text = `${obs.domain} ${obs.fact} ${obs.source || ''}`.toLowerCase()
+      let score = 0
+
+      for (const kw of keywords) {
+        if (text.includes(kw)) score += 1
+        // Bonus for domain match
+        if (obs.domain && obs.domain.toLowerCase().includes(kw)) score += 0.5
+      }
+
+      // Recency bonus: observations from today get +0.5, last 7 days get +0.25
+      if (obs.date) {
+        const age = Date.now() - new Date(obs.date).getTime()
+        if (age < 86400000) score += 0.5       // today
+        else if (age < 604800000) score += 0.25 // this week
+      }
+
+      return { obs, score }
+    })
+
+    return scored
+      .filter(s => s.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, limit)
+      .map(s => s.obs)
+  }
+
+  /**
+   * Get relevant observations for a conversation context
+   * Extracts keywords from the message and returns matching observations
+   * @param {string} message - The incoming user message
+   * @param {number} limit - Max observations to include
+   */
+  getRelevantObservations(message, limit = 10) {
+    if (!message) return []
+
+    // Extract meaningful words (skip common words)
+    const stopwords = new Set(['the', 'is', 'at', 'in', 'on', 'to', 'for', 'of', 'and', 'or', 'a', 'an', 'it', 'do', 'did', 'was', 'are', 'be', 'has', 'have', 'had', 'will', 'can', 'could', 'would', 'should', 'may', 'might', 'this', 'that', 'with', 'from', 'what', 'when', 'where', 'how', 'who', 'which', 'my', 'your', 'his', 'her', 'our', 'their', 'me', 'him', 'them', 'we', 'you', 'they', 'just', 'also', 'very', 'about', 'been', 'some', 'any', 'all', 'get', 'got', 'not', "don't", "didn't", "won't", "can't"])
+
+    const words = message.toLowerCase()
+      .replace(/[^\w\s]/g, '')
+      .split(/\s+/)
+      .filter(w => w.length > 2 && !stopwords.has(w))
+
+    if (!words.length) return []
+
+    // Use top 5 meaningful words as search query
+    const query = words.slice(0, 5).join(' ')
+    return this.searchObservations(query, limit)
+  }
+
+  /**
+   * Get observation context string for system prompt injection
+   * @param {string} message - The incoming message for context matching
+   */
+  getObservationContext(message) {
+    const relevant = this.getRelevantObservations(message, 8)
+    if (!relevant.length) return ''
+
+    const lines = ['## Relevant Past Observations']
+    for (const obs of relevant) {
+      const dateStr = obs.date ? new Date(obs.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''
+      lines.push(`- [${obs.domain}] ${obs.fact}${dateStr ? ` (${dateStr})` : ''}`)
+    }
+
+    return lines.join('\n')
+  }
+
+  /**
+   * Count total observations
+   */
+  getObservationCount() {
+    const all = this.readAllObservations()
+    return all.length
+  }
+
+  /**
+   * Get observation domains summary
+   */
+  getObservationDomains() {
+    const all = this.readAllObservations()
+    const domains = {}
+    for (const obs of all) {
+      const d = obs.domain || 'general'
+      domains[d] = (domains[d] || 0) + 1
+    }
+    return domains
   }
 }

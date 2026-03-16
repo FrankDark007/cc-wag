@@ -41,7 +41,7 @@ function loadClaudeMd() {
 /**
  * Build the system prompt with memory, session info, cron, and business context
  */
-function buildSystemPrompt(memoryContext, sessionInfo, cronInfo) {
+function buildSystemPrompt(memoryContext, sessionInfo, cronInfo, observationContext) {
   const now = new Date()
   const dateStr = now.toLocaleDateString('en-US', {
     weekday: 'long',
@@ -163,6 +163,17 @@ When Frank messages directly (CC, prefix in self-chat or DM):
 - Always check memory before asking the user for information they may have already told you
 - When user asks to be reminded, use the cron scheduling tools
 - DO NOT mention details about connected accounts unless explicitly asked
+${observationContext ? '\n' + observationContext : ''}
+
+## Observation Memory
+After conversations where Frank shares important information, save key observations using Bash:
+echo '{"domain":"DOMAIN","fact":"THE_FACT","source":"conversation"}' >> /Users/ghost/Projects/cc-wag/workspace/memory/observations.jsonl
+
+Domains: client, insurance, crew, scheduling, preference, business, project, contact
+Only save genuinely useful facts, not every message. Examples:
+- Client preference: "Smith prefers morning appointments"
+- Business: "StateFarm adjuster for Smith claim is John Doe, 703-555-1234"
+- Preference: "Frank prefers Opus for insurance analysis"
 ${template ? '\n## Additional Context from system-prompt.md\n' + template : ''}
 ${claudeMd ? '\n## CLAUDE.md (Read-Only Reference)\n' + claudeMd : ''}
 `
@@ -310,10 +321,11 @@ export default class ClaudeAgent extends EventEmitter {
       currentSessionKey: sessionKey
     })
 
-    // Build system prompt
+    // Build system prompt with observation context
     const memoryContext = this.memoryManager.getMemoryContext()
     const cronInfo = this.getCronSummary()
-    const systemPrompt = buildSystemPrompt(memoryContext, { sessionKey, platform }, cronInfo)
+    const observationContext = this.memoryManager.getObservationContext(message)
+    const systemPrompt = buildSystemPrompt(memoryContext, { sessionKey, platform }, cronInfo, observationContext)
 
     // Combine all allowed tools
     const allAllowedTools = [...this.allowedTools, ...this.cronTools, ...this.gatewayTools]
