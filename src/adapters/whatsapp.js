@@ -184,15 +184,29 @@ export default class WhatsAppAdapter extends BaseAdapter {
       const phoneJid = this.lidToPhone.get(targetJid)
       if (phoneJid) {
         targetJid = phoneJid
-        console.log(`[WhatsApp] Resolved LID to phone JID: ${targetJid}`)
       }
     }
-    const sentMsg = await this.sock.sendMessage(targetJid, { text })
 
-    // Track sent message ID so we can filter out our own echoes in self-DMs
-    if (sentMsg?.key?.id) {
-      this.sentMessageIds.add(sentMsg.key.id)
-      setTimeout(() => this.sentMessageIds.delete(sentMsg.key.id), 10000)
+    // Retry on Timed Out (Baileys connection can be flaky)
+    let lastErr
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const sentMsg = await this.sock.sendMessage(targetJid, { text })
+        // Track sent message ID so we can filter out our own echoes in self-DMs
+        if (sentMsg?.key?.id) {
+          this.sentMessageIds.add(sentMsg.key.id)
+          setTimeout(() => this.sentMessageIds.delete(sentMsg.key.id), 10000)
+        }
+        return // success
+      } catch (err) {
+        lastErr = err
+        if (err.message === 'Timed Out' && attempt < 3) {
+          console.log(`[WhatsApp] Send timed out (attempt ${attempt}/3), retrying in ${attempt}s...`)
+          await new Promise(r => setTimeout(r, attempt * 1000))
+          continue
+        }
+        throw err
+      }
     }
   }
 

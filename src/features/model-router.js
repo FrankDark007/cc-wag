@@ -32,20 +32,16 @@ const LONG_MSG_WORDS = 50
 
 /**
  * Classify a message and return the optimal model
+ * Default is Sonnet. Haiku only for pure greetings. Opus for analysis.
  */
 export function classifyMessage(text) {
   const trimmed = text.trim()
   const wordCount = trimmed.split(/\s+/).length
 
-  // Very short messages → Haiku
-  if (wordCount <= 3) {
-    return { model: HAIKU, reason: 'short' }
-  }
-
-  // Simple pattern match → Haiku
+  // Only pure greetings/acknowledgments → Haiku (nothing that requires context)
   for (const pattern of SIMPLE_PATTERNS) {
-    if (pattern.test(trimmed)) {
-      return { model: HAIKU, reason: 'simple' }
+    if (pattern.test(trimmed) && wordCount <= 4 && !trimmed.startsWith('/')) {
+      return { model: HAIKU, reason: 'greeting' }
     }
   }
 
@@ -61,12 +57,7 @@ export function classifyMessage(text) {
     return { model: OPUS, reason: 'long' }
   }
 
-  // Short-medium messages → Haiku if under threshold
-  if (wordCount <= SHORT_MSG_WORDS) {
-    return { model: HAIKU, reason: 'brief' }
-  }
-
-  // Default → Sonnet
+  // Everything else → Sonnet (smart default)
   return { model: SONNET, reason: 'default' }
 }
 
