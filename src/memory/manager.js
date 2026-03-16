@@ -16,6 +16,15 @@ export default class MemoryManager {
     this.workspace = WORKSPACE
     this.memoryDir = MEMORY_DIR
     this.ensureDirectories()
+
+    // Cache for observations (invalidated on write)
+    this._observationCache = null
+    this._observationCacheMtime = 0
+
+    // Cache for memory context (5-min TTL)
+    this._memoryContextCache = null
+    this._memoryContextCacheTime = 0
+    this._memoryContextTTL = 5 * 60 * 1000 // 5 minutes
   }
 
   ensureDirectories() {
@@ -161,6 +170,11 @@ export default class MemoryManager {
    * Get all memory context for session start
    */
   getMemoryContext() {
+    const now = Date.now()
+    if (this._memoryContextCache && (now - this._memoryContextCacheTime) < this._memoryContextTTL) {
+      return this._memoryContextCache
+    }
+
     const parts = []
 
     const longTerm = this.readLongTermMemory()
@@ -178,7 +192,10 @@ export default class MemoryManager {
       parts.push(`## Today's Notes (${this.getToday()})\n${today}`)
     }
 
-    return parts.join('\n\n---\n\n')
+    this._memoryContextCache = parts.join('\n\n---\n\n')
+    this._memoryContextCacheTime = now
+
+    return this._memoryContextCache
   }
 
   /**
@@ -264,6 +281,8 @@ export default class MemoryManager {
     try {
       const line = JSON.stringify(entry) + '\n'
       fs.appendFileSync(OBSERVATIONS_FILE, line, 'utf-8')
+      // Invalidate observation cache
+      this._observationCacheMtime = 0
       return true
     } catch (err) {
       console.error('[Memory] Failed to write observation:', err.message)
@@ -292,12 +311,24 @@ export default class MemoryManager {
   readAllObservations() {
     try {
       if (!fs.existsSync(OBSERVATIONS_FILE)) return []
+
+      // Check file mtime for cache invalidation
+      const stat = fs.statSync(OBSERVATIONS_FILE)
+      const mtime = stat.mtimeMs
+
+      if (this._observationCache && mtime === this._observationCacheMtime) {
+        return this._observationCache
+      }
+
       const raw = fs.readFileSync(OBSERVATIONS_FILE, 'utf-8').trim()
       if (!raw) return []
 
-      return raw.split('\n').map(line => {
+      this._observationCache = raw.split('\n').map(line => {
         try { return JSON.parse(line) } catch { return null }
       }).filter(Boolean)
+      this._observationCacheMtime = mtime
+
+      return this._observationCache
     } catch (err) {
       console.error('[Memory] Failed to read observations:', err.message)
       return []
