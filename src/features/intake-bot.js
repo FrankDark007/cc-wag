@@ -15,14 +15,16 @@ import { execSync } from 'child_process'
  * Commands:
  *   /intakes — list recent leads
  *
- * Reads/writes: /Users/ghost/Projects/cc-wag/workspace/jobs.json
+ * Reads/writes: workspace/jobs.json
  * Drive parent folder: 1QYQysnw8kYfwY14fgPgfAx5nlqlmfSxW
  */
 
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
-const INTAKES_FILE = '/Users/ghost/Projects/cc-wag/workspace/intakes.json'
+import config from '../config.js'
+
+const JOBS_FILE = config.paths.jobsFile
+const INTAKES_FILE = config.paths.intakesFile
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
-const GWS_PATH = '/opt/homebrew/bin/gws'
+const GWS_PATH = config.paths.gwsBin
 const DRIVE_PARENT_FOLDER = '1QYQysnw8kYfwY14fgPgfAx5nlqlmfSxW'
 const LIEN_DEADLINE_DAYS = 90
 
@@ -405,12 +407,21 @@ function routeIntakeCommand(text) {
 // ── Known Chat IDs (not leads) ──────────────────────────────────────
 // These are Frank or known team members — skip intake flow
 
-const KNOWN_CHATS = new Set([
-  FRANK_CHAT_ID,
-  '174796696477830@lid',       // Frank's LID (self-chat comes in as LID)
-  '12024598844@s.whatsapp.net', // Shyon
-  '49886229692465@lid',         // Shyon LID
-])
+// Build known chats from allowlist + hardcoded Frank LIDs
+function buildKnownChats() {
+  const known = new Set([
+    FRANK_CHAT_ID,
+    '174796696477830@lid',       // Frank's LID (self-chat comes in as LID)
+  ])
+  // Add all allowlisted DMs from env
+  const allowed = (process.env.WHATSAPP_ALLOWED_DMS || '').split(',').filter(Boolean)
+  for (const num of allowed) {
+    const bare = num.trim().replace(/^\+/, '')
+    known.add(`${bare}@s.whatsapp.net`)
+  }
+  return known
+}
+const KNOWN_CHATS = buildKnownChats()
 
 // ── Plugin Registration ─────────────────────────────────────────────
 
@@ -439,21 +450,29 @@ export function register(gateway) {
   const originalAdapterExecute = gateway.commandHandler.execute.bind(gateway.commandHandler)
 
   gateway.commandHandler.execute = async function (text, sessionKey, adapter, chatId) {
+    // Never intercept self-chat (Frank messaging himself) or known/allowed contacts
+    const isSelfChat = sessionKey.includes(':dm:174796696477830@lid') || sessionKey.includes(':dm:17034981581@s.whatsapp.net')
+    const isKnown = KNOWN_CHATS.has(chatId)
+    // Also check adapter's LID<->phone maps for dynamic resolution
+    const resolvedPhone = adapter?.lidToPhone?.get(chatId)
+    const resolvedLid = adapter?.phoneToLid?.get(chatId)
+    const isKnownResolved = (resolvedPhone && KNOWN_CHATS.has(resolvedPhone)) || (resolvedLid && KNOWN_CHATS.has(resolvedLid))
+
+    if (isSelfChat || isKnown || isKnownResolved) {
+      return originalAdapterExecute(text, sessionKey, adapter, chatId)
+    }
+
     // Check if this is an active intake session
     if (activeSessions.has(chatId)) {
       return processIntakeMessage(gateway, chatId, text, adapter)
     }
 
-    // Check if this is from an unknown contact (not Frank, not a group, not a command)
+    // Check if this is from an unknown contact (not a group, not a command)
     if (
       chatId &&
-      !KNOWN_CHATS.has(chatId) &&
-      !chatId.endsWith('@g.us') && // not a group
-      !text.trim().startsWith('/') && // not a command
-      !sessionKey.includes(':dm:174796696477830@lid') // not Frank self-chat via LID
+      !chatId.endsWith('@g.us') &&
+      !text.trim().startsWith('/')
     ) {
-      // Check if this person has messaged before (has a session)
-      // If it's their first message and they're not known, start intake
       const hasExistingSession = gateway.agentRunner?.agent?.sessions?.has(sessionKey)
 
       if (!hasExistingSession) {
