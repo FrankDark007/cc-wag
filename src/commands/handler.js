@@ -1,4 +1,4 @@
-import { execSync } from 'child_process'
+import { execSync, execFileSync } from 'child_process'
 import fs from 'fs'
 
 /**
@@ -403,12 +403,9 @@ export default class CommandHandler {
     }
 
     try {
-      const escaped = taskTitle.replace(/"/g, '\\"')
-      let cmd = `/opt/homebrew/bin/gws tasks tasks insert --tasklist "${listId}" --title "${escaped}"`
-      if (dueDate) {
-        cmd += ` --due "${dueDate}"`
-      }
-      execSync(cmd, { encoding: 'utf-8', timeout: 10000 })
+      const args = ['tasks', 'tasks', 'insert', '--tasklist', listId, '--title', taskTitle]
+      if (dueDate) args.push('--due', dueDate)
+      execFileSync('/opt/homebrew/bin/gws', args, { encoding: 'utf-8', timeout: 10000 })
 
       const parts = [`Added to ${listName}: ${taskTitle}`]
       if (dueDate) {
