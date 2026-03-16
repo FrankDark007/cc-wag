@@ -448,8 +448,8 @@ async function processIntakeStep(flow, text, chatId, gateway) {
       // Try to create Drive folder via gws
       let driveMsg = ''
       try {
-        const { execSync } = await import('child_process')
-        execSync(`gws drive files create --name "${job.id} - ${flow.data.clientName}" --mime-type "application/vnd.google-apps.folder"`, {
+        const { execFileSync } = await import('child_process')
+        execFileSync('/opt/homebrew/bin/gws', ['drive', 'files', 'create', '--name', `${job.id} - ${flow.data.clientName}`, '--mime-type', 'application/vnd.google-apps.folder'], {
           timeout: 10000,
           stdio: 'pipe'
         })
@@ -493,8 +493,8 @@ async function startScopeFlow(jobId, chatId) {
   let fileCount = 0
   let fileList = ''
   try {
-    const { execSync } = await import('child_process')
-    const result = execSync(`gws drive files list --query "name contains '${job.id}'"`, {
+    const { execFileSync } = await import('child_process')
+    const result = execFileSync('/opt/homebrew/bin/gws', ['drive', 'files', 'list', '--query', `name contains '${job.id}'`], {
       timeout: 10000,
       stdio: 'pipe',
       encoding: 'utf-8'
