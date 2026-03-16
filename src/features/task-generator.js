@@ -284,8 +284,11 @@ function handleSuggestionResponse(text, chatId) {
     return 'Skipped all suggestions.'
   }
 
-  // Parse numbers like "1 3" or "1, 3" or "1,3"
-  const nums = text.match(/\d+/g)
+  // Only match if message is JUST numbers/commas/spaces (not a real message with digits in it)
+  const cleaned = text.trim()
+  if (!/^\d[\d,\s]*$/.test(cleaned)) return null
+
+  const nums = cleaned.match(/\d+/g)
   if (!nums) return null
 
   const indices = nums.map(n => parseInt(n, 10) - 1).filter(i => i >= 0 && i < pending.length)
