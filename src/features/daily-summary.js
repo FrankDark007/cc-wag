@@ -9,13 +9,15 @@ import fs from 'fs'
  * Commands: /summary - on-demand summary
  */
 
-const GWS = '/opt/homebrew/bin/gws'
-const GWS_WORK = '/Users/ghost/Projects/cc-wag/scripts/gws-work.sh'
+import config from '../config.js'
+
+const GWS = config.paths.gwsBin
+const GWS_WORK = config.paths.gwsWorkScript
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
-const MEMORY_DIR = `${WORKSPACE}/memory`
-const OBSERVATIONS_FILE = `${MEMORY_DIR}/observations.jsonl`
-const TRANSCRIPTS_DIR = '/Users/ghost/Projects/cc-wag/transcripts'
+const WORKSPACE = config.paths.workspace
+const MEMORY_DIR = config.paths.memoryDir
+const OBSERVATIONS_FILE = config.paths.observationsFile
+const TRANSCRIPTS_DIR = config.paths.transcriptsDir
 
 const SUMMARY_HOUR = 18 // 6 PM
 const SUMMARY_MINUTE = 0

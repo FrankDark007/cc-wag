@@ -1,4 +1,10 @@
 import 'dotenv/config'
+import path from 'path'
+import { fileURLToPath } from 'url'
+import os from 'os'
+
+const __filename = fileURLToPath(import.meta.url)
+const PROJECT_ROOT = path.resolve(path.dirname(__filename), '..')
 
 const parseList = (env) => env ? env.split(',').map(s => s.trim()).filter(Boolean) : []
 
@@ -20,7 +26,7 @@ export default {
 
   // Agent configuration
   agent: {
-    workspace: '/Users/ghost/Projects/cc-wag',
+    workspace: PROJECT_ROOT,
     maxTurns: 50,
     allowedTools: ['Read', 'Write', 'Edit', 'Bash', 'Glob', 'Grep', 'TodoWrite', 'Skill'],
     provider: 'claude'
@@ -44,6 +50,38 @@ export default {
     joinApiKey: process.env.JOIN_API_KEY || '',
     joinDeviceId: process.env.JOIN_DEVICE_ID || '',
     timeoutMs: 30000
+  },
+
+  // Centralized paths
+  paths: {
+    root: PROJECT_ROOT,
+    workspace: path.join(PROJECT_ROOT, 'workspace'),
+    jobsFile: path.join(PROJECT_ROOT, 'workspace', 'jobs.json'),
+    disputesFile: path.join(PROJECT_ROOT, 'workspace', 'disputes.json'),
+    cronJobsFile: path.join(PROJECT_ROOT, 'workspace', 'cron-jobs.json'),
+    intakesFile: path.join(PROJECT_ROOT, 'workspace', 'intakes.json'),
+    licensesFile: path.join(PROJECT_ROOT, 'workspace', 'licenses.json'),
+    observationsFile: path.join(PROJECT_ROOT, 'workspace', 'memory', 'observations.jsonl'),
+    teamInboxFile: path.join(PROJECT_ROOT, 'workspace', 'memory', 'team-inbox.jsonl'),
+    memoryDir: path.join(PROJECT_ROOT, 'workspace', 'memory'),
+    transcriptsDir: path.join(PROJECT_ROOT, 'transcripts'),
+    authDir: path.join(PROJECT_ROOT, 'auth_whatsapp'),
+    systemPrompt: path.join(PROJECT_ROOT, 'config', 'system-prompt.md'),
+    logsDir: path.join(PROJECT_ROOT, 'logs'),
+    debugLog: path.join(PROJECT_ROOT, 'workspace', 'debug.log'),
+    gwsWorkScript: path.join(PROJECT_ROOT, 'scripts', 'gws-work.sh'),
+    emailTemplate: path.join(PROJECT_ROOT, 'config', 'email-templates', 'flood-doctor.html'),
+    emailWatcherState: path.join(PROJECT_ROOT, 'workspace', 'email-watcher-state.json'),
+    emailFilerState: path.join(PROJECT_ROOT, 'workspace', 'email-filer-state.json'),
+    emailFilerTemp: path.join(PROJECT_ROOT, 'workspace', 'email-filer-temp'),
+    emailActionsFile: path.join(PROJECT_ROOT, 'workspace', 'email-actions.json'),
+    emailActionsState: path.join(PROJECT_ROOT, 'workspace', 'email-actions-state.json'),
+    companycamEventsFile: path.join(PROJECT_ROOT, 'workspace', 'companycam-events.jsonl'),
+    scopeTempDir: path.join(PROJECT_ROOT, 'workspace', 'scope-temp'),
+    xactimateKbDir: path.join(PROJECT_ROOT, 'workspace', 'xactimate-kb'),
+    nudgeEmailTemp: path.join(PROJECT_ROOT, 'workspace', 'nudge-email-temp.json'),
+    claudeMd: path.join(os.homedir(), '.claude', 'CLAUDE.md'),
+    gwsBin: '/opt/homebrew/bin/gws'
   }
 }
 

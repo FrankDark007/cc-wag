@@ -20,7 +20,9 @@ import path from 'path'
  *   getHealthSummary()   - { red, orange, yellow, green, avg }
  */
 
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
+import config from '../config.js'
+
+const WORKSPACE = config.paths.workspace
 const ALERT_STATE_FILE = path.join(WORKSPACE, 'health-alert-state.json')
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const MS_PER_DAY = 86400000

@@ -9,10 +9,12 @@ import fs from 'fs'
  * VIP list: insurance companies, adjusters, attorneys, key clients
  */
 
-const GWS_WORK = '/Users/ghost/Projects/cc-wag/scripts/gws-work.sh'
+import config from '../config.js'
+
+const GWS_WORK = config.paths.gwsWorkScript
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const CHECK_INTERVAL = 15 * 60 * 1000 // 15 minutes
-const STATE_FILE = '/Users/ghost/Projects/cc-wag/workspace/email-watcher-state.json'
+const STATE_FILE = config.paths.emailWatcherState
 
 // VIP sender patterns (case-insensitive regex)
 // These senders trigger immediate WhatsApp alerts
@@ -72,7 +74,7 @@ function loadState() {
  */
 function saveState(state) {
   try {
-    const dir = '/Users/ghost/Projects/cc-wag/workspace'
+    const dir = config.paths.workspace
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
     // Keep only last 200 seen IDs
     state.seenIds = state.seenIds.slice(-200)

@@ -10,9 +10,11 @@ import { execSync } from 'child_process'
  * Uses gws-work.sh to send from frank@flood.doctor
  */
 
-const DISPUTES_FILE = '/Users/ghost/Projects/cc-wag/workspace/disputes.json'
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
-const GWS_WORK = '/Users/ghost/Projects/cc-wag/scripts/gws-work.sh'
+import config from '../config.js'
+
+const DISPUTES_FILE = config.paths.disputesFile
+const JOBS_FILE = config.paths.jobsFile
+const GWS_WORK = config.paths.gwsWorkScript
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 
 const OVERDUE_DAYS = 7

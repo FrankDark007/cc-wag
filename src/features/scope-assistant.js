@@ -25,10 +25,12 @@ import { execSync } from 'child_process'
  * Storage: workspace/scope-temp/ (cleaned up after analysis)
  */
 
-const GWS = '/opt/homebrew/bin/gws'
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
-const SCOPE_TEMP_DIR = '/Users/ghost/Projects/cc-wag/workspace/scope-temp'
-const KB_DIR = '/Users/ghost/Projects/cc-wag/workspace/xactimate-kb'
+import config from '../config.js'
+
+const GWS = config.paths.gwsBin
+const JOBS_FILE = config.paths.jobsFile
+const SCOPE_TEMP_DIR = config.paths.scopeTempDir
+const KB_DIR = config.paths.xactimateKbDir
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 
 // File types we care about for scope analysis

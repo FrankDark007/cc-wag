@@ -17,8 +17,10 @@ import { spawn, execSync } from 'child_process'
  * Storage: workspace/cc-sessions.json
  */
 
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
-const PROJECT_ROOT = '/Users/ghost/Projects/cc-wag'
+import config from '../config.js'
+
+const WORKSPACE = config.paths.workspace
+const PROJECT_ROOT = config.paths.root
 const SESSIONS_FILE = path.join(WORKSPACE, 'cc-sessions.json')
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const MAX_WA_OUTPUT = 500

@@ -10,11 +10,13 @@ import fs from 'fs'
  *   /revenue aging        — 0-30, 30-60, 60-90, 90+ days outstanding
  *   /revenue adjuster     — breakdown by insurance company / adjuster
  *
- * Reads from: /Users/ghost/Projects/cc-wag/workspace/jobs.json
- * Emoji indicators: 🟢 paid, 🟡 pending, 🔴 overdue
+ * Reads from: workspace/jobs.json
+ * Emoji indicators: paid, pending, overdue
  */
 
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
+import config from '../config.js'
+
+const JOBS_FILE = config.paths.jobsFile
 const MS_PER_DAY = 86400000
 
 // ── Storage ─────────────────────────────────────────────────────────

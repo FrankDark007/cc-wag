@@ -22,7 +22,9 @@ import path from 'path'
  *   workspace/jobs.json
  */
 
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
+import config from '../config.js'
+
+const WORKSPACE = config.paths.workspace
 const KB_DIR = path.join(WORKSPACE, 'xactimate-kb')
 const PUSHBACK_FILE = path.join(KB_DIR, 'pushback-responses.json')
 const EQUIPMENT_FILE = path.join(KB_DIR, 'equipment-mapping.json')

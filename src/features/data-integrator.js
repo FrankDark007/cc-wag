@@ -16,9 +16,11 @@ import fs from 'fs'
  * Reads from: workspace/jobs.json, workspace/disputes.json
  */
 
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
-const JOBS_FILE = `${WORKSPACE}/jobs.json`
-const DISPUTES_FILE = `${WORKSPACE}/disputes.json`
+import config from '../config.js'
+
+const WORKSPACE = config.paths.workspace
+const JOBS_FILE = config.paths.jobsFile
+const DISPUTES_FILE = config.paths.disputesFile
 const MS_PER_DAY = 86400000
 
 // ── Shared utils with fallback ─────────────────────────────────────

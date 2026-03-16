@@ -16,7 +16,9 @@ import fs from 'fs'
  *   Rate limit: 240 GET/min
  */
 
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
+import config from '../config.js'
+
+const JOBS_FILE = config.paths.jobsFile
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const CC_BASE = 'https://api.companycam.com/v2'
 

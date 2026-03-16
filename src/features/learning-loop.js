@@ -24,7 +24,9 @@ import path from 'path'
  *   workspace/memory/observations.jsonl (append)
  */
 
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
+import config from '../config.js'
+
+const WORKSPACE = config.paths.workspace
 const PREFS_FILE = path.join(WORKSPACE, 'learned-preferences.json')
 const OBS_FILE = path.join(WORKSPACE, 'memory', 'observations.jsonl')
 

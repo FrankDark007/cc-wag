@@ -21,7 +21,9 @@ import { spawn, execSync } from 'child_process'
  *   2. Process re-spawn (detached node process + exit)
  */
 
-const ROOT = '/Users/ghost/Projects/cc-wag'
+import config from '../config.js'
+
+const ROOT = config.paths.root
 const LAUNCHD_LABEL = 'com.flooddoctor.cc-wag'
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 

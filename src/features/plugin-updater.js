@@ -21,7 +21,9 @@ import { spawn, execSync } from 'child_process'
  *   - Hardcoded paths that should be constants
  */
 
-const ROOT = '/Users/ghost/Projects/cc-wag'
+import config from '../config.js'
+
+const ROOT = config.paths.root
 const FEATURES_DIR = path.join(ROOT, 'src/features')
 const AUDIT_FILE = path.join(ROOT, 'workspace', 'cc-audit.jsonl')
 

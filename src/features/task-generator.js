@@ -24,7 +24,9 @@ import path from 'path'
  * Storage: workspace/task-generator-state.json
  */
 
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
+import config from '../config.js'
+
+const WORKSPACE = config.paths.workspace
 const STATE_FILE = path.join(WORKSPACE, 'task-generator-state.json')
 const JOBS_FILE = path.join(WORKSPACE, 'jobs.json')
 const EQUIP_FILE = path.join(WORKSPACE, 'equipment.json')

@@ -20,8 +20,10 @@ import crypto from 'crypto'
  * Requires: COMPANYCAM_API_TOKEN, COMPANYCAM_WEBHOOK_SECRET in .env
  */
 
-const EVENTS_FILE = '/Users/ghost/Projects/cc-wag/workspace/companycam-events.jsonl'
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
+import config from '../config.js'
+
+const EVENTS_FILE = config.paths.companycamEventsFile
+const JOBS_FILE = config.paths.jobsFile
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const MAX_BODY_SIZE = 1024 * 1024 // 1MB
 

@@ -7,8 +7,9 @@ import makeWASocket, {
 import qrcode from 'qrcode-terminal'
 import pino from 'pino'
 import BaseAdapter from './base.js'
+import config from '../config.js'
 
-const AUTH_DIR = '/Users/ghost/Projects/cc-wag/auth_whatsapp'
+const AUTH_DIR = config.paths.authDir
 
 /**
  * WhatsApp adapter using Baileys

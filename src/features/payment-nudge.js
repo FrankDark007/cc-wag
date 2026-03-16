@@ -16,9 +16,11 @@ import { execSync } from 'child_process'
  *   - Uses gws-work.sh to send email from frankd@flooddoctorva.com
  */
 
-const GWS_WORK = '/Users/ghost/Projects/cc-wag/scripts/gws-work.sh'
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
-const TEMPLATE_FILE = '/Users/ghost/Projects/cc-wag/config/email-templates/flood-doctor.html'
+import config from '../config.js'
+
+const GWS_WORK = config.paths.gwsWorkScript
+const JOBS_FILE = config.paths.jobsFile
+const TEMPLATE_FILE = config.paths.emailTemplate
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 
 const NUDGE_ELIGIBLE_STATUSES = ['invoiced', 'payment-pending']
@@ -152,7 +154,7 @@ function sendNudgeEmail(toEmail, subject, htmlBody) {
       .replace(/=+$/, '')
 
     // Write to temp file to avoid shell escaping issues
-    const tempFile = '/Users/ghost/Projects/cc-wag/workspace/nudge-email-temp.json'
+    const tempFile = config.paths.nudgeEmailTemp
     fs.writeFileSync(tempFile, JSON.stringify({ raw: encoded }))
 
     const result = execSync(

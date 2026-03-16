@@ -1,7 +1,8 @@
 import fs from 'fs'
 import path from 'path'
+import config from '../config.js'
 
-const TRANSCRIPTS_DIR = '/Users/ghost/Projects/cc-wag/transcripts'
+const TRANSCRIPTS_DIR = config.paths.transcriptsDir
 
 /**
  * Session manager with JSONL transcript storage

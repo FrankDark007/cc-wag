@@ -1,4 +1,5 @@
 import { execSync } from 'child_process'
+import config from '../config.js'
 
 /**
  * Morning Briefing Feature
@@ -11,8 +12,8 @@ import { execSync } from 'child_process'
  * No coupling to cron scheduler internals.
  */
 
-const GWS = '/opt/homebrew/bin/gws'
-const GWS_WORK = '/Users/ghost/Projects/cc-wag/scripts/gws-work.sh'
+const GWS = config.paths.gwsBin
+const GWS_WORK = config.paths.gwsWorkScript
 
 // Frank's DM chat ID (self-chat)
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'

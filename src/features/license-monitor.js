@@ -11,11 +11,13 @@ import path from 'path'
  *   /licenses               — list all with days remaining
  *   /licenses expiring      — within 30 days
  *
- * Storage: /Users/ghost/Projects/cc-wag/workspace/licenses.json
+ * Storage: workspace/licenses.json
  * Cron: Weekly Monday 10:30 AM
  */
 
-const LICENSES_FILE = '/Users/ghost/Projects/cc-wag/workspace/licenses.json'
+import config from '../config.js'
+
+const LICENSES_FILE = config.paths.licensesFile
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const MS_PER_DAY = 86400000
 

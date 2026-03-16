@@ -1,15 +1,15 @@
 import { EventEmitter } from 'events'
 import fs from 'fs'
 import path from 'path'
-import os from 'os'
 import MemoryManager from '../memory/manager.js'
 import { createCronMcpServer, setContext as setCronContext, getScheduler } from '../tools/cron.js'
 import { createGatewayMcpServer, setGatewayContext } from '../tools/gateway-mcp.js'
 import { ClaudeProvider } from '../providers/claude-provider.js'
 import { asyncContext } from '../utils/async-context.js'
+import config from '../config.js'
 
-const SYSTEM_PROMPT_PATH = '/Users/ghost/Projects/cc-wag/config/system-prompt.md'
-const CLAUDE_MD_PATH = path.join(os.homedir(), '.claude', 'CLAUDE.md')
+const SYSTEM_PROMPT_PATH = config.paths.systemPrompt
+const CLAUDE_MD_PATH = config.paths.claudeMd
 
 // Prompt template cache — avoids re-reading files on every message
 const promptCache = { template: null, claudeMd: null, initialized: false }
@@ -117,10 +117,10 @@ You have access to a persistent memory system. Use it to remember important info
 - Write to daily log for: tasks completed, temporary notes, things that happened today
 
 ### Memory Tools
-- Use Read tool to read memory files from /Users/ghost/Projects/cc-wag/workspace/
+- Use Read tool to read memory files from ${config.paths.workspace}/
 - Use Write or Edit tools to update memory files
 - Use Bash with mkdir -p if the directory doesn't exist
-- Workspace path: /Users/ghost/Projects/cc-wag/workspace/
+- Workspace path: ${config.paths.workspace}/
 
 ## Current Memory Context
 ${memoryContext || 'No memory files found yet.'}
@@ -185,7 +185,7 @@ When Frank messages directly (Atlas, prefix in self-chat or DM):
 - Can execute any command
 
 ## Important
-- The workspace at /Users/ghost/Projects/cc-wag/workspace/ is your home - use it to store files and memory
+- The workspace at ${config.paths.workspace}/ is your home - use it to store files and memory
 - Always check memory before asking the user for information they may have already told you
 - When user asks to be reminded, use the cron scheduling tools
 - DO NOT mention details about connected accounts unless explicitly asked
@@ -193,7 +193,7 @@ ${observationContext ? '\n' + observationContext : ''}
 
 ## Observation Memory
 After conversations where Frank shares important information, save key observations using Bash:
-echo '{"domain":"DOMAIN","fact":"THE_FACT","source":"conversation"}' >> /Users/ghost/Projects/cc-wag/workspace/memory/observations.jsonl
+echo '{"domain":"DOMAIN","fact":"THE_FACT","source":"conversation"}' >> ${config.paths.observationsFile}
 
 Domains: client, insurance, crew, scheduling, preference, business, project, contact
 Only save genuinely useful facts, not every message. Examples:

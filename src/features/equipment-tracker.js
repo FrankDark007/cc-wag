@@ -21,7 +21,9 @@ import path from 'path'
  * Storage: workspace/equipment.json
  */
 
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
+import config from '../config.js'
+
+const WORKSPACE = config.paths.workspace
 const EQUIP_FILE = path.join(WORKSPACE, 'equipment.json')
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 

@@ -1,5 +1,6 @@
 import { execSync, execFileSync } from 'child_process'
 import fs from 'fs'
+import config from '../config.js'
 
 /**
  * Slash command handler for Atlas
@@ -405,7 +406,7 @@ export default class CommandHandler {
     try {
       const args = ['tasks', 'tasks', 'insert', '--tasklist', listId, '--title', taskTitle]
       if (dueDate) args.push('--due', dueDate)
-      execFileSync('/opt/homebrew/bin/gws', args, { encoding: 'utf-8', timeout: 10000 })
+      execFileSync(config.paths.gwsBin, args, { encoding: 'utf-8', timeout: 10000 })
 
       const parts = [`Added to ${listName}: ${taskTitle}`]
       if (dueDate) {
@@ -433,7 +434,7 @@ export default class CommandHandler {
 
     try {
       const raw = execSync(
-        `/opt/homebrew/bin/gws tasks tasks list --tasklist "${listId}" --showCompleted false`,
+        `${config.paths.gwsBin} tasks tasks list --tasklist "${listId}" --showCompleted false`,
         { encoding: 'utf-8', timeout: 15000 }
       )
 
@@ -519,7 +520,7 @@ export default class CommandHandler {
    * Usage: /inbox or /inbox clear
    */
   handleInbox(args) {
-    const INBOX_FILE = '/Users/ghost/Projects/cc-wag/workspace/memory/team-inbox.jsonl'
+    const INBOX_FILE = config.paths.teamInboxFile
 
     if (args && args.toLowerCase() === 'clear') {
       try {

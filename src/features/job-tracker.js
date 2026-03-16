@@ -20,7 +20,9 @@ import path from 'path'
  * Storage: workspace/jobs.json
  */
 
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
+import config from '../config.js'
+
+const JOBS_FILE = config.paths.jobsFile
 
 const VALID_STATUSES = [
   'active',

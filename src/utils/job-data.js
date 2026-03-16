@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import config from '../config.js'
 
 /**
  * Shared Job Data Utilities
@@ -9,9 +10,8 @@ import path from 'path'
  * Storage: workspace/jobs.json, workspace/disputes.json
  */
 
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
-const JOBS_FILE = path.join(WORKSPACE, 'jobs.json')
-const DISPUTES_FILE = path.join(WORKSPACE, 'disputes.json')
+const JOBS_FILE = config.paths.jobsFile
+const DISPUTES_FILE = config.paths.disputesFile
 const MS_PER_DAY = 86400000
 
 // ── Core Job Operations ─────────────────────────────────────────────

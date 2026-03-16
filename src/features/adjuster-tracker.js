@@ -16,8 +16,10 @@ import path from 'path'
  * Storage: workspace/disputes.json
  */
 
-const DISPUTES_FILE = '/Users/ghost/Projects/cc-wag/workspace/disputes.json'
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
+import config from '../config.js'
+
+const DISPUTES_FILE = config.paths.disputesFile
+const JOBS_FILE = config.paths.jobsFile
 
 const OVERDUE_DAYS = 7
 const MS_PER_DAY = 86400000

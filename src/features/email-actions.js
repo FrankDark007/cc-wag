@@ -15,9 +15,11 @@ import { execSync } from 'child_process'
  * Uses gws-work.sh for work email (frankd@flooddoctorva.com)
  */
 
-const GWS_WORK = '/Users/ghost/Projects/cc-wag/scripts/gws-work.sh'
-const ACTIONS_FILE = '/Users/ghost/Projects/cc-wag/workspace/email-actions.json'
-const STATE_FILE = '/Users/ghost/Projects/cc-wag/workspace/email-actions-state.json'
+import config from '../config.js'
+
+const GWS_WORK = config.paths.gwsWorkScript
+const ACTIONS_FILE = config.paths.emailActionsFile
+const STATE_FILE = config.paths.emailActionsState
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const CHECK_INTERVAL = 30 * 60 * 1000 // 30 minutes
 

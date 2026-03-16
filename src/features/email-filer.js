@@ -10,14 +10,16 @@ import { execSync } from 'child_process'
  * and sends WhatsApp notification to Frank.
  *
  * Uses gws-work.sh for work email (frankd@flooddoctorva.com)
- * Uses /opt/homebrew/bin/gws for personal Google Drive
+ * Uses gws CLI for personal Google Drive
  */
 
-const GWS = '/opt/homebrew/bin/gws'
-const GWS_WORK = '/Users/ghost/Projects/cc-wag/scripts/gws-work.sh'
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
-const STATE_FILE = '/Users/ghost/Projects/cc-wag/workspace/email-filer-state.json'
-const TEMP_DIR = '/Users/ghost/Projects/cc-wag/workspace/email-filer-temp'
+import config from '../config.js'
+
+const GWS = config.paths.gwsBin
+const GWS_WORK = config.paths.gwsWorkScript
+const JOBS_FILE = config.paths.jobsFile
+const STATE_FILE = config.paths.emailFilerState
+const TEMP_DIR = config.paths.emailFilerTemp
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const CHECK_INTERVAL = 15 * 60 * 1000 // 15 minutes
 

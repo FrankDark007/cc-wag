@@ -14,10 +14,12 @@ import fs from 'fs'
  * Reads from: workspace/jobs.json
  */
 
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
-const JOBS_FILE = `${WORKSPACE}/jobs.json`
-const MONDAY_CONFIG = `${WORKSPACE}/monday-config.json`
-const INBOX_STATE = `${WORKSPACE}/inbox-mining-state.json`
+import config from '../config.js'
+
+const WORKSPACE = config.paths.workspace
+const JOBS_FILE = config.paths.jobsFile
+const MONDAY_CONFIG = `${config.paths.workspace}/monday-config.json`
+const INBOX_STATE = `${config.paths.workspace}/inbox-mining-state.json`
 const MS_PER_DAY = 86400000
 
 // ── Shared utils with fallback ─────────────────────────────────────

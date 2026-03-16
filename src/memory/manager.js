@@ -1,11 +1,11 @@
 import fs from 'fs'
 import path from 'path'
-import os from 'os'
+import config from '../config.js'
 
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
-const MEMORY_DIR = path.join(WORKSPACE, 'memory')
-const OBSERVATIONS_FILE = path.join(MEMORY_DIR, 'observations.jsonl')
-const CLAUDE_MD_PATH = path.join(os.homedir(), '.claude', 'CLAUDE.md')
+const WORKSPACE = config.paths.workspace
+const MEMORY_DIR = config.paths.memoryDir
+const OBSERVATIONS_FILE = config.paths.observationsFile
+const CLAUDE_MD_PATH = config.paths.claudeMd
 
 /**
  * Memory Manager for Atlas

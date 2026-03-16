@@ -1,4 +1,5 @@
 import fs from 'fs'
+import config from '../config.js'
 
 /**
  * Lien & Legal Tracker Feature
@@ -11,10 +12,10 @@ import fs from 'fs'
  *   /lien FD-002 demand  — draft a demand letter
  *
  * Cron: Daily 10:35 AM, alert on deadlines within 14 days
- * Reads from: /Users/ghost/Projects/cc-wag/workspace/jobs.json
+ * Reads from: workspace/jobs.json
  */
 
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
+const JOBS_FILE = config.paths.jobsFile
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const MS_PER_DAY = 86400000
 

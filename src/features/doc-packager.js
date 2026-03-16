@@ -13,10 +13,12 @@ import { execSync } from 'child_process'
  * Uses gws CLI for Drive access, gws-work.sh for sending from frank@flood.doctor
  */
 
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
-const DISPUTES_FILE = '/Users/ghost/Projects/cc-wag/workspace/disputes.json'
-const GWS = '/opt/homebrew/bin/gws'
-const GWS_WORK = '/Users/ghost/Projects/cc-wag/scripts/gws-work.sh'
+import config from '../config.js'
+
+const JOBS_FILE = config.paths.jobsFile
+const DISPUTES_FILE = config.paths.disputesFile
+const GWS = config.paths.gwsBin
+const GWS_WORK = config.paths.gwsWorkScript
 
 // File categorization by name patterns and mime types
 const CATEGORIES = [

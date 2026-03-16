@@ -184,7 +184,7 @@ class Gateway {
     console.log('Atlas: WhatsApp AI Executive Assistant')
     console.log('='.repeat(50))
     console.log(`Agent ID: ${config.agentId}`)
-    console.log(`Workspace: /Users/ghost/Projects/cc-wag/`)
+    console.log(`Workspace: ${config.paths.root}/`)
     console.log(`Model: ${process.env.CLAUDE_MODEL || 'claude-sonnet-4-5-20250929'}`)
     console.log('')
 
@@ -267,7 +267,7 @@ class Gateway {
 
         // Delete corrupted session files for this contact
         try {
-          const authDir = '/Users/ghost/Projects/cc-wag/auth_whatsapp'
+          const authDir = config.paths.authDir
           const files = fs.readdirSync(authDir).filter(f => f.includes(`session-${contactId}`))
           for (const file of files) {
             fs.unlinkSync(path.join(authDir, file))

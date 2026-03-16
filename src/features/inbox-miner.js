@@ -25,8 +25,10 @@ import {
  * Storage: workspace/inbox-mining-state.json
  */
 
-const GWS_WORK = '/Users/ghost/Projects/cc-wag/scripts/gws-work.sh'
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
+import config from '../config.js'
+
+const GWS_WORK = config.paths.gwsWorkScript
+const WORKSPACE = config.paths.workspace
 const STATE_FILE = path.join(WORKSPACE, 'inbox-mining-state.json')
 
 // ── Shell Helper ────────────────────────────────────────────────────

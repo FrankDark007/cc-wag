@@ -8,7 +8,9 @@ import { execSync } from 'child_process'
  * Deduplicates: only one alert per event.
  */
 
-const GWS = '/opt/homebrew/bin/gws'
+import config from '../config.js'
+
+const GWS = config.paths.gwsBin
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const CHECK_INTERVAL = 5 * 60 * 1000 // 5 minutes
 const ALERT_WINDOW = 30 * 60 * 1000  // 30 minutes before event

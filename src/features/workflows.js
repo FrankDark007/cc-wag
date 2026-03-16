@@ -18,7 +18,9 @@ import path from 'path'
  * Storage: workspace/active-workflows.json
  */
 
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
+import config from '../config.js'
+
+const WORKSPACE = config.paths.workspace
 const FLOWS_FILE = path.join(WORKSPACE, 'active-workflows.json')
 const JOBS_FILE = path.join(WORKSPACE, 'jobs.json')
 const DISPUTES_FILE = path.join(WORKSPACE, 'disputes.json')
@@ -449,7 +451,7 @@ async function processIntakeStep(flow, text, chatId, gateway) {
       let driveMsg = ''
       try {
         const { execFileSync } = await import('child_process')
-        execFileSync('/opt/homebrew/bin/gws', ['drive', 'files', 'create', '--name', `${job.id} - ${flow.data.clientName}`, '--mime-type', 'application/vnd.google-apps.folder'], {
+        execFileSync(config.paths.gwsBin, ['drive', 'files', 'create', '--name', `${job.id} - ${flow.data.clientName}`, '--mime-type', 'application/vnd.google-apps.folder'], {
           timeout: 10000,
           stdio: 'pipe'
         })
@@ -494,7 +496,7 @@ async function startScopeFlow(jobId, chatId) {
   let fileList = ''
   try {
     const { execFileSync } = await import('child_process')
-    const result = execFileSync('/opt/homebrew/bin/gws', ['drive', 'files', 'list', '--query', `name contains '${job.id}'`], {
+    const result = execFileSync(config.paths.gwsBin, ['drive', 'files', 'list', '--query', `name contains '${job.id}'`], {
       timeout: 10000,
       stdio: 'pipe',
       encoding: 'utf-8'

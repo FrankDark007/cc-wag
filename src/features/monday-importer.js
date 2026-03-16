@@ -14,8 +14,10 @@ import path from 'path'
  *   /monday map              — Show column mapping
  */
 
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
-const JOBS_FILE = path.join(WORKSPACE, 'jobs.json')
+import config from '../config.js'
+
+const WORKSPACE = config.paths.workspace
+const JOBS_FILE = config.paths.jobsFile
 const CONFIG_FILE = path.join(WORKSPACE, 'monday-config.json')
 const MONDAY_API = 'https://api.monday.com/v2'
 

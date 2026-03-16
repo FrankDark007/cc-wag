@@ -19,7 +19,9 @@ import fs from 'fs'
  *   - Normal behavior, nothing extra
  */
 
-const LOG_FILE = '/Users/ghost/Projects/cc-wag/workspace/debug.log'
+import config from '../config.js'
+
+const LOG_FILE = config.paths.debugLog
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const MAX_LOG_LINES = 500
 const MAX_WA_MSG_LEN = 3000

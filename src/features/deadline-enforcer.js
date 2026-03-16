@@ -1,4 +1,5 @@
 import fs from 'fs'
+import config from '../config.js'
 
 /**
  * Deadline Enforcer Feature
@@ -10,10 +11,10 @@ import fs from 'fs'
  * Schedule: Every 4 hours during business hours (8am, 12pm, 4pm, 8pm)
  * Also sends a summary at 7:35 AM alongside the morning briefing.
  *
- * Reads from: /Users/ghost/Projects/cc-wag/workspace/jobs.json
+ * Reads from: workspace/jobs.json
  */
 
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
+const JOBS_FILE = config.paths.jobsFile
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 
 // Check hours: 10:35 AM briefing + 12pm, 4pm, 8pm, 12am enforcement

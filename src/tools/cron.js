@@ -4,9 +4,10 @@ import fs from 'fs'
 import path from 'path'
 import { EventEmitter } from 'events'
 import { getStore } from '../utils/async-context.js'
-import { parseExpression } from 'cron-parser'
+import { CronExpressionParser } from 'cron-parser'
+import config from '../config.js'
 
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/cron-jobs.json'
+const JOBS_FILE = config.paths.cronJobsFile
 
 /**
  * Cron scheduler state management
@@ -174,7 +175,7 @@ class CronScheduler extends EventEmitter {
 
   getNextCronRun(cronExpr) {
     try {
-      const interval = parseExpression(cronExpr)
+      const interval = CronExpressionParser.parse(cronExpr)
       return interval.next().toDate()
     } catch (err) {
       console.error('[Cron] Failed to parse cron expression:', cronExpr, err.message)
