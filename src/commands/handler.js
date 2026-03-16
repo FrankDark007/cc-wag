@@ -1,4 +1,5 @@
 import { execSync } from 'child_process'
+import fs from 'fs'
 
 /**
  * Slash command handler for CC-WAG
@@ -74,6 +75,9 @@ export default class CommandHandler {
 
       case 'whereisfrank':
         return this.handleWhereIsFrank(adapter, chatId)
+
+      case 'inbox':
+        return this.handleInbox(args)
 
       default:
         // Unknown command, pass to agent
@@ -513,12 +517,91 @@ export default class CommandHandler {
     }
   }
 
+  /**
+   * Handle /inbox - show team messages waiting for Frank
+   * Usage: /inbox or /inbox clear
+   */
+  handleInbox(args) {
+    const INBOX_FILE = '/Users/ghost/Projects/cc-wag/workspace/memory/team-inbox.jsonl'
+
+    if (args && args.toLowerCase() === 'clear') {
+      try {
+        if (fs.existsSync(INBOX_FILE)) {
+          const today = new Date().toISOString().split('T')[0]
+          const archivePath = INBOX_FILE.replace('.jsonl', `-${today}.jsonl`)
+          fs.renameSync(INBOX_FILE, archivePath)
+          return { handled: true, response: `Inbox archived to team-inbox-${today}.jsonl` }
+        }
+        return { handled: true, response: 'Inbox already empty' }
+      } catch (err) {
+        return { handled: true, response: `Failed to clear inbox: ${err.message}` }
+      }
+    }
+
+    try {
+      if (!fs.existsSync(INBOX_FILE)) {
+        return { handled: true, response: 'No team messages in inbox' }
+      }
+
+      const raw = fs.readFileSync(INBOX_FILE, 'utf-8').trim()
+      if (!raw) return { handled: true, response: 'No team messages in inbox' }
+
+      const entries = raw.split('\n').map(line => {
+        try { return JSON.parse(line) } catch { return null }
+      }).filter(Boolean)
+
+      if (entries.length === 0) {
+        return { handled: true, response: 'No team messages in inbox' }
+      }
+
+      // Group by sender
+      const bySender = {}
+      for (const e of entries) {
+        const key = e.from || 'Unknown'
+        if (!bySender[key]) bySender[key] = []
+        bySender[key].push(e)
+      }
+
+      // Build summary with urgent items first
+      const urgent = entries.filter(e => e.category === 'urgent' || e.category === 'action-needed')
+      const lines = [`Team Inbox (${entries.length} messages):`, '']
+
+      if (urgent.length) {
+        lines.push('URGENT/ACTION NEEDED:')
+        for (const u of urgent) {
+          const time = u.ts ? new Date(u.ts).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) : ''
+          lines.push(`  ${u.from}: ${u.summary || u.raw?.substring(0, 80) || 'no details'}${time ? ` (${time})` : ''}`)
+        }
+        lines.push('')
+      }
+
+      for (const [sender, msgs] of Object.entries(bySender)) {
+        const nonUrgent = msgs.filter(m => m.category !== 'urgent' && m.category !== 'action-needed')
+        if (nonUrgent.length === 0) continue
+        lines.push(`${sender} (${nonUrgent.length}):`)
+        for (const m of nonUrgent.slice(0, 3)) {
+          lines.push(`  ${m.summary || m.raw?.substring(0, 80) || 'no details'}`)
+        }
+        if (nonUrgent.length > 3) lines.push(`  +${nonUrgent.length - 3} more`)
+      }
+
+      lines.push('', '/inbox clear to archive')
+
+      return { handled: true, response: lines.join('\n') }
+    } catch (err) {
+      return { handled: true, response: `Failed to read inbox: ${err.message}` }
+    }
+  }
+
   handleHelp() {
     const lines = [
       'CC-WAG Commands',
       '',
       '/new or /reset - Start fresh session',
       '/status - Show session status',
+      '/briefing - Morning briefing on demand',
+      '/inbox - Team messages waiting for you',
+      '/inbox clear - Archive team inbox',
       '/memory - Show memory summary',
       '/memory list - List memory files',
       '/memory search <query> - Search memories',
@@ -529,6 +612,8 @@ export default class CommandHandler {
       '/todo personal <task> - Add to Personal tasks',
       '/todo urgent: <task> by friday - Priority + due date',
       '/todo !high @insurance <task> - Priority + category',
+      '/todos - List pending tasks',
+      '/todos personal - List personal tasks',
       '/whereisfrank - Get Frank\'s live GPS location',
       '/stop - Stop current operation',
       '/help - Show this help'

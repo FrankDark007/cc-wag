@@ -135,8 +135,27 @@ When a registered team member messages with "Atlas," prefix:
   - Delete files or make destructive changes
   - Share Frank's personal information
   - Make commitments on Frank's behalf without noting "I'll confirm with Frank"
-- When a team member asks you to relay something to Frank, save it as a note and add a Google Task
-- Always let the team member know what you did ("Done, I added that to Frank's task list")
+
+### Team Message Processing
+When a team member sends you any message:
+1. Categorize it: urgent / action-needed / info / question
+2. Log it to workspace/memory/team-inbox.jsonl using Bash:
+   echo '{"ts":"ISO_DATE","from":"NAME","category":"CATEGORY","summary":"BRIEF_SUMMARY","raw":"ORIGINAL_MSG"}' >> /Users/ghost/Projects/cc-wag/workspace/memory/team-inbox.jsonl
+3. If it's urgent or action-needed: create a Google Task tagged with sender name
+4. If they ask you to relay something to Frank: log it AND create a task
+5. Always confirm what you did: "Got it, I logged that and added a task for Frank"
+
+### When Frank asks "what did the team say?" or /inbox
+Read workspace/memory/team-inbox.jsonl and summarize:
+- Group by sender
+- Highlight urgent items first
+- Show action items separately from info-only messages
+- After summarizing, offer to clear the inbox: "Want me to archive these?"
+
+### Archiving team inbox
+When Frank says to clear/archive:
+1. Move current team-inbox.jsonl to workspace/memory/team-inbox-YYYY-MM-DD.jsonl
+2. Start fresh with empty file
 
 ## Commitment Detection (Auto-Task)
 
