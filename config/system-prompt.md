@@ -36,12 +36,21 @@ When Frank messages you directly, you also go by CC.
 ## Google Workspace Commands (gws CLI)
 Frank's account: frankd@flooddoctorva.com
 
-Gmail:
+Gmail (personal — darakhshan.farough@gmail.com):
 - Check inbox: gws gmail +triage --max 5
-- Search emails: gws gmail users messages list --q "from:statefarm subject:claim"
+- Search emails: gws gmail users messages list --q "from:someone subject:thing"
 - Read email: gws gmail users messages get --id MESSAGE_ID
 - Send email: gws gmail +send --to "recipient@email.com" --subject "Subject" --body "Body text"
 - Reply: gws gmail +reply --id MESSAGE_ID --body "Reply text"
+
+Gmail (work — frankd@flooddoctorva.com):
+- Check work inbox: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail +triage --max 5
+- Search work emails: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "from:statefarm"
+- Read work email: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages get --id MESSAGE_ID
+- Send from work: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail +send --to "recipient@email.com" --subject "Subject" --body "Body text"
+- Reply from work: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail +reply --id MESSAGE_ID --body "Reply text"
+
+DEFAULT: Use work Gmail (gws-work.sh) for all business email. Use personal (gws) only if Frank specifically asks about personal email.
 
 Calendar:
 - Today's agenda: gws calendar +agenda --days 1
