@@ -27,12 +27,17 @@ export default class WhatsAppAdapter extends BaseAdapter {
     // LID<->phone bidirectional maps
     this.lidToPhone = new Map()
     this.phoneToLid = new Map()
-    // Self-chat config
+    // Self-chat config (Frank messaging himself)
     this.selfChatPrefix = (selfChatConfig.prefix || 'CC,').toLowerCase()
     this.frankPhone = selfChatConfig.frankPhone || '+17034981581'
     // Active self-chat sessions: once "CC," activates a conversation, subsequent messages go through without prefix
     this.activeSelfChatSessions = new Set()
     this.selfChatTimers = new Map() // jid -> timeout handle
+    // Team member "Atlas" trigger prefixes
+    this.teamTriggers = ['atlas,', 'atlas ', 'hey atlas,', 'hey atlas ']
+    // Active team sessions: once "Atlas" activates, subsequent messages go through without prefix
+    this.activeTeamSessions = new Set()
+    this.teamSessionTimers = new Map() // jid -> timeout handle
     // Normalize allowedDMs: accept bare numbers, add @s.whatsapp.net if missing
     this.config.allowedDMs = this.config.allowedDMs.map(entry => {
       if (entry === '*') return entry
@@ -306,6 +311,46 @@ export default class WhatsAppAdapter extends BaseAdapter {
   }
 
   /**
+   * Check if text starts with an Atlas trigger and return the stripped text
+   * Returns { triggered: boolean, text: string }
+   */
+  _checkAtlasTrigger(text) {
+    const lower = text.trim().toLowerCase()
+    for (const trigger of this.teamTriggers) {
+      if (lower.startsWith(trigger)) {
+        return { triggered: true, text: text.trim().slice(trigger.length).trim() }
+      }
+    }
+    return { triggered: false, text }
+  }
+
+  /**
+   * Activate team member session with 30 minute inactivity timeout
+   */
+  _activateTeamSession(jid) {
+    this.activeTeamSessions.add(jid)
+    if (this.teamSessionTimers.has(jid)) {
+      clearTimeout(this.teamSessionTimers.get(jid))
+    }
+    this.teamSessionTimers.set(jid, setTimeout(() => {
+      this.activeTeamSessions.delete(jid)
+      this.teamSessionTimers.delete(jid)
+      console.log(`[WhatsApp] Team session expired for ${jid} (30min inactivity)`)
+    }, 30 * 60 * 1000))
+  }
+
+  /**
+   * Deactivate team session
+   */
+  deactivateTeamSession(jid) {
+    this.activeTeamSessions.delete(jid)
+    if (this.teamSessionTimers.has(jid)) {
+      clearTimeout(this.teamSessionTimers.get(jid))
+      this.teamSessionTimers.delete(jid)
+    }
+  }
+
+  /**
    * Check if this is a self-chat message (from Frank's own number with CC, prefix)
    */
   _isSelfChat(msg, text) {
@@ -370,6 +415,24 @@ export default class WhatsAppAdapter extends BaseAdapter {
       // Early bail-out for groups
       if (this.config.allowedGroups.length === 0) return
       if (!this.config.allowedGroups.includes('*') && !this.config.allowedGroups.includes(jid)) return
+    }
+
+    // Team member DMs (not fromMe — someone else texting Frank's number)
+    if (!msg.key.fromMe && !isGroup) {
+      const atlas = this._checkAtlasTrigger(text)
+      if (atlas.triggered) {
+        text = atlas.text
+        this._activateTeamSession(jid)
+        console.log(`[WhatsApp] Team Atlas session activated for ${jid}: "${text.substring(0, 50)}"`)
+      } else if (this.activeTeamSessions.has(jid)) {
+        // Session already active — no prefix needed, refresh timeout
+        this._activateTeamSession(jid)
+        console.log(`[WhatsApp] Team session (active) from ${jid}: "${text.substring(0, 50)}"`)
+      } else {
+        // Not an Atlas message and no active session — ignore (normal DM to Frank)
+        console.log(`[WhatsApp] Ignoring non-Atlas DM from ${jid}: "${text.substring(0, 30)}"`)
+        return
+      }
     }
 
     // Extract mentions (needed for group mention-gating)
