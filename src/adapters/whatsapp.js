@@ -351,19 +351,32 @@ export default class WhatsAppAdapter extends BaseAdapter {
   }
 
   /**
-   * Check if this is a self-chat message (from Frank's own number with CC, prefix)
+   * Self-chat prefixes — any of these activate CC mode
+   */
+  get selfChatPrefixes() {
+    return ['cc,', 'cc ', 'cc.', 'hey cc,', 'hey cc ']
+  }
+
+  /**
+   * Check if this is a self-chat message (from Frank's own number with CC prefix)
    */
   _isSelfChat(msg, text) {
     if (!msg.key.fromMe) return false
-    return text.trim().toLowerCase().startsWith(this.selfChatPrefix)
+    const lower = text.trim().toLowerCase()
+    return this.selfChatPrefixes.some(p => lower.startsWith(p))
   }
 
   /**
    * Strip the self-chat prefix from the message text
    */
   _stripSelfChatPrefix(text) {
-    // Remove the prefix (case-insensitive) and trim
-    return text.trim().slice(this.selfChatPrefix.length).trim()
+    const lower = text.trim().toLowerCase()
+    for (const prefix of this.selfChatPrefixes) {
+      if (lower.startsWith(prefix)) {
+        return text.trim().slice(prefix.length).trim()
+      }
+    }
+    return text.trim()
   }
 
   async handleMessage(msg) {
