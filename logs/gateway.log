@@ -1258,3 +1258,103 @@ Closing session: [session keys redacted]
 [WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
 [WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
 [WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text=""
+Closing session: SessionEntry {
+  _chains: {
+    'BevPrpMCKVbHZg+a2q/lq9ay0R7w76jhd9p/FqJnDRch': { chainKey: [Object], chainType: 2, messageKeys: {} },
+    'BdAlBsPHJ9f1HTjbcbwNg798/F60ZQkhupcoSxZK2SBw': { chainKey: [Object], chainType: 2, messageKeys: {} },
+    BU6pxX0c7FLMAVjUtAbukSS5GllVegVCm35xCrD193Ih: { chainKey: [Object], chainType: 2, messageKeys: {} },
+    'Bf6wE/yQo9nhoEB6qA46o2LaJ8wQcqrW85bHBLU7fPxl': { chainKey: [Object], chainType: 1, messageKeys: {} }
+  },
+  registrationId: 1830994718,
+  currentRatchet: {
+    ephemeralKeyPair: {
+      pubKey: <Buffer 05 fe b0 13 fc 90 a3 d9 e1 a0 40 7a a8 0e 3a a3 62 da 27 cc 10 72 aa d6 f3 96 c7 04 b5 3b 7c fc 65>,
+      privKey: <Buffer 40 63 8c a5 d6 1d 31 b4 38 4b 60 18 70 0d 8f 8c 0f 9e 83 7f 88 11 3e 07 f1 0b 8a dd 3f cc 34 6c>
+    },
+    lastRemoteEphemeralKey: <Buffer 05 4e a9 c5 7d 1c ec 52 cc 01 58 d4 b4 06 ee 91 24 b9 1a 59 55 7a 05 42 9b 7e 71 0a b0 f5 f7 72 21>,
+    previousCounter: 0,
+    rootKey: <Buffer af 86 29 0d 4a 05 18 26 4c 28 29 d8 2c 03 05 d1 a2 7d c8 c7 58 04 92 2d 65 ca 6a 28 13 72 64 b3>
+  },
+  indexInfo: {
+    baseKey: <Buffer 05 e4 93 23 58 4e ef 4d eb 09 1b 08 1e 93 fc 96 4f fa a9 ba 14 cb ea e6 8e 2a 9f 59 c6 9c d8 14 03>,
+    baseKeyType: 2,
+    closed: -1,
+    used: 1773684984279,
+    created: 1773651926946,
+    remoteIdentityKey: <Buffer 05 e6 fa 20 ee 1f 87 ef 7c b9 52 85 cd 92 6f 30 47 bd a2 1e a5 3e 80 12 d9 ef bd 62 eb 5f e1 6d 5e>
+  }
+}
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="do you have the contract she signed?"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="Yes"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="And several emails of him lying, trying to say he "
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="I have the project manager that will come and test"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="I have dozens of emails back-and-forth with him. T"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="whos the lawyer?"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="He submitted this himself. He’s representing himse"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="He has Travlers and I’m going to be suing him in M"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="This is the customer whose Contents we have at our"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="I told him we’re not going to be paying for movers"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="this is serious and you must hire a lawyer. do not"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="His tenant never had tenant insurance so it did no"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="Are you able to find a lawyer?"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="Okay!"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="or do you need me to look"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="No, I need you to finish that calumet"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="I did my own research and I have a list of 20 peop"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="I am trying. when is that court date?"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="He just filed this on the 11th"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="It’s the initial hearing"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="Please listen to me!!! it does not matter if you d"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="You will lose 100% of the time. When is trial?"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="April 17 2026"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="you need to find a lawyer this week."
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="There is no trial. There’s an initial hearing date"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="Ok"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="do you know how to find one or do you need me to a"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="I’m going to find out I made a list of 20 of them."
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="do not do what you always do and disregard what I "

@@ -1179,3 +1179,4 @@ Session error:Error: Bad MAC Error: Bad MAC
 [WHATSAPP] Failed to send error message: Timed Out
 [WHATSAPP] Failed to send error message: Timed Out
 [EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+Closing open session in favor of incoming prekey bundle
