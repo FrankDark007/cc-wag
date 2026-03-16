@@ -20,6 +20,9 @@
     <key>KeepAlive</key>
     <true/>
 
+    <key>ThrottleInterval</key>
+    <integer>5</integer>
+
     <key>StandardOutPath</key>
     <string>/Users/ghost/Projects/cc-wag/logs/gateway.log</string>
 
