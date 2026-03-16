@@ -52,9 +52,8 @@ function appendEvent(event) {
 
 function validateSignature(body, signature, secret) {
   if (!secret) {
-    // No secret configured — skip validation but log warning
-    console.warn('[CC-Webhook] No COMPANYCAM_WEBHOOK_SECRET set — skipping signature validation')
-    return true
+    console.error('[CC-Webhook] COMPANYCAM_WEBHOOK_SECRET not configured — rejecting request')
+    return false
   }
   if (!signature) return false
 
