@@ -407,7 +407,9 @@ function routeIntakeCommand(text) {
 
 const KNOWN_CHATS = new Set([
   FRANK_CHAT_ID,
-  // Self-chat (Frank's own number) — handled by self-chat mode
+  '174796696477830@lid',       // Frank's LID (self-chat comes in as LID)
+  '12024598844@s.whatsapp.net', // Shyon
+  '49886229692465@lid',         // Shyon LID
 ])
 
 // ── Plugin Registration ─────────────────────────────────────────────
@@ -448,7 +450,7 @@ export function register(gateway) {
       !KNOWN_CHATS.has(chatId) &&
       !chatId.endsWith('@g.us') && // not a group
       !text.trim().startsWith('/') && // not a command
-      !sessionKey.includes('self:') // not self-chat
+      !sessionKey.includes(':dm:174796696477830@lid') // not Frank self-chat via LID
     ) {
       // Check if this person has messaged before (has a session)
       // If it's their first message and they're not known, start intake
