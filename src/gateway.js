@@ -275,6 +275,10 @@ class Gateway {
           }
           if (files.length > 0) {
             console.log(`[Gateway] Cleaned ${files.length} session file(s) for ${contactId} — Baileys will re-negotiate`)
+            // Report via error reporter if available
+            if (this._errorReporter?.reportBadMacCleanup) {
+              this._errorReporter.reportBadMacCleanup(contactId, files.length)
+            }
           }
         } catch (cleanErr) {
           console.error(`[Gateway] Failed to clean sessions:`, cleanErr.message)
