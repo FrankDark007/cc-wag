@@ -210,15 +210,32 @@ class Gateway {
 
     this.agentRunner.agent.gateway = this
 
-    // Initialize WhatsApp adapter
+    // Initialize WhatsApp adapter (Baileys or Twilio)
     if (config.whatsapp.enabled) {
-      console.log('[Gateway] Initializing WhatsApp adapter...')
-      const whatsapp = new WhatsAppAdapter(config.whatsapp, config.selfChat)
-      this.setupAdapter(whatsapp, 'whatsapp', config.whatsapp)
-      this.adapters.set('whatsapp', whatsapp)
+      const adapterType = process.env.WHATSAPP_ADAPTER || 'baileys'
+      console.log(`[Gateway] Initializing WhatsApp adapter (${adapterType})...`)
 
       try {
-        await whatsapp.start()
+        if (adapterType === 'twilio') {
+          const { default: TwilioWhatsAppAdapter } = await import('./adapters/twilio-whatsapp.js')
+          const twilio = new TwilioWhatsAppAdapter({
+            accountSid: process.env.TWILIO_ACCOUNT_SID,
+            authToken: process.env.TWILIO_AUTH_TOKEN,
+            whatsappNumber: process.env.TWILIO_WHATSAPP_NUMBER,
+            allowedDMs: config.whatsapp.allowedDMs,
+            allowedGroups: config.whatsapp.allowedGroups,
+            respondToMentionsOnly: config.whatsapp.respondToMentionsOnly,
+          })
+          twilio.gateway = this
+          await twilio.start()
+          this.setupAdapter(twilio, 'whatsapp', config.whatsapp)
+          this.adapters.set('whatsapp', twilio)
+        } else {
+          const whatsapp = new WhatsAppAdapter(config.whatsapp, config.selfChat)
+          this.setupAdapter(whatsapp, 'whatsapp', config.whatsapp)
+          this.adapters.set('whatsapp', whatsapp)
+          await whatsapp.start()
+        }
       } catch (err) {
         console.error('[Gateway] WhatsApp adapter failed to start:', err.message)
       }
@@ -587,13 +604,25 @@ class Gateway {
         return
       }
 
+      // POST /webhook/twilio - Twilio WhatsApp incoming webhook
+      if (req.url === '/webhook/twilio' && req.method === 'POST') {
+        const wa = this.adapters.get('whatsapp')
+        if (wa && wa._webhookHandler) {
+          wa._webhookHandler(req, res)
+        } else {
+          res.writeHead(404, { 'Content-Type': 'text/plain' })
+          res.end('Twilio adapter not active')
+        }
+        return
+      }
+
       // Default: status
       res.writeHead(200, { 'Content-Type': 'application/json' })
       const wa = this.adapters.get('whatsapp')
       res.end(JSON.stringify({
         name: 'Atlas',
         status: 'ok',
-        whatsapp: { connected: !!wa?.myJid }
+        whatsapp: { connected: !!wa?.myJid || (wa && !wa.sock) }
       }))
     })
 
