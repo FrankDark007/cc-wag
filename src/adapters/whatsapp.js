@@ -33,8 +33,9 @@ export default class WhatsAppAdapter extends BaseAdapter {
     // Active self-chat sessions: once "CC," activates a conversation, subsequent messages go through without prefix
     this.activeSelfChatSessions = new Set()
     this.selfChatTimers = new Map() // jid -> timeout handle
-    // Team member "Atlas" trigger prefixes
+    // Team member "Atlas" trigger prefixes (including standalone "atlas")
     this.teamTriggers = ['atlas,', 'atlas ', 'hey atlas,', 'hey atlas ']
+    this.teamStandaloneTriggers = ['atlas', 'hey atlas']
     // Active team sessions: once "Atlas" activates, subsequent messages go through without prefix
     this.activeTeamSessions = new Set()
     this.teamSessionTimers = new Map() // jid -> timeout handle
@@ -316,9 +317,16 @@ export default class WhatsAppAdapter extends BaseAdapter {
    */
   _checkAtlasTrigger(text) {
     const lower = text.trim().toLowerCase()
+    // Check prefix triggers first (e.g. "atlas, do something")
     for (const trigger of this.teamTriggers) {
       if (lower.startsWith(trigger)) {
         return { triggered: true, text: text.trim().slice(trigger.length).trim() }
+      }
+    }
+    // Check standalone triggers (just "atlas" or "hey atlas" by itself)
+    for (const trigger of this.teamStandaloneTriggers) {
+      if (lower === trigger) {
+        return { triggered: true, text: '' }
       }
     }
     return { triggered: false, text }
@@ -357,12 +365,19 @@ export default class WhatsAppAdapter extends BaseAdapter {
     return ['cc,', 'cc ', 'cc.', 'hey cc,', 'hey cc ', 'atlas,', 'atlas ', 'hey atlas,', 'hey atlas ']
   }
 
+  get selfChatStandalone() {
+    return ['cc', 'atlas', 'hey cc', 'hey atlas']
+  }
+
   /**
-   * Check if this is a self-chat message (from Frank's own number with CC prefix)
+   * Check if this is a self-chat message (from Frank's own number with CC/Atlas prefix)
    */
   _isSelfChat(msg, text) {
     if (!msg.key.fromMe) return false
     const lower = text.trim().toLowerCase()
+    // Check standalone triggers (just "cc" or "atlas" by itself)
+    if (this.selfChatStandalone.includes(lower)) return true
+    // Check prefix triggers
     return this.selfChatPrefixes.some(p => lower.startsWith(p))
   }
 
@@ -371,6 +386,9 @@ export default class WhatsAppAdapter extends BaseAdapter {
    */
   _stripSelfChatPrefix(text) {
     const lower = text.trim().toLowerCase()
+    // Standalone — return empty (Atlas will just greet)
+    if (this.selfChatStandalone.includes(lower)) return ''
+    // Prefix — strip it
     for (const prefix of this.selfChatPrefixes) {
       if (lower.startsWith(prefix)) {
         return text.trim().slice(prefix.length).trim()
