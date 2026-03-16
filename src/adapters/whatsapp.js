@@ -406,33 +406,32 @@ export default class WhatsAppAdapter extends BaseAdapter {
 
     const sender = isGroup ? msg.key.participant : jid
 
-    // Early bail-out for DMs: check allowlist before any heavy work
-    if (!isGroup) {
-      if (!this._isAllowedDM(jid, this.config.allowedDMs)) {
-        return
-      }
-    } else {
-      // Early bail-out for groups
-      if (this.config.allowedGroups.length === 0) return
-      if (!this.config.allowedGroups.includes('*') && !this.config.allowedGroups.includes(jid)) return
-    }
-
-    // Team member DMs (not fromMe — someone else texting Frank's number)
+    // Team member DMs (not fromMe — anyone texting Frank's number with "Atlas" trigger)
+    // This runs BEFORE the allowlist check so any number can use Atlas
     if (!msg.key.fromMe && !isGroup) {
       const atlas = this._checkAtlasTrigger(text)
       if (atlas.triggered) {
         text = atlas.text
         this._activateTeamSession(jid)
-        console.log(`[WhatsApp] Team Atlas session activated for ${jid}: "${text.substring(0, 50)}"`)
+        console.log(`[WhatsApp] Atlas session activated for ${jid}: "${text.substring(0, 50)}"`)
       } else if (this.activeTeamSessions.has(jid)) {
         // Session already active — no prefix needed, refresh timeout
         this._activateTeamSession(jid)
-        console.log(`[WhatsApp] Team session (active) from ${jid}: "${text.substring(0, 50)}"`)
+        console.log(`[WhatsApp] Atlas session (active) from ${jid}: "${text.substring(0, 50)}"`)
       } else {
         // Not an Atlas message and no active session — ignore (normal DM to Frank)
-        console.log(`[WhatsApp] Ignoring non-Atlas DM from ${jid}: "${text.substring(0, 30)}"`)
         return
       }
+      // Skip the allowlist check below — Atlas trigger is the gatekeeper
+    } else if (!isGroup && !msg.key.fromMe) {
+      // Should not reach here, but safety net
+      return
+    }
+
+    // Group bail-out (keep allowlist for groups)
+    if (isGroup) {
+      if (this.config.allowedGroups.length === 0) return
+      if (!this.config.allowedGroups.includes('*') && !this.config.allowedGroups.includes(jid)) return
     }
 
     // Extract mentions (needed for group mention-gating)
