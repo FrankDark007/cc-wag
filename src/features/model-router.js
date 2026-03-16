@@ -96,12 +96,21 @@ export function register(gateway) {
 
       // Wrap the generator to reset after completion
       const gen = originalRun(params)
+      // Safety timeout: reset model even if generator is abandoned/GC'd
+      const safetyTimer = setTimeout(() => {
+        if (provider.currentModel) {
+          console.warn('[ModelRouter] Safety timeout — resetting model after 5min')
+          resetModel()
+        }
+      }, 5 * 60 * 1000)
+
       return (async function* () {
         try {
           for await (const chunk of gen) {
             yield chunk
           }
         } finally {
+          clearTimeout(safetyTimer)
           resetModel()
         }
       })()
