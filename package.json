@@ -1,0 +1,25 @@
+{
+  "name": "cc-wag",
+  "version": "1.0.0",
+  "description": "Claude Code WhatsApp Gateway for Flood Doctor",
+  "type": "module",
+  "main": "src/gateway.js",
+  "scripts": {
+    "start": "node src/gateway.js",
+    "cli": "node src/cli.js",
+    "dev": "node --watch src/gateway.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.1.0",
+    "@whiskeysockets/baileys": "^6.7.16",
+    "dotenv": "^17.2.4",
+    "pino": "^9.6.0",
+    "qrcode": "^1.5.4",
+    "qrcode-terminal": "^0.12.0",
+    "zod": "^3.24.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "private": true
+}
