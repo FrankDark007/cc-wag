@@ -65,6 +65,11 @@ export default class CommandHandler {
       case 'stop':
         return this.handleStop(sessionKey)
 
+      case 'goaway':
+      case 'bye':
+      case 'leave':
+        return this.handleGoAway(chatId, adapter)
+
       case 'model':
         return this.handleModel(args, chatId, adapter)
 
@@ -224,6 +229,25 @@ export default class CommandHandler {
     return {
       handled: true,
       response: aborted ? 'Stopped current operation' : 'Nothing to stop'
+    }
+  }
+
+  /**
+   * /goaway — Deactivate Atlas session for this chat
+   * Atlas stops responding until re-activated with "Atlas," prefix
+   */
+  handleGoAway(chatId, adapter) {
+    // Deactivate self-chat session
+    if (adapter.deactivateSelfChat) {
+      adapter.deactivateSelfChat(chatId)
+    }
+    // Deactivate team session
+    if (adapter.deactivateTeamSession) {
+      adapter.deactivateTeamSession(chatId)
+    }
+    return {
+      handled: true,
+      response: '👋 Atlas out. Say "Atlas," to bring me back.'
     }
   }
 
