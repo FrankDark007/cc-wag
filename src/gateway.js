@@ -477,7 +477,17 @@ class Gateway {
         }
 
         let body = ''
-        req.on('data', chunk => { body += chunk })
+        let bodySize = 0
+        req.on('data', chunk => {
+          bodySize += chunk.length
+          if (bodySize > MAX_BODY_SIZE) {
+            req.destroy()
+            res.writeHead(413, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify({ error: 'Request body too large' }))
+            return
+          }
+          body += chunk
+        })
         req.on('end', async () => {
           try {
             const { chat_id, message } = JSON.parse(body)
@@ -508,7 +518,17 @@ class Gateway {
       // POST /api/location - Tasker posts GPS coordinates here
       if (req.url === '/api/location' && req.method === 'POST') {
         let body = ''
-        req.on('data', chunk => { body += chunk })
+        let bodySize = 0
+        req.on('data', chunk => {
+          bodySize += chunk.length
+          if (bodySize > MAX_BODY_SIZE) {
+            req.destroy()
+            res.writeHead(413, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify({ error: 'Request body too large' }))
+            return
+          }
+          body += chunk
+        })
         req.on('end', () => {
           try {
             const { request_id, lat, lng, accuracy, secret } = JSON.parse(body)

@@ -23,6 +23,7 @@ import crypto from 'crypto'
 const EVENTS_FILE = '/Users/ghost/Projects/cc-wag/workspace/companycam-events.jsonl'
 const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
+const MAX_BODY_SIZE = 1024 * 1024 // 1MB
 
 // ── Storage ─────────────────────────────────────────────────────────
 
@@ -182,10 +183,28 @@ function createWebhookHandler(gateway) {
 
     // Read body
     let body = ''
-    await new Promise((resolve) => {
-      req.on('data', chunk => { body += chunk })
-      req.on('end', resolve)
-    })
+    let bodySize = 0
+    try {
+      await new Promise((resolve, reject) => {
+        req.on('data', chunk => {
+          bodySize += chunk.length
+          if (bodySize > MAX_BODY_SIZE) {
+            req.destroy()
+            reject(new Error('Request body too large'))
+            return
+          }
+          body += chunk
+        })
+        req.on('end', resolve)
+      })
+    } catch (err) {
+      if (err.message === 'Request body too large') {
+        res.writeHead(413, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ error: 'Request body too large' }))
+        return
+      }
+      throw err
+    }
 
     // Validate signature
     const signature = req.headers['x-companycam-signature']
