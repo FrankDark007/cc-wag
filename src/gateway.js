@@ -11,6 +11,7 @@ import AgentRunner from './agent/runner.js'
 import CommandHandler from './commands/handler.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const MAX_BODY_SIZE = 1024 * 1024 // 1MB
 
 /**
  * Atlas: WhatsApp AI Executive Assistant
@@ -186,6 +187,10 @@ class Gateway {
     console.log(`Workspace: /Users/ghost/Projects/cc-wag/`)
     console.log(`Model: ${process.env.CLAUDE_MODEL || 'claude-sonnet-4-5-20250929'}`)
     console.log('')
+
+    // Validate config
+    const { validateConfig } = await import('./config.js')
+    validateConfig(config)
 
     const dms = config.whatsapp.allowedDMs?.length ? config.whatsapp.allowedDMs.join(', ') : 'NONE (all blocked)'
     const groups = config.whatsapp.allowedGroups?.length ? config.whatsapp.allowedGroups.join(', ') : 'NONE (all blocked)'

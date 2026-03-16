@@ -46,3 +46,33 @@ export default {
     timeoutMs: 30000
   }
 }
+
+/**
+ * Validate critical config at startup
+ * @param {object} cfg - The config object
+ * @throws {Error} if critical config is missing
+ */
+export function validateConfig(cfg) {
+  const warnings = []
+  const errors = []
+
+  if (!cfg.gateway.apiToken) {
+    warnings.push('GATEWAY_API_TOKEN not set — /api/send endpoint is unprotected')
+  }
+  if (!cfg.location.secret) {
+    warnings.push('LOCATION_SECRET not set — /api/location will reject all requests')
+  }
+  if (!process.env.COMPANYCAM_WEBHOOK_SECRET) {
+    warnings.push('COMPANYCAM_WEBHOOK_SECRET not set — webhook will reject all requests')
+  }
+  if (!process.env.ANTHROPIC_API_KEY) {
+    errors.push('ANTHROPIC_API_KEY is required')
+  }
+
+  for (const w of warnings) console.warn(`[Config] WARNING: ${w}`)
+  for (const e of errors) console.error(`[Config] ERROR: ${e}`)
+
+  if (errors.length > 0) {
+    throw new Error(`Config validation failed: ${errors.join('; ')}`)
+  }
+}
