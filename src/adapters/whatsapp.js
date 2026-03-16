@@ -126,6 +126,12 @@ export default class WhatsAppAdapter extends BaseAdapter {
     })
 
     this.sock.ev.on('messages.upsert', async ({ messages, type }) => {
+      console.log(`[WhatsApp] messages.upsert: type=${type}, count=${messages.length}`)
+      for (const msg of messages) {
+        const text = msg.message?.conversation || msg.message?.extendedTextMessage?.text || ''
+        console.log(`[WhatsApp] Message: fromMe=${msg.key.fromMe}, jid=${msg.key.remoteJid}, text="${text.substring(0, 50)}"`)
+      }
+
       if (type !== 'notify') return
 
       for (const msg of messages) {
@@ -149,7 +155,15 @@ export default class WhatsAppAdapter extends BaseAdapter {
       throw new Error('WhatsApp not connected')
     }
 
-    const targetJid = this.jidMap?.get(chatId) || chatId
+    // Resolve LID to phone JID for sending (WhatsApp prefers phone JIDs for outbound)
+    let targetJid = this.jidMap?.get(chatId) || chatId
+    if (targetJid.endsWith('@lid')) {
+      const phoneJid = this.lidToPhone.get(targetJid)
+      if (phoneJid) {
+        targetJid = phoneJid
+        console.log(`[WhatsApp] Resolved LID to phone JID: ${targetJid}`)
+      }
+    }
     const sentMsg = await this.sock.sendMessage(targetJid, { text })
 
     // Track sent message ID so we can filter out our own echoes in self-DMs

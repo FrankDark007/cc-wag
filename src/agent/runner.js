@@ -297,13 +297,13 @@ export default class AgentRunner extends EventEmitter {
 
         // Tool called - send accumulated text first
         if (chunk.type === 'tool_use' && currentText.trim()) {
-          await adapter.sendMessage(chatId, currentText.trim())
+          await adapter.sendMessage(chatId, `🤖 CC: ${currentText.trim()}`)
           currentText = ''
         }
 
         // Done - send any remaining text
         if (chunk.type === 'done' && currentText.trim()) {
-          await adapter.sendMessage(chatId, currentText.trim())
+          await adapter.sendMessage(chatId, `🤖 CC: ${currentText.trim()}`)
         }
       }
 
