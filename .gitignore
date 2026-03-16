@@ -1,6 +1,7 @@
 node_modules/
 auth_whatsapp/
-workspace/
+workspace/*
+!workspace/xactimate-kb/
 logs/
 .env
 *.log

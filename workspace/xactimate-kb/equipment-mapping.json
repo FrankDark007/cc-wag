@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "mappings": [
+    { "aliases": ["dehu", "dehumidifier", "lgr", "dri-eaz", "drizair"], "code": "WTRDHU", "description": "Dehumidifier", "unit": "DAY" },
+    { "aliases": ["fan", "air mover", "airmover", "blower", "turbodryer"], "code": "WTRFAN", "description": "Air Mover/Fan", "unit": "DAY" },
+    { "aliases": ["air scrubber", "hepa", "scrubber", "neg air"], "code": "WTRAHR", "description": "Air Scrubber/HEPA", "unit": "DAY" },
+    { "aliases": ["heater", "heat"], "code": "WTRHTR", "description": "Heater", "unit": "DAY" },
+    { "aliases": ["moisture meter", "moisture reader", "hygrometer", "thermo-hygrometer"], "code": "WTRMON", "description": "Moisture Monitoring Visit", "unit": "EA" }
+  ],
+  "rateMultipliers": {
+    "businessHours": { "label": "Business Hours (7am-6pm M-F)", "multiplier": 1.0 },
+    "afterHours": { "label": "After Hours (6pm-7am M-F)", "multiplier": 1.5 },
+    "saturday": { "label": "Saturday", "multiplier": 1.5 },
+    "sunday": { "label": "Sunday", "multiplier": 2.0 },
+    "holiday": { "label": "Holiday", "multiplier": 2.0 }
+  },
+  "holidays2026": [
+    "2026-01-01", "2026-01-19", "2026-02-16", "2026-05-25",
+    "2026-07-04", "2026-09-07", "2026-11-26", "2026-11-27", "2026-12-25"
+  ]
+}

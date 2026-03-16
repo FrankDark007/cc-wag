@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-03-16",
+  "categories": {
+    "water_extraction": {
+      "items": [
+        { "code": "WTREXT", "description": "Water extraction - per sq ft", "unit": "SF", "category": "Water Extraction", "notes": "Initial extraction of standing water" },
+        { "code": "WTRCPT", "description": "Extract water from carpet", "unit": "SF", "category": "Water Extraction" },
+        { "code": "WTRPAD", "description": "Extract water from pad", "unit": "SF", "category": "Water Extraction" }
+      ]
+    },
+    "drying_equipment": {
+      "items": [
+        { "code": "WTRDHU", "description": "Dehumidifier - per day", "unit": "DAY", "category": "Drying Equipment", "notes": "LGR dehumidifier" },
+        { "code": "WTRFAN", "description": "Air mover/fan - per day", "unit": "DAY", "category": "Drying Equipment" },
+        { "code": "WTREQUP", "description": "Drying equipment setup", "unit": "EA", "category": "Drying Equipment" },
+        { "code": "WTRHTR", "description": "Heater - per day", "unit": "DAY", "category": "Drying Equipment" },
+        { "code": "WTRAHR", "description": "Air scrubber/HEPA - per day", "unit": "DAY", "category": "Drying Equipment" }
+      ]
+    },
+    "monitoring": {
+      "items": [
+        { "code": "WTRMON", "description": "Moisture monitoring - per visit", "unit": "EA", "category": "Monitoring", "notes": "Daily moisture readings per IICRC S500" },
+        { "code": "WTRTST", "description": "Moisture testing", "unit": "EA", "category": "Monitoring" }
+      ]
+    },
+    "demolition": {
+      "items": [
+        { "code": "DRYRMV", "description": "Remove drywall - per sq ft", "unit": "SF", "category": "Demolition" },
+        { "code": "BSBRMV", "description": "Remove baseboard", "unit": "LF", "category": "Demolition" },
+        { "code": "CPTRMV", "description": "Remove carpet", "unit": "SF", "category": "Demolition" },
+        { "code": "PADRMV", "description": "Remove carpet pad", "unit": "SF", "category": "Demolition" },
+        { "code": "FLRRMV", "description": "Remove floor covering", "unit": "SF", "category": "Demolition" },
+        { "code": "CABRMV", "description": "Remove base cabinet", "unit": "LF", "category": "Demolition" },
+        { "code": "INSLRMV", "description": "Remove insulation", "unit": "SF", "category": "Demolition" }
+      ]
+    },
+    "antimicrobial": {
+      "items": [
+        { "code": "WTRAMT", "description": "Apply antimicrobial treatment", "unit": "SF", "category": "Antimicrobial", "notes": "Required for Cat 2/3 water per IICRC S500" },
+        { "code": "WTRSNT", "description": "Sanitize area", "unit": "SF", "category": "Antimicrobial" }
+      ]
+    },
+    "contents": {
+      "items": [
+        { "code": "CNTMOV", "description": "Move contents - per room", "unit": "EA", "category": "Contents Manipulation" },
+        { "code": "CNTBLK", "description": "Block/elevate furniture", "unit": "EA", "category": "Contents Manipulation" },
+        { "code": "CNTPKO", "description": "Pack out contents", "unit": "EA", "category": "Contents Manipulation" }
+      ]
+    },
+    "reconstruction": {
+      "items": [
+        { "code": "DRYINS", "description": "Install drywall", "unit": "SF", "category": "Reconstruction" },
+        { "code": "DRYFIN", "description": "Finish drywall (tape, mud, sand)", "unit": "SF", "category": "Reconstruction" },
+        { "code": "BSBINS", "description": "Install baseboard", "unit": "LF", "category": "Reconstruction" },
+        { "code": "PNTINT", "description": "Paint interior - walls", "unit": "SF", "category": "Reconstruction" },
+        { "code": "PNTCLG", "description": "Paint ceiling", "unit": "SF", "category": "Reconstruction" },
+        { "code": "CPTINS", "description": "Install carpet", "unit": "SF", "category": "Reconstruction" },
+        { "code": "PADINS", "description": "Install carpet pad", "unit": "SF", "category": "Reconstruction" }
+      ]
+    },
+    "emergency_services": {
+      "items": [
+        { "code": "EMGSVC", "description": "Emergency service call", "unit": "EA", "category": "Emergency" },
+        { "code": "EMGBRD", "description": "Board up", "unit": "SF", "category": "Emergency" },
+        { "code": "TARPRF", "description": "Tarp roof", "unit": "SF", "category": "Emergency" }
+      ]
+    },
+    "labor": {
+      "items": [
+        { "code": "LABMIN", "description": "Labor minimum", "unit": "HR", "category": "Labor" },
+        { "code": "LABGEN", "description": "General labor", "unit": "HR", "category": "Labor" },
+        { "code": "LABTCH", "description": "Technician labor", "unit": "HR", "category": "Labor" },
+        { "code": "LABSUP", "description": "Supervisor labor", "unit": "HR", "category": "Labor" }
+      ]
+    }
+  }
+}

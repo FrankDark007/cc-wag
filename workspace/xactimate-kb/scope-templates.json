@@ -1,0 +1,73 @@
+{
+  "version": "1.0",
+  "templates": {
+    "cat1-class1": {
+      "name": "Category 1 / Class 1 — Clean Water, Minor",
+      "description": "Clean water source (supply line, sink overflow), minimal area affected, porous materials salvageable",
+      "standardDryingDays": "3-4",
+      "typicalItems": [
+        "WTREXT", "WTRDHU", "WTRFAN", "WTREQUP", "WTRMON",
+        "CNTMOV", "CNTBLK"
+      ],
+      "equipmentRatio": "1 dehu per 1-2 rooms, 1 air mover per 10-16 LF of wall",
+      "notes": "Per IICRC S500 Section 12. Drying goal: materials to pre-loss moisture levels."
+    },
+    "cat1-class2": {
+      "name": "Category 1 / Class 2 — Clean Water, Significant",
+      "description": "Clean water, larger area, wet carpet/pad, water wicking up walls <24 inches",
+      "standardDryingDays": "3-5",
+      "typicalItems": [
+        "WTREXT", "WTRCPT", "WTRPAD", "WTRDHU", "WTRFAN", "WTREQUP", "WTRMON",
+        "CPTRMV", "PADRMV", "BSBRMV", "DRYRMV", "CNTMOV", "CNTBLK"
+      ],
+      "equipmentRatio": "1 dehu per room, 1 air mover per 10-16 LF of wall, minimum 3 air movers per dehu",
+      "notes": "Flood cuts at 2 feet typical. Pad usually non-salvageable. IICRC S500 Section 12."
+    },
+    "cat1-class3": {
+      "name": "Category 1 / Class 3 — Clean Water, Major",
+      "description": "Clean water, soaked ceilings/walls/insulation, water overhead or extensive saturation",
+      "standardDryingDays": "5-7",
+      "typicalItems": [
+        "WTREXT", "WTRCPT", "WTRPAD", "WTRDHU", "WTRFAN", "WTRAHR", "WTREQUP", "WTRMON",
+        "CPTRMV", "PADRMV", "BSBRMV", "DRYRMV", "INSLRMV", "CNTMOV", "CNTPKO"
+      ],
+      "equipmentRatio": "1 dehu per room, air movers on walls AND ceiling, HEPA air scrubber recommended",
+      "notes": "Longest drying time. May require ceiling removal. IICRC S500 Section 12."
+    },
+    "cat2-class2": {
+      "name": "Category 2 / Class 2 — Gray Water, Significant",
+      "description": "Dishwasher, washing machine, toilet (urine only). Contaminated but not sewage.",
+      "standardDryingDays": "3-5",
+      "typicalItems": [
+        "WTREXT", "WTRCPT", "WTRPAD", "WTRDHU", "WTRFAN", "WTREQUP", "WTRMON",
+        "WTRAMT", "CPTRMV", "PADRMV", "BSBRMV", "DRYRMV", "CNTMOV"
+      ],
+      "equipmentRatio": "Same as Cat 1 Class 2, plus antimicrobial treatment mandatory",
+      "notes": "Antimicrobial required per IICRC S500. Pad always non-salvageable. Soft contents in contact may need cleaning."
+    },
+    "cat3-class2": {
+      "name": "Category 3 / Class 2 — Black Water, Significant",
+      "description": "Sewage backup, river/flood water, ground surface water. Maximum contamination.",
+      "standardDryingDays": "4-6",
+      "typicalItems": [
+        "WTREXT", "WTRCPT", "WTRPAD", "WTRDHU", "WTRFAN", "WTRAHR", "WTREQUP", "WTRMON",
+        "WTRAMT", "WTRSNT", "CPTRMV", "PADRMV", "BSBRMV", "DRYRMV", "INSLRMV", "FLRRMV",
+        "CNTMOV", "CNTPKO"
+      ],
+      "equipmentRatio": "Maximum equipment. HEPA air scrubber mandatory. Full PPE required.",
+      "notes": "IICRC S500 Section 14. All porous materials in contact must be removed. Antimicrobial + sanitization required. Document contamination thoroughly."
+    },
+    "cat3-class4": {
+      "name": "Category 3 / Class 4 — Black Water, Specialty Drying",
+      "description": "Sewage/flood water with deep saturation into hardwood, plaster, concrete, stone",
+      "standardDryingDays": "7-14",
+      "typicalItems": [
+        "WTREXT", "WTRDHU", "WTRFAN", "WTRAHR", "WTRHTR", "WTREQUP", "WTRMON",
+        "WTRAMT", "WTRSNT", "DRYRMV", "BSBRMV", "FLRRMV", "INSLRMV", "CABRMV",
+        "CNTMOV", "CNTPKO"
+      ],
+      "equipmentRatio": "Specialty drying: heat injection, desiccant dehu, injectidry panels. Extended monitoring.",
+      "notes": "Longest dry times. Specialty equipment justified. IICRC S500 Section 14 + S520 for mold prevention. Document daily with photos."
+    }
+  }
+}

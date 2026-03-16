@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "responses": [
+    {
+      "id": "drying-days",
+      "triggers": ["too many drying days", "drying days excessive", "reduce drying", "shorten drying", "drying too long"],
+      "category": "Equipment/Drying",
+      "adjusterClaim": "Too many drying days claimed",
+      "response": "Drying duration is determined by daily moisture readings, not arbitrary timelines. Per IICRC S500 Section 12.2, drying is complete when materials reach pre-loss or equilibrium moisture content. Our daily moisture logs (attached) show progressive drying with readings taken per IICRC protocol. Equipment was removed within 24 hours of achieving target moisture levels. Reducing drying time risks secondary damage and mold growth, which would be a significantly larger claim.",
+      "references": ["IICRC S500 Section 12.2", "IICRC S500 Section 12.3.3"]
+    },
+    {
+      "id": "too-many-dehus",
+      "triggers": ["too many dehumidifiers", "reduce dehumidifiers", "dehu count", "excessive equipment"],
+      "category": "Equipment/Drying",
+      "adjusterClaim": "Too many dehumidifiers deployed",
+      "response": "Dehumidifier placement follows IICRC S500 psychrometric calculations. Class 2 water damage requires approximately 1 LGR dehumidifier per affected room or per 1,000 SF of affected area. Our equipment placement was based on measured humidity levels and square footage calculations documented in our initial inspection report. Reducing dehumidification capacity would extend drying time and increase overall equipment costs.",
+      "references": ["IICRC S500 Section 12.3", "IICRC S500 Table 12.1"]
+    },
+    {
+      "id": "too-many-fans",
+      "triggers": ["too many air movers", "too many fans", "reduce fans", "fan count"],
+      "category": "Equipment/Drying",
+      "adjusterClaim": "Too many air movers deployed",
+      "response": "Air mover placement follows IICRC S500 guidelines: 1 air mover per 10-16 linear feet of affected wall for Class 2 losses, with a minimum ratio of 1 air mover per 50 SF of wet floor surface. Our placement achieves the required CFM (cubic feet per minute) for effective evaporation. Photos documenting placement and affected areas are available.",
+      "references": ["IICRC S500 Section 12.3.2", "IICRC S500 Table 12.1"]
+    },
+    {
+      "id": "antimicrobial-not-needed",
+      "triggers": ["antimicrobial not needed", "deny antimicrobial", "no antimicrobial", "antimicrobial unnecessary"],
+      "category": "Antimicrobial",
+      "adjusterClaim": "Antimicrobial treatment not necessary",
+      "response": "Antimicrobial application is standard of care for Category 2 and Category 3 water losses per IICRC S500 Section 14. Even for Category 1 losses, antimicrobial treatment is warranted when drying exceeds 48 hours or when elevated microbial growth is detected. Failure to apply antimicrobial treatment creates liability for subsequent mold remediation, which would result in a significantly larger claim. Our treatment follows EPA-registered product protocols.",
+      "references": ["IICRC S500 Section 14.2", "IICRC S520 Section 12"]
+    },
+    {
+      "id": "no-demo-needed",
+      "triggers": ["demolition not needed", "no demo", "reduce demolition", "demo excessive", "unnecessary removal"],
+      "category": "Demolition",
+      "adjusterClaim": "Demolition/removal was excessive",
+      "response": "Material removal decisions were based on moisture readings and contamination level. Per IICRC S500, porous materials that cannot be adequately dried within acceptable timeframes must be removed to prevent microbial amplification. Our flood cuts were performed at the standard 2-foot height above the water line for Category 1, or 12 inches above visible water stain for Category 2/3. All removal decisions are documented with before/during/after photos and corresponding moisture readings.",
+      "references": ["IICRC S500 Section 12.4", "IICRC S500 Section 14.3"]
+    },
+    {
+      "id": "after-hours-rate",
+      "triggers": ["after hours", "overtime", "weekend rate", "holiday rate", "emergency rate", "after-hours charge"],
+      "category": "Rates",
+      "adjusterClaim": "After-hours/overtime rates not warranted",
+      "response": "Emergency water damage response was initiated at the time of the loss event, which occurred outside normal business hours. Water damage is time-sensitive — delayed response leads to Category escalation, increased microbial risk, and greater property damage. Per industry standard, after-hours emergency response commands premium rates: 1.5x for after-hours (6pm-7am), 1.5x for Saturday, and 2.0x for Sunday/holiday. Timestamps from our project management system (CompanyCam) document crew arrival and departure times.",
+      "references": ["IICRC S500 Section 8.2 (Timely Response)", "Xactimate labor rate guidelines"]
+    },
+    {
+      "id": "monitoring-visits",
+      "triggers": ["too many monitoring", "reduce monitoring", "monitoring visits excessive", "daily monitoring not needed"],
+      "category": "Monitoring",
+      "adjusterClaim": "Too many monitoring visits",
+      "response": "Daily moisture monitoring is required per IICRC S500 Section 12.2.2 to document drying progress, verify equipment performance, and determine when drying goals are achieved. Each visit includes psychrometric readings, moisture content readings of affected materials, equipment check, and documentation. Monitoring visits cannot be reduced without compromising our ability to document proper drying and creating liability exposure for both the contractor and the insurer.",
+      "references": ["IICRC S500 Section 12.2.2", "IICRC S500 Section 15 (Documentation)"]
+    },
+    {
+      "id": "scope-too-large",
+      "triggers": ["scope too large", "reduce scope", "scope excessive", "overbilled", "overscoped"],
+      "category": "General",
+      "adjusterClaim": "Overall scope is too large",
+      "response": "Our scope of work was developed based on physical inspection, moisture mapping, and affected area measurements conducted during our initial response. Every line item corresponds to documented work performed, with photo evidence from our project management system (time-stamped CompanyCam photos). We welcome a line-by-line review — please identify specific items you believe are not supported by the documentation provided.",
+      "references": ["IICRC S500 Section 15 (Documentation Requirements)"]
+    },
+    {
+      "id": "contents-manipulation",
+      "triggers": ["contents manipulation", "move out unnecessary", "pack out denied", "content moving"],
+      "category": "Contents",
+      "adjusterClaim": "Contents manipulation charges denied",
+      "response": "Contents manipulation was necessary to access affected areas for drying equipment placement and demolition. Per IICRC S500, adequate airflow requires clear access to all affected surfaces. Furniture and contents blocking affected walls prevent proper air mover placement and impede drying. Move-out/pack-out was performed to the minimum extent necessary, and all items were inventoried and photographed before and after manipulation.",
+      "references": ["IICRC S500 Section 12.3.2 (Airflow Requirements)"]
+    }
+  ]
+}
