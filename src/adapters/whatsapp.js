@@ -502,6 +502,7 @@ export default class WhatsAppAdapter extends BaseAdapter {
       chatId: jid,
       text,
       isGroup,
+      isAtlas: this.activeTeamSessions.has(jid),
       sender,
       mentions: isMentioned ? ['self'] : mentions,
       image,

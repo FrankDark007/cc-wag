@@ -239,7 +239,8 @@ class Gateway {
           message.text,
           adapter,
           message.chatId,
-          message.image
+          message.image,
+          { isAtlas: message.isAtlas || false }
         )
 
         if (adapter.stopTyping) {

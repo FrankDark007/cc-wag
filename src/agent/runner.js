@@ -76,7 +76,7 @@ export default class AgentRunner extends EventEmitter {
   /**
    * Enqueue a run for a session
    */
-  async enqueueRun(sessionKey, message, adapter, chatId, image = null) {
+  async enqueueRun(sessionKey, message, adapter, chatId, image = null, meta = {}) {
     if (!this.queues.has(sessionKey)) {
       this.queues.set(sessionKey, { items: [], processing: false })
     }
@@ -93,6 +93,7 @@ export default class AgentRunner extends EventEmitter {
         chatId,
         image,
         mcpServers: this.mcpServers || {},
+        botName: meta.isAtlas ? 'Atlas' : 'CC',
         resolve,
         reject,
         queuedAt: Date.now()
@@ -236,7 +237,7 @@ export default class AgentRunner extends EventEmitter {
 
       // Standard tool approval
       const reason = options.decisionReason || ''
-      let prompt = `CC wants to use: ${toolName}`
+      let prompt = `${this._currentBotName || 'CC'} wants to use: ${toolName}`
       if (reason) prompt += `\n${reason}`
 
       const inputStr = JSON.stringify(input, null, 2)
@@ -263,7 +264,7 @@ export default class AgentRunner extends EventEmitter {
    * Execute a single agent run with streaming messages
    */
   async executeRun(run) {
-    const { sessionKey, message, adapter, chatId, image, mcpServers } = run
+    const { sessionKey, message, adapter, chatId, image, mcpServers, botName } = run
     const platform = this.extractPlatform(sessionKey)
 
     // Record user message in transcript
@@ -272,6 +273,9 @@ export default class AgentRunner extends EventEmitter {
       content: message,
       hasImage: !!image
     })
+
+    // Set current bot name for tool approval prompts
+    this._currentBotName = botName || 'CC'
 
     // Create canUseTool callback for messaging platforms
     const canUseTool = this.createMessagingCanUseTool(adapter, chatId)
@@ -297,13 +301,13 @@ export default class AgentRunner extends EventEmitter {
 
         // Tool called - send accumulated text first
         if (chunk.type === 'tool_use' && currentText.trim()) {
-          await adapter.sendMessage(chatId, `🤖 CC: ${currentText.trim()}`)
+          await adapter.sendMessage(chatId, `🤖 ${botName}: ${currentText.trim()}`)
           currentText = ''
         }
 
         // Done - send any remaining text
         if (chunk.type === 'done' && currentText.trim()) {
-          await adapter.sendMessage(chatId, `🤖 CC: ${currentText.trim()}`)
+          await adapter.sendMessage(chatId, `🤖 ${botName}: ${currentText.trim()}`)
         }
       }
 
