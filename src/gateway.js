@@ -231,6 +231,22 @@ class Gateway {
     process.on('SIGINT', () => this.stop())
     process.on('SIGTERM', () => this.stop())
 
+    // Auto-restart WhatsApp connection every 6 hours to prevent session degradation
+    this._connectionResetTimer = setInterval(() => {
+      const whatsapp = this.adapters?.get('whatsapp')
+      if (whatsapp?.sock) {
+        console.log('[Gateway] Scheduled connection refresh — cleaning stale sessions')
+        try {
+          const authDir = config.paths.authDir
+          const sessionFiles = fs.readdirSync(authDir).filter(f => f.startsWith('session-'))
+          for (const f of sessionFiles) fs.unlinkSync(path.join(authDir, f))
+          if (sessionFiles.length) console.log(`[Gateway] Cleaned ${sessionFiles.length} session files`)
+        } catch (e) {
+          console.error('[Gateway] Session cleanup failed:', e.message)
+        }
+      }
+    }, 6 * 60 * 60 * 1000) // every 6 hours
+
     // Bad MAC auto-recovery: track repeated errors per contact, auto-delete corrupted session keys
     this._badMacCounts = new Map() // contactId -> { count, firstSeen }
     const BAD_MAC_THRESHOLD = 5   // errors before auto-cleanup
