@@ -354,7 +354,7 @@ export default class WhatsAppAdapter extends BaseAdapter {
    * Self-chat prefixes — any of these activate CC mode
    */
   get selfChatPrefixes() {
-    return ['cc,', 'cc ', 'cc.', 'hey cc,', 'hey cc ']
+    return ['cc,', 'cc ', 'cc.', 'hey cc,', 'hey cc ', 'atlas,', 'atlas ', 'hey atlas,', 'hey atlas ']
   }
 
   /**
