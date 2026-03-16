@@ -36,5 +36,13 @@ export default {
   gateway: {
     port: parseInt(process.env.GATEWAY_PORT || '4096', 10),
     apiToken: process.env.GATEWAY_API_TOKEN || ''
+  },
+
+  // Location sharing (on-demand via Tasker + Join)
+  location: {
+    secret: process.env.LOCATION_SECRET || '',
+    joinApiKey: process.env.JOIN_API_KEY || '',
+    joinDeviceId: process.env.JOIN_DEVICE_ID || '',
+    timeoutMs: 30000
   }
 }

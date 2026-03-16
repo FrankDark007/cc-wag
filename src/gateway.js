@@ -22,6 +22,7 @@ class Gateway {
     this.commandHandler = new CommandHandler(this)
     this.adapters = new Map()
     this.pendingApprovals = new Map() // chatId -> { resolve, timeout }
+    this.pendingLocationRequests = new Map() // requestId -> { resolve, timeout }
     this.mcpServers = {}
     this.setupQueueMonitoring()
     this.setupAgentMonitoring()
@@ -119,6 +120,57 @@ class Gateway {
         resolve(null)
       }
     })
+  }
+
+  /**
+   * Request location from Frank's phone via Tasker + Join push.
+   * Returns { lat, lng, accuracy, timestamp } or null on timeout.
+   */
+  async requestLocation() {
+    const { joinApiKey, joinDeviceId, timeoutMs } = config.location
+    if (!joinApiKey || !joinDeviceId) {
+      return { error: 'Join API not configured (JOIN_API_KEY / JOIN_DEVICE_ID missing)' }
+    }
+
+    const requestId = `loc_${Date.now()}`
+
+    // Push to Tasker via Join API
+    const joinUrl = `https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush` +
+      `?apikey=${joinApiKey}&deviceId=${joinDeviceId}` +
+      `&text=location_request:${requestId}`
+
+    try {
+      const resp = await fetch(joinUrl)
+      if (!resp.ok) {
+        return { error: `Join push failed: HTTP ${resp.status}` }
+      }
+      console.log(`[Location] Push sent, waiting for response (id: ${requestId})`)
+    } catch (err) {
+      return { error: `Join push failed: ${err.message}` }
+    }
+
+    // Wait for Tasker to POST back to /api/location
+    return new Promise((resolve) => {
+      const timeout = setTimeout(() => {
+        this.pendingLocationRequests.delete(requestId)
+        resolve({ error: 'Phone did not respond within 30s' })
+      }, timeoutMs || 30000)
+
+      this.pendingLocationRequests.set(requestId, { resolve, timeout })
+    })
+  }
+
+  /**
+   * Resolve a pending location request (called from POST /api/location)
+   */
+  resolveLocationRequest(requestId, data) {
+    const pending = this.pendingLocationRequests.get(requestId)
+    if (!pending) return false
+
+    clearTimeout(pending.timeout)
+    this.pendingLocationRequests.delete(requestId)
+    pending.resolve(data)
+    return true
   }
 
   async start() {
@@ -341,6 +393,47 @@ class Gateway {
           } catch (err) {
             res.writeHead(500, { 'Content-Type': 'application/json' })
             res.end(JSON.stringify({ error: err.message }))
+          }
+        })
+        return
+      }
+
+      // POST /api/location - Tasker posts GPS coordinates here
+      if (req.url === '/api/location' && req.method === 'POST') {
+        let body = ''
+        req.on('data', chunk => { body += chunk })
+        req.on('end', () => {
+          try {
+            const { request_id, lat, lng, accuracy, secret } = JSON.parse(body)
+
+            // Authenticate with location secret
+            const expectedSecret = config.location.secret
+            if (expectedSecret && secret !== expectedSecret) {
+              res.writeHead(401, { 'Content-Type': 'application/json' })
+              res.end(JSON.stringify({ error: 'Invalid secret' }))
+              return
+            }
+
+            if (!request_id || lat == null || lng == null) {
+              res.writeHead(400, { 'Content-Type': 'application/json' })
+              res.end(JSON.stringify({ error: 'request_id, lat, and lng required' }))
+              return
+            }
+
+            const resolved = this.resolveLocationRequest(request_id, {
+              lat: parseFloat(lat),
+              lng: parseFloat(lng),
+              accuracy: accuracy ? parseFloat(accuracy) : null,
+              timestamp: Date.now()
+            })
+
+            res.writeHead(200, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify({ success: true, matched: resolved }))
+
+            console.log(`[Location] Received: ${lat}, ${lng} (accuracy: ${accuracy || 'n/a'}m, matched: ${resolved})`)
+          } catch (err) {
+            res.writeHead(400, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify({ error: 'Invalid JSON' }))
           }
         })
         return

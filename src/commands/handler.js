@@ -69,6 +69,9 @@ export default class CommandHandler {
       case 'todo':
         return this.handleTodo(args)
 
+      case 'whereisfrank':
+        return this.handleWhereIsFrank(adapter, chatId)
+
       default:
         // Unknown command, pass to agent
         return { handled: false }
@@ -313,6 +316,48 @@ export default class CommandHandler {
     }
   }
 
+  /**
+   * Handle /whereisfrank - request Frank's live location from his phone
+   * On-demand: pushes to Tasker via Join, waits for GPS response, sends WhatsApp pin
+   */
+  async handleWhereIsFrank(adapter, chatId) {
+    const gateway = this.gateway
+
+    // Send immediate acknowledgment
+    await adapter.sendMessage(chatId, '🔱 *Atlas:* Locating Frank... requesting GPS from his phone.')
+
+    const result = await gateway.requestLocation()
+
+    if (result.error) {
+      return {
+        handled: true,
+        response: `🔱 *Atlas:* Could not get Frank's location: ${result.error}`
+      }
+    }
+
+    // Send the location as a WhatsApp map pin
+    try {
+      await adapter.sendLocation(
+        chatId,
+        result.lat,
+        result.lng,
+        "Frank's Location",
+        result.accuracy ? `Accuracy: ~${Math.round(result.accuracy)}m` : ''
+      )
+
+      const mins = Math.round((Date.now() - result.timestamp) / 60000)
+      return {
+        handled: true,
+        response: `🔱 *Atlas:* Location pinned above.${result.accuracy ? ` Accuracy: ~${Math.round(result.accuracy)}m.` : ''} Retrieved just now.`
+      }
+    } catch (err) {
+      return {
+        handled: true,
+        response: `🔱 *Atlas:* Got coordinates (${result.lat}, ${result.lng}) but failed to send map pin: ${err.message}`
+      }
+    }
+  }
+
   handleHelp() {
     const lines = [
       'CC-WAG Commands',
@@ -327,6 +372,7 @@ export default class CommandHandler {
       '/model 2 - Switch to model by number',
       '/todo <task> - Add to FloodDoctor tasks',
       '/todo personal <task> - Add to Personal tasks',
+      '/whereisfrank - Get Frank\'s live GPS location',
       '/stop - Stop current operation',
       '/help - Show this help'
     ]

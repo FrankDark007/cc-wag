@@ -182,6 +182,35 @@ export default class WhatsAppAdapter extends BaseAdapter {
     }
   }
 
+  async sendLocation(chatId, latitude, longitude, name = '', address = '') {
+    if (!this.sock) {
+      throw new Error('WhatsApp not connected')
+    }
+
+    let targetJid = this.jidMap?.get(chatId) || chatId
+    if (targetJid.endsWith('@lid')) {
+      const phoneJid = this.lidToPhone.get(targetJid)
+      if (phoneJid) {
+        targetJid = phoneJid
+      }
+    }
+
+    const msg = {
+      location: {
+        degreesLatitude: latitude,
+        degreesLongitude: longitude
+      }
+    }
+    if (name) msg.location.name = name
+    if (address) msg.location.address = address
+
+    const sentMsg = await this.sock.sendMessage(targetJid, msg)
+    if (sentMsg?.key?.id) {
+      this.sentMessageIds.add(sentMsg.key.id)
+      setTimeout(() => this.sentMessageIds.delete(sentMsg.key.id), 10000)
+    }
+  }
+
   async sendTyping(chatId) {
     if (!this.sock) return
     try {
