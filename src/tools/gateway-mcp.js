@@ -1,5 +1,6 @@
 import { createSdkMcpServer, tool } from '@anthropic-ai/claude-agent-sdk'
 import { z } from 'zod'
+import { getStore } from '../utils/async-context.js'
 
 /**
  * Gateway context - set by gateway before agent runs
@@ -130,13 +131,13 @@ export function createGatewayMcpServer() {
         'Get information about the current conversation context (platform, chat, session)',
         {},
         async () => {
-          const { currentPlatform, currentChatId, currentSessionKey } = gatewayContext
+          const store = getStore()
           return {
             content: [{ type: 'text', text: JSON.stringify({
               success: true,
-              platform: currentPlatform,
-              chat_id: currentChatId,
-              session_key: currentSessionKey
+              platform: store?.platform || gatewayContext.currentPlatform,
+              chat_id: store?.chatId || gatewayContext.currentChatId,
+              session_key: store?.sessionKey || gatewayContext.currentSessionKey
             }) }]
           }
         }

@@ -3,6 +3,7 @@ import { z } from 'zod'
 import fs from 'fs'
 import path from 'path'
 import { EventEmitter } from 'events'
+import { getStore } from '../utils/async-context.js'
 
 const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/cron-jobs.json'
 
@@ -256,10 +257,11 @@ export function createCronMcpServer() {
           invoke_agent: z.boolean().optional().describe('If true, the agent will process this message and respond. If false (default), just sends the message.')
         },
         async (args) => {
+          const ctx = getStore() || currentContext
           const result = scheduler.scheduleDelayed({
-            platform: currentContext.platform,
-            chatId: currentContext.chatId,
-            sessionKey: currentContext.sessionKey,
+            platform: ctx.platform,
+            chatId: ctx.chatId,
+            sessionKey: ctx.sessionKey,
             message: args.message,
             delaySeconds: args.delay_seconds,
             description: args.description,
@@ -285,10 +287,11 @@ export function createCronMcpServer() {
           invoke_agent: z.boolean().optional().describe('If true, the agent will process this message and respond each time.')
         },
         async (args) => {
+          const ctx = getStore() || currentContext
           const result = scheduler.scheduleRecurring({
-            platform: currentContext.platform,
-            chatId: currentContext.chatId,
-            sessionKey: currentContext.sessionKey,
+            platform: ctx.platform,
+            chatId: ctx.chatId,
+            sessionKey: ctx.sessionKey,
             message: args.message,
             intervalSeconds: args.interval_seconds,
             description: args.description,
@@ -314,10 +317,11 @@ export function createCronMcpServer() {
           invoke_agent: z.boolean().optional().describe('If true, the agent will process this message and respond each time.')
         },
         async (args) => {
+          const ctx = getStore() || currentContext
           const result = scheduler.scheduleCron({
-            platform: currentContext.platform,
-            chatId: currentContext.chatId,
-            sessionKey: currentContext.sessionKey,
+            platform: ctx.platform,
+            chatId: ctx.chatId,
+            sessionKey: ctx.sessionKey,
             message: args.message,
             cron: args.cron,
             description: args.description,

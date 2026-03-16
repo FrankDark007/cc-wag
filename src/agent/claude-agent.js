@@ -6,6 +6,7 @@ import MemoryManager from '../memory/manager.js'
 import { createCronMcpServer, setContext as setCronContext, getScheduler } from '../tools/cron.js'
 import { createGatewayMcpServer, setGatewayContext } from '../tools/gateway-mcp.js'
 import { ClaudeProvider } from '../providers/claude-provider.js'
+import { asyncContext } from '../utils/async-context.js'
 
 const SYSTEM_PROMPT_PATH = '/Users/ghost/Projects/cc-wag/config/system-prompt.md'
 const CLAUDE_MD_PATH = path.join(os.homedir(), '.claude', 'CLAUDE.md')
@@ -330,6 +331,9 @@ export default class ClaudeAgent extends EventEmitter {
       mcpServers = {},
       canUseTool
     } = params
+
+    // Store per-request context for async-safe access
+    asyncContext.enterWith({ platform, chatId, sessionKey, gateway: this.gateway })
 
     const session = this.getSession(sessionKey)
     session.lastActivity = Date.now()
