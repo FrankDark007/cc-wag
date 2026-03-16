@@ -21,8 +21,7 @@ import path from 'path'
  */
 
 import config from '../config.js'
-
-const JOBS_FILE = config.paths.jobsFile
+import { loadJobs, saveJobs, makeJobId, addDays, formatDate, formatMoneyDollars, daysUntil, findJobInData } from '../utils/job-data.js'
 
 const VALID_STATUSES = [
   'active',
@@ -38,72 +37,6 @@ const VALID_STATUSES = [
 
 // Days from creation to lien deadline
 const LIEN_DEADLINE_DAYS = 90
-
-// ── Storage ─────────────────────────────────────────────────────────
-
-function loadJobs() {
-  try {
-    if (fs.existsSync(JOBS_FILE)) {
-      return JSON.parse(fs.readFileSync(JOBS_FILE, 'utf-8'))
-    }
-  } catch (err) {
-    console.error('[JobTracker] Failed to load jobs:', err.message)
-  }
-  return { nextId: 1, jobs: [] }
-}
-
-function saveJobs(data) {
-  const dir = path.dirname(JOBS_FILE)
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
-  fs.writeFileSync(JOBS_FILE, JSON.stringify(data, null, 2))
-}
-
-// ── Helpers ─────────────────────────────────────────────────────────
-
-function makeId(num) {
-  return `FD-${String(num).padStart(3, '0')}`
-}
-
-function formatDate(isoStr) {
-  if (!isoStr) return '—'
-  return new Date(isoStr).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric'
-  })
-}
-
-function formatMoney(amount) {
-  if (amount == null) return '—'
-  return '$' + Number(amount).toLocaleString('en-US', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  })
-}
-
-function daysUntil(isoStr) {
-  if (!isoStr) return Infinity
-  const now = new Date()
-  const target = new Date(isoStr)
-  return Math.ceil((target - now) / (1000 * 60 * 60 * 24))
-}
-
-function addDays(date, days) {
-  const d = new Date(date)
-  d.setDate(d.getDate() + days)
-  return d.toISOString()
-}
-
-function findJob(data, idStr) {
-  const upper = idStr.toUpperCase()
-  // Accept "FD-001", "fd-001", "001", "1"
-  return data.jobs.find(j => {
-    if (j.id === upper) return true
-    const num = parseInt(idStr, 10)
-    if (!isNaN(num) && j.id === makeId(num)) return true
-    return false
-  })
-}
 
 // ── Command Handlers ────────────────────────────────────────────────
 
@@ -141,7 +74,7 @@ function handleJobNew(argsStr) {
   const data = loadJobs()
   const now = new Date().toISOString()
   const job = {
-    id: makeId(data.nextId),
+    id: makeJobId(data.nextId),
     client,
     address,
     city,
@@ -224,7 +157,7 @@ function handleJobList(filter) {
     for (const j of group) {
       let line = `${j.id} | ${j.client} | ${j.address}`
       if (j.city) line += `, ${j.city}`
-      if (j.invoiceAmount != null) line += ` | ${formatMoney(j.invoiceAmount)}`
+      if (j.invoiceAmount != null) line += ` | ${formatMoneyDollars(j.invoiceAmount)}`
       const lienDays = daysUntil(j.lienDeadline)
       if (lienDays <= 14 && !['paid', 'closed', 'lien-filed'].includes(j.status)) {
         line += ` | LIEN IN ${lienDays}d`
@@ -270,7 +203,7 @@ function handleJobsUrgent() {
     else if (lienDays <= 21) flag = ' * lien approaching *'
 
     let line = `${j.id} | ${j.client} | ${j.status.toUpperCase()}`
-    if (j.invoiceAmount != null) line += ` | ${formatMoney(j.invoiceAmount)}`
+    if (j.invoiceAmount != null) line += ` | ${formatMoneyDollars(j.invoiceAmount)}`
     line += ` | Lien: ${formatDate(j.lienDeadline)} (${lienDays}d)${flag}`
     lines.push(line)
   }
@@ -331,7 +264,7 @@ function handleJobInvoice(job, amountStr, data) {
   return {
     handled: true,
     response: [
-      `*${job.id}* invoiced: ${formatMoney(amount)}`,
+      `*${job.id}* invoiced: ${formatMoneyDollars(amount)}`,
       `Client: ${job.client}`,
       `Invoice date: ${formatDate(job.invoiceDate)}`,
       `Lien deadline: ${formatDate(job.lienDeadline)}`,
@@ -351,7 +284,7 @@ function handleJobPaid(job, data) {
     response: [
       `*${job.id}* marked PAID`,
       `Client: ${job.client}`,
-      `Amount: ${formatMoney(job.invoiceAmount)}`,
+      `Amount: ${formatMoneyDollars(job.invoiceAmount)}`,
       `Payment date: ${formatDate(job.paymentDate)}`
     ].join('\n')
   }
@@ -431,7 +364,7 @@ function handleJobDetail(job) {
   ]
 
   if (job.dateCompleted) lines.push(`Completed: ${formatDate(job.dateCompleted)}`)
-  if (job.invoiceAmount != null) lines.push(`Invoice: ${formatMoney(job.invoiceAmount)}`)
+  if (job.invoiceAmount != null) lines.push(`Invoice: ${formatMoneyDollars(job.invoiceAmount)}`)
   if (job.invoiceDate) lines.push(`Invoiced: ${formatDate(job.invoiceDate)}`)
   if (job.paymentDate) lines.push(`Paid: ${formatDate(job.paymentDate)}`)
   if (job.adjuster) lines.push(`Adjuster: ${job.adjuster}${job.adjusterEmail ? ' (' + job.adjusterEmail + ')' : ''}`)
@@ -486,7 +419,7 @@ function routeJobCommand(text) {
   if (spaceIdx === -1) {
     // Just an ID — show detail
     const data = loadJobs()
-    const job = findJob(data, rest)
+    const job = findJobInData(data, rest)
     if (!job) return { handled: true, response: `Job not found: ${rest}` }
     return handleJobDetail(job)
   }
@@ -496,7 +429,7 @@ function routeJobCommand(text) {
   const subLower = subRest.toLowerCase()
 
   const data = loadJobs()
-  const job = findJob(data, idStr)
+  const job = findJobInData(data, idStr)
   if (!job) return { handled: true, response: `Job not found: ${idStr}` }
 
   // /job <id> status <new-status>
@@ -556,7 +489,7 @@ function jobHelp() {
 
 export function register(gateway) {
   // Ensure workspace directory exists
-  const dir = path.dirname(JOBS_FILE)
+  const dir = path.dirname(config.paths.jobsFile)
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
 
   // Wrap the command handler to intercept /job and /jobs before default routing

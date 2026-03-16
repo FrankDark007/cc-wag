@@ -259,6 +259,46 @@ export function isOverdue(isoString) {
   return d.getTime() < Date.now()
 }
 
+// ── ID & Date Helpers ───────────────────────────────────────────────
+
+/**
+ * Create a job ID string from a number (e.g., 1 → "FD-001")
+ * @param {number} num
+ * @returns {string}
+ */
+export function makeJobId(num) {
+  return `FD-${String(num).padStart(3, '0')}`
+}
+
+/**
+ * Add days to a date and return ISO string
+ * @param {string|Date} date
+ * @param {number} days
+ * @returns {string}
+ */
+export function addDays(date, days) {
+  const d = new Date(date)
+  d.setDate(d.getDate() + days)
+  return d.toISOString()
+}
+
+/**
+ * Find a job in a data object by ID string
+ * Used by features that already have the data loaded
+ * @param {{ jobs: Array }} data
+ * @param {string} idStr
+ * @returns {object|null}
+ */
+export function findJobInData(data, idStr) {
+  const upper = idStr.toUpperCase()
+  return data.jobs.find(j => {
+    if (j.id === upper) return true
+    const num = parseInt(idStr, 10)
+    if (!isNaN(num) && j.id === `FD-${String(num).padStart(3, '0')}`) return true
+    return false
+  }) || null
+}
+
 // ── Status Helpers ──────────────────────────────────────────────────
 
 const STATUS_EMOJI = {

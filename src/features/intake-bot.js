@@ -20,8 +20,8 @@ import { execSync } from 'child_process'
  */
 
 import config from '../config.js'
+import { loadJobs, saveJobs, makeJobId, addDays, formatDate } from '../utils/job-data.js'
 
-const JOBS_FILE = config.paths.jobsFile
 const INTAKES_FILE = config.paths.intakesFile
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const GWS_PATH = config.paths.gwsBin
@@ -29,24 +29,6 @@ const DRIVE_PARENT_FOLDER = '1QYQysnw8kYfwY14fgPgfAx5nlqlmfSxW'
 const LIEN_DEADLINE_DAYS = 90
 
 // ── Storage ─────────────────────────────────────────────────────────
-
-function loadJobsData() {
-  try {
-    if (!fs.existsSync(JOBS_FILE)) return { nextId: 1, jobs: [] }
-    const raw = fs.readFileSync(JOBS_FILE, 'utf-8')
-    const data = JSON.parse(raw)
-    if (Array.isArray(data)) return { nextId: data.length + 1, jobs: data }
-    return data
-  } catch {
-    return { nextId: 1, jobs: [] }
-  }
-}
-
-function saveJobsData(data) {
-  const dir = path.dirname(JOBS_FILE)
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
-  fs.writeFileSync(JOBS_FILE, JSON.stringify(data, null, 2))
-}
 
 function loadIntakes() {
   try {
@@ -64,23 +46,6 @@ function saveIntakes(intakes) {
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────
-
-function makeJobId(num) {
-  return `FD-${String(num).padStart(3, '0')}`
-}
-
-function addDays(date, days) {
-  const d = new Date(date)
-  d.setDate(d.getDate() + days)
-  return d.toISOString()
-}
-
-function formatDate(isoStr) {
-  if (!isoStr) return '—'
-  return new Date(isoStr).toLocaleDateString('en-US', {
-    month: 'short', day: 'numeric', year: 'numeric'
-  })
-}
 
 function isBusinessHours() {
   const hour = new Date().getHours()
@@ -139,7 +104,7 @@ const INTAKE_STEPS = [
 // ── Create Job from Intake ──────────────────────────────────────────
 
 function createJobFromIntake(session) {
-  const data = loadJobsData()
+  const data = loadJobs()
   const now = new Date().toISOString()
   const jobId = makeJobId(data.nextId)
 
@@ -176,7 +141,7 @@ function createJobFromIntake(session) {
 
   data.jobs.push(job)
   data.nextId++
-  saveJobsData(data)
+  saveJobs(data)
 
   return job
 }
@@ -313,12 +278,12 @@ async function processIntakeMessage(gateway, chatId, text, adapter) {
 
   // Update job with Drive info if successful
   if (driveResult.success && driveResult.folderId) {
-    const data = loadJobsData()
+    const data = loadJobs()
     const savedJob = data.jobs.find(j => j.id === job.id)
     if (savedJob) {
       savedJob.driveFolderId = driveResult.folderId
       savedJob.driveUrl = `https://drive.google.com/drive/folders/${driveResult.folderId}`
-      saveJobsData(data)
+      saveJobs(data)
     }
   }
 
