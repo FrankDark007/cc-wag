@@ -1,11 +1,16 @@
 import 'dotenv/config'
 import http from 'http'
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath, pathToFileURL } from 'url'
 import QRCode from 'qrcode'
 import config from './config.js'
 import WhatsAppAdapter from './adapters/whatsapp.js'
 import SessionManager from './sessions/manager.js'
 import AgentRunner from './agent/runner.js'
 import CommandHandler from './commands/handler.js'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 /**
  * CC-WAG: Claude Code WhatsApp Gateway
@@ -214,6 +219,9 @@ class Gateway {
       }
     }
 
+    // Load feature plugins from src/features/
+    await this.loadFeatures()
+
     // Handle shutdown
     process.on('SIGINT', () => this.stop())
     process.on('SIGTERM', () => this.stop())
@@ -225,6 +233,35 @@ class Gateway {
     console.log('[Gateway] Ready and listening for messages')
     console.log('[Gateway] Using Claude Agent SDK with memory + cron')
     console.log('[Gateway] Commands: /help, /new, /status, /memory, /stop, /todo')
+  }
+
+  /**
+   * Load all feature plugins from src/features/
+   * Each feature exports a register(gateway) function
+   */
+  async loadFeatures() {
+    const featuresDir = path.join(__dirname, 'features')
+    if (!fs.existsSync(featuresDir)) {
+      console.log('[Features] No features directory found')
+      return
+    }
+
+    const files = fs.readdirSync(featuresDir)
+      .filter(f => f.endsWith('.js'))
+      .sort()
+
+    for (const file of files) {
+      try {
+        const filePath = pathToFileURL(path.join(featuresDir, file)).href
+        const mod = await import(filePath)
+        if (typeof mod.register === 'function') {
+          mod.register(this)
+          console.log(`[Features] Loaded: ${file}`)
+        }
+      } catch (err) {
+        console.error(`[Features] Failed to load ${file}:`, err.message)
+      }
+    }
   }
 
   setupAdapter(adapter, platform, platformConfig) {
