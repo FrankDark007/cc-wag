@@ -33,7 +33,8 @@
 | **Messaging** | Location pin send | ✅ |
 | **Messaging** | Voice messages | ❌ |
 | **Messaging** | Document send/receive | ❌ |
-| **Messaging** | Buttons/lists/polls | ❌ |
+| **Messaging** | Buttons/lists | ⛔ NOT AVAILABLE (Baileys blocked by WhatsApp) |
+| **Messaging** | Polls | ❌ (available in Baileys, not implemented) |
 | **Messaging** | Quote replies | ❌ |
 | **Messaging** | Contact cards | ❌ |
 | **Identity** | Self-chat mode (CC, prefix) | ✅ |
@@ -189,39 +190,13 @@ await sock.sendMessage(jid, {
 ```
 **Use case**: Receive voice notes from Frank/team, transcribe with Whisper/Claude, respond with TTS
 
-#### 3.4 Buttons (Quick Reply)
-```js
-await sock.sendMessage(jid, {
-  text: 'Approve this invoice?',
-  buttons: [
-    { buttonId: 'approve', buttonText: { displayText: 'Approve' } },
-    { buttonId: 'reject', buttonText: { displayText: 'Reject' } },
-    { buttonId: 'edit', buttonText: { displayText: 'Edit' } }
-  ]
-})
-```
-**Note**: WhatsApp has been restricting button support for unofficial API (Baileys). May not render on all clients. Use with fallback.
+#### ~~3.4 Buttons (Quick Reply)~~ ⛔ BLOCKED
+**NOT AVAILABLE**: WhatsApp blocked buttons for non-WABA (WhatsApp Business API) accounts. Baileys has the proto definitions but WhatsApp servers reject them. Any workaround gets patched within weeks. **Do not invest time here.**
 
-**Use case**: Approval flows, quick selections, confirmation prompts
+**Workaround**: Use numbered text menus (already doing this for /model command) or polls (section 3.6).
 
-#### 3.5 List Messages
-```js
-await sock.sendMessage(jid, {
-  text: 'Select a task list:',
-  buttonText: 'View Options',
-  sections: [{
-    title: 'Task Lists',
-    rows: [
-      { title: 'Flood Doctor', rowId: 'fd' },
-      { title: 'Personal', rowId: 'personal' },
-      { title: 'Urgent', rowId: 'urgent' }
-    ]
-  }]
-})
-```
-**Note**: Same restriction caveat as buttons.
-
-**Use case**: Menu navigation, task/client selection, model picking
+#### ~~3.5 List Messages~~ ⛔ BLOCKED
+**NOT AVAILABLE**: Same as buttons — blocked for non-WABA accounts. Use numbered text menus or polls instead.
 
 #### 3.6 Polls
 ```js
@@ -1062,4 +1037,124 @@ OPUS (deep reasoning):
 
 ---
 
-*End of Atlas Feature Roadmap v1.0*
+---
+
+## 8. Research Agent Findings (Detailed)
+
+### 8.1 Critical: WhatsApp Features That DON'T Work in Baileys
+
+**Buttons, List Messages, and Template Messages are BLOCKED** by WhatsApp for non-WABA (WhatsApp Business API) partner accounts. Baileys has the proto definitions but WhatsApp servers reject them from unofficial connections. Any workaround gets patched within weeks. Do NOT invest time building button/list UIs.
+
+**What DOES work (confirmed):**
+- Polls ✅ (send + decrypt vote results)
+- Contact cards (vCard) ✅
+- Quote replies ✅
+- Message editing ✅
+- Message deletion ✅
+- Read receipts ✅
+- Message forwarding ✅
+- Message pinning ✅
+- Group management (create, add/remove members, settings) ✅
+- Newsletter/channels ✅
+- All media types (image, document, audio, video, stickers) ✅
+- Disappearing messages ✅
+- View-once messages ✅
+- Status/stories (buggy but available) ⚠️
+
+### 8.2 WhatsApp 2026 AI Policy Warning
+
+Meta's 2026 AI policy **prohibits general-purpose AI chatbots** on WhatsApp Business Platform. Compliant use cases are restricted to structured, business-focused bots:
+- Triaging support tickets
+- Confirming reservations
+- Sending order updates
+- Capturing leads
+
+Atlas is fine because: (a) it runs via Baileys (unofficial, not subject to WABA TOS), and (b) it IS a legitimate business tool for Flood Doctor operations. However, if we ever migrate to the official API, the AI features must be framed as business-specific, not general-purpose chatbot.
+
+### 8.3 Competitive Intelligence Updates (March 2026)
+
+**Alexa+** (Feb 2026): Now agentic — books repairmen via Thumbtack/Angi, Uber rides, restaurant reservations. $19.99/mo or free for Prime. This is the new bar for action-taking VAs.
+
+**Microsoft Copilot Cowork** (Feb 2026): Uses Anthropic Claude for autonomous multi-step workflows across Outlook/Teams/Excel. Work IQ layer learns your job role and patterns.
+
+**Notion 3.0 Custom Agents** (Feb 2026): Autonomous AI agents that run 24/7 on triggers/schedules. Access Notion + Slack + Mail + Calendar + MCP integrations.
+
+**Lindy 3.0** (2026): 300% improvement in autonomous operation time. 2,300+ app integrations. Computer Use for browser automation.
+
+**Google Assistant → Gemini for Home**: Natural language intent inference, 20+ new automation triggers.
+
+### 8.4 Claude Agent SDK — Unused Capabilities
+
+| Feature | Description | Impact for Atlas |
+|---------|-------------|-----------------|
+| Sub-agent spawning | Isolated subagents work in parallel with own context windows | HIGH — spawn invoice agent, scheduling agent, research agent in parallel |
+| MCP server integration | Native Model Context Protocol for external services | HIGH — already using for cron/gateway, extend to CompanyCam, weather, etc. |
+| Session persistence to disk | Conversations auto-save, can be resumed | MEDIUM — already using SDK resume |
+| File checkpointing | Snapshot/revert of agent-made changes | LOW — not critical for WhatsApp |
+| CLAUDE.md cross-session context | Persistent context across sessions | Already implemented via memory system |
+
+### 8.5 Framework Comparison for Atlas
+
+| Framework | Multi-Agent | Memory | Production-Ready | WhatsApp Fit | Decision |
+|-----------|------------|--------|-------------------|-------------|----------|
+| **Claude Agent SDK** | Sub-agents | Session + CLAUDE.md | Yes | HIGH (already in use) | **KEEP — primary runtime** |
+| **OpenAI Agents SDK** | Handoffs | Durable threads | Yes | Voice agents compelling | **CONSIDER for voice only** |
+| **LangGraph** | Graph workflows | Built-in persistence | Yes (v1.0) | High for complex flows | **NOT NEEDED yet** |
+| **CrewAI** | Role-based crews | 4-type memory | Growing | Medium-High | **NOT NEEDED** |
+
+**Recommendation**: Stay with Claude Agent SDK. Use sub-agents for parallel task delegation. Add OpenAI Whisper for voice transcription (no need for full OpenAI Agents SDK). LangGraph only if workflow complexity demands explicit graph-based orchestration later.
+
+### 8.6 Additional Features Discovered in Research
+
+**From Baileys research:**
+- **Polls** — ready to implement, great for scheduling and crew decisions
+- **Group management** — auto-create job site groups with crew + customer
+- **Newsletter/channels** — Flood Doctor broadcast channel for service updates
+- **Message pinning** — pin important info in job groups (address, schedule)
+- **View-once messages** — send sensitive scope photos that auto-delete
+- **Star messages** — mark important customer messages for follow-up
+
+**From VA research:**
+- **24/7 lead response** (Lindy AI pattern) — auto-respond to after-hours inquiries
+- **Meeting prep** (Lindy/Copilot pattern) — research attendees before meetings
+- **Lead enrichment** (Lindy pattern) — auto-research incoming leads (property details, insurance)
+- **Thumbtack/Angi integration** (Alexa+ pattern) — subcontractor booking
+
+---
+
+## 9. Sources
+
+### Virtual Assistant Products
+- Google Home 20 New Automations 2026
+- Gemini for Home: Next Gen Smart Homes
+- Apple Intelligence Enhanced Siri 2026
+- Amazon Alexa+ Available to Everyone in US (CNBC Feb 2026)
+- Microsoft Copilot Cowork with Anthropic (VentureBeat)
+- Lindy AI Review 2026, Pricing & Features
+- Notion 3.0 Agents Launch, Notion 3.3 Custom Agents
+- Zapier Agents Guide, 8,500+ Integrations
+- Leon AI GitHub, OVOS/Neon AI successors to Mycroft
+
+### WhatsApp / Baileys
+- Baileys Wiki: Sending Messages, Handling Messages, Group Management, Presence & Receipts
+- WhiskeySockets/Baileys GitHub
+- Baileys Interactive Messages (DeepWiki)
+- Buttons/Lists Deprecated (DEV Community)
+- Baileys Issues #97 (Labels), #1745 (PTT waveform), #2118 (Status), #2239 (Interactive)
+- WhatsApp 2026 AI Policy (Imbrace)
+- WhatsApp AI Agent Guide 2026 (Yalomedia)
+
+### AI Agent Frameworks
+- Claude Agent SDK Overview, Permissions, Sessions, MCP Integration
+- Claude Flow: Multi-Agent Orchestration
+- OpenAI Agents SDK, Voice Agents, Realtime Audio Models
+- LangChain and LangGraph 1.0
+- CrewAI Framework 2025 Review (45.9k Stars)
+- AG2 (formerly AutoGen) GitHub
+- Microsoft Agent Framework Overview
+- Anthropic Computer Use Tool
+- Transcribe WhatsApp Audio with Whisper via Groq (n8n)
+
+---
+
+*End of Atlas Feature Roadmap v1.0 — Updated with research agent findings*
