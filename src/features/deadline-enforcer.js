@@ -16,10 +16,11 @@ import fs from 'fs'
 const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 
-// Check hours: 7:35 AM briefing + 8am, 12pm, 4pm, 8pm enforcement
-const BRIEFING_HOUR = 7
+// Check hours: 10:35 AM briefing + 12pm, 4pm, 8pm, 12am enforcement
+// Frank works late (sleeps ~5am-10/11am)
+const BRIEFING_HOUR = 10
 const BRIEFING_MINUTE = 35
-const ENFORCEMENT_HOURS = [8, 12, 16, 20]
+const ENFORCEMENT_HOURS = [12, 16, 20, 0]
 
 // Thresholds (days)
 const UNINVOICED_THRESHOLD = 7

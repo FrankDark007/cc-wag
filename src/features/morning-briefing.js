@@ -17,8 +17,8 @@ const GWS_WORK = '/Users/ghost/Projects/cc-wag/scripts/gws-work.sh'
 // Frank's DM chat ID (self-chat)
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 
-// Briefing time: 7:30 AM ET (hour, minute)
-const BRIEFING_HOUR = 7
+// Briefing time: 10:30 AM ET (Frank works late, sleeps ~5am-10/11am)
+const BRIEFING_HOUR = 10
 const BRIEFING_MINUTE = 30
 
 /**
@@ -134,17 +134,14 @@ export function buildBriefing() {
     year: 'numeric'
   })
 
-  const weather = getWeather()
   const calendar = getCalendarAgenda()
   const tasks = getTaskSummary()
   const emails = getUrgentEmails()
 
   const parts = [
-    `Good morning Frank`,
+    `🔱 *Atlas Daily Briefing*`,
     dateStr,
   ]
-
-  if (weather) parts.push(`\nWeather: ${weather}`)
 
   parts.push(
     `\n--- SCHEDULE ---\n${calendar}`,
