@@ -57,8 +57,8 @@ export function classifyMessage(text) {
     return { model: OPUS, reason: 'long' }
   }
 
-  // Everything else → Sonnet (smart default)
-  return { model: SONNET, reason: 'default' }
+  // Everything else → Opus (Frank wants the best)
+  return { model: OPUS, reason: 'default' }
 }
 
 /**
