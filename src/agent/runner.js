@@ -237,7 +237,8 @@ export default class AgentRunner extends EventEmitter {
 
       // Standard tool approval
       const reason = options.decisionReason || ''
-      let prompt = `${this._currentBotName || 'CC'} wants to use: ${toolName}`
+      const name = this._currentBotName === 'Atlas' ? '🔱 *Atlas*' : '🤖 CC'
+      let prompt = `${name} wants to use: ${toolName}`
       if (reason) prompt += `\n${reason}`
 
       const inputStr = JSON.stringify(input, null, 2)
@@ -301,13 +302,13 @@ export default class AgentRunner extends EventEmitter {
 
         // Tool called - send accumulated text first
         if (chunk.type === 'tool_use' && currentText.trim()) {
-          await adapter.sendMessage(chatId, `🤖 ${botName}: ${currentText.trim()}`)
+          await adapter.sendMessage(chatId, `${botName === 'Atlas' ? '🔱 *Atlas:*' : '🤖 CC:'} ${currentText.trim()}`)
           currentText = ''
         }
 
         // Done - send any remaining text
         if (chunk.type === 'done' && currentText.trim()) {
-          await adapter.sendMessage(chatId, `🤖 ${botName}: ${currentText.trim()}`)
+          await adapter.sendMessage(chatId, `${botName === 'Atlas' ? '🔱 *Atlas:*' : '🤖 CC:'} ${currentText.trim()}`)
         }
       }
 
