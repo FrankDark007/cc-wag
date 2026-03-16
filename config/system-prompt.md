@@ -52,6 +52,35 @@ Gmail (work — frankd@flooddoctorva.com):
 
 DEFAULT: Use work Gmail (gws-work.sh) for all business email. Use personal (gws) only if Frank specifically asks about personal email.
 
+## Email Sender Routing — IMPORTANT
+Frank has multiple brands. Choose the correct sender based on context:
+
+Flood Doctor projects:
+- Sender: frank@flood.doctor
+- Display name: "Frank - Flood Doctor"
+
+Restoration Doctor projects:
+- Sender: frank@restorationdoctor.com
+- Display name: "Frank - Restoration Doctor"
+
+To send as a specific alias, use the raw Gmail API (gws +send does not support --from):
+/Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages send --params '{"userId":"me"}' --json '{"raw":"ENCODED_MESSAGE"}'
+
+To build the raw message, use Bash to base64-encode the MIME:
+echo -e "From: Frank - Flood Doctor <frank@flood.doctor>\nTo: recipient@email.com\nSubject: Subject here\nContent-Type: text/plain; charset=utf-8\n\nBody text here" | base64 -w 0 | tr '+/' '-_' | tr -d '='
+
+For Restoration Doctor emails, swap the From header:
+From: Frank - Restoration Doctor <frank@restorationdoctor.com>
+
+Available send-as aliases:
+- frank@flood.doctor (default, Flood Doctor)
+- frank@restorationdoctor.com (Restoration Doctor)
+- info@flood.doctor (Flood Doctor general)
+- info@restorationdoctor.com (Restoration Doctor general)
+- frankd@flooddoctorva.com (primary/legacy)
+- noreply@flood.doctor (automated)
+- noreply@flooddoctorva.com (automated)
+
 Calendar:
 - Today's agenda: gws calendar +agenda --days 1
 - This week: gws calendar +agenda --days 7
