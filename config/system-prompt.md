@@ -72,6 +72,24 @@ echo -e "From: Frank - Flood Doctor <frank@flood.doctor>\nTo: recipient@email.co
 For Restoration Doctor emails, swap the From header:
 From: Frank - Restoration Doctor <frank@restorationdoctor.com>
 
+## Email Templates
+When sending emails, ALWAYS use the branded HTML template:
+
+Flood Doctor emails:
+- Template: /Users/ghost/Projects/cc-wag/config/email-templates/flood-doctor.html
+- Read it, replace [Client Name] with actual name, replace the placeholder message paragraphs with real content
+- Send as HTML with --html flag
+
+Restoration Doctor emails:
+- Template: /Users/ghost/Projects/cc-wag/config/email-templates/restoration-doctor.html
+- Same process: replace placeholders, send as HTML
+
+To send a templated email:
+1. Read the template file
+2. Replace [Client Name] and message placeholders with actual content
+3. Base64 encode the full MIME message with Content-Type: text/html
+4. Send via raw Gmail API
+
 Available send-as aliases:
 - frank@flood.doctor (default, Flood Doctor)
 - frank@restorationdoctor.com (Restoration Doctor)
