@@ -226,23 +226,67 @@ class Gateway {
     process.on('SIGINT', () => this.stop())
     process.on('SIGTERM', () => this.stop())
 
+    // Bad MAC auto-recovery: track repeated errors per contact, auto-delete corrupted session keys
+    this._badMacCounts = new Map() // contactId -> { count, firstSeen }
+    const BAD_MAC_THRESHOLD = 5   // errors before auto-cleanup
+    const BAD_MAC_WINDOW = 60000  // within 1 minute
+
+    const handleBadMac = (err) => {
+      const msg = err?.message || String(err)
+      if (!msg.includes('Bad MAC') && !msg.includes('Bad encrypted message')) return false
+
+      // Extract contact ID from stack trace (the async queue job names contain it)
+      const stack = err?.stack || ''
+      const contactMatch = stack.match(/(\d{10,20})\.\d+/)
+      const contactId = contactMatch ? contactMatch[1] : 'unknown'
+
+      const now = Date.now()
+      const entry = this._badMacCounts.get(contactId) || { count: 0, firstSeen: now }
+
+      // Reset counter if outside window
+      if (now - entry.firstSeen > BAD_MAC_WINDOW) {
+        entry.count = 0
+        entry.firstSeen = now
+      }
+
+      entry.count++
+      this._badMacCounts.set(contactId, entry)
+
+      if (entry.count === 1) {
+        console.error(`[Gateway] Bad MAC for contact ${contactId} (1/${BAD_MAC_THRESHOLD})`)
+      }
+
+      if (entry.count >= BAD_MAC_THRESHOLD) {
+        console.error(`[Gateway] Bad MAC threshold hit for ${contactId} — auto-cleaning session keys`)
+        this._badMacCounts.delete(contactId)
+
+        // Delete corrupted session files for this contact
+        try {
+          const authDir = '/Users/ghost/Projects/cc-wag/auth_whatsapp'
+          const files = fs.readdirSync(authDir).filter(f => f.includes(`session-${contactId}`))
+          for (const file of files) {
+            fs.unlinkSync(path.join(authDir, file))
+            console.log(`[Gateway] Deleted corrupted session: ${file}`)
+          }
+          if (files.length > 0) {
+            console.log(`[Gateway] Cleaned ${files.length} session file(s) for ${contactId} — Baileys will re-negotiate`)
+          }
+        } catch (cleanErr) {
+          console.error(`[Gateway] Failed to clean sessions:`, cleanErr.message)
+        }
+      }
+
+      return true
+    }
+
     // Prevent crashes from unhandled errors (Bad MAC, libsignal, etc.)
     process.on('unhandledRejection', (err) => {
-      const msg = err?.message || String(err)
-      // Bad MAC = WhatsApp session encryption desync — non-fatal, Baileys recovers
-      if (msg.includes('Bad MAC') || msg.includes('Bad encrypted message')) {
-        console.error('[Gateway] WhatsApp decryption error (non-fatal):', msg)
-        return
-      }
-      console.error('[Gateway] Unhandled rejection:', msg)
+      if (handleBadMac(err)) return
+      console.error('[Gateway] Unhandled rejection:', err?.message || String(err))
     })
     process.on('uncaughtException', (err) => {
-      const msg = err?.message || String(err)
-      if (msg.includes('Bad MAC') || msg.includes('Bad encrypted message')) {
-        console.error('[Gateway] WhatsApp decryption error (non-fatal):', msg)
-        return
-      }
-      console.error('[Gateway] Uncaught exception:', msg)
+      if (handleBadMac(err)) return
+      console.error('[Gateway] Uncaught exception:', err?.message || String(err))
       // For truly unexpected errors, exit cleanly so launchd restarts us
       setTimeout(() => process.exit(1), 1000)
     })
