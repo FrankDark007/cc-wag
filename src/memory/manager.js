@@ -8,7 +8,7 @@ const OBSERVATIONS_FILE = path.join(MEMORY_DIR, 'observations.jsonl')
 const CLAUDE_MD_PATH = path.join(os.homedir(), '.claude', 'CLAUDE.md')
 
 /**
- * Memory Manager for CC-WAG
+ * Memory Manager for Atlas
  * Handles daily logs and curated long-term memory
  */
 export default class MemoryManager {

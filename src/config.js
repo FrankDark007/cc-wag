@@ -12,9 +12,9 @@ export default {
     respondToMentionsOnly: true
   },
 
-  // Self-chat mode: messages from Frank's own number starting with "CC," prefix
+  // Self-chat mode: messages from Frank's own number starting with "Atlas," prefix
   selfChat: {
-    prefix: 'CC,',
+    prefix: 'Atlas,',
     frankPhone: process.env.FRANK_PHONE || '+17034981581'
   },
 

@@ -13,7 +13,7 @@ const AUTH_DIR = '/Users/ghost/Projects/cc-wag/auth_whatsapp'
 /**
  * WhatsApp adapter using Baileys
  * Supports text and image messages
- * Self-chat mode: messages from Frank's own number starting with "CC," prefix
+ * Self-chat mode: messages from Frank's own number starting with "Atlas," prefix
  */
 export default class WhatsAppAdapter extends BaseAdapter {
   constructor(config, selfChatConfig = {}) {
@@ -28,9 +28,9 @@ export default class WhatsAppAdapter extends BaseAdapter {
     this.lidToPhone = new Map()
     this.phoneToLid = new Map()
     // Self-chat config (Frank messaging himself)
-    this.selfChatPrefix = (selfChatConfig.prefix || 'CC,').toLowerCase()
+    this.selfChatPrefix = (selfChatConfig.prefix || 'Atlas,').toLowerCase()
     this.frankPhone = selfChatConfig.frankPhone || '+17034981581'
-    // Active self-chat sessions: once "CC," activates a conversation, subsequent messages go through without prefix
+    // Active self-chat sessions: once "Atlas," activates a conversation, subsequent messages go through without prefix
     this.activeSelfChatSessions = new Set()
     this.selfChatTimers = new Map() // jid -> timeout handle
     // Team member "Atlas" trigger prefixes (including standalone "atlas")
@@ -388,7 +388,7 @@ export default class WhatsAppAdapter extends BaseAdapter {
   }
 
   /**
-   * Self-chat prefixes — any of these activate CC mode
+   * Self-chat prefixes — any of these activate Atlas mode
    */
   get selfChatPrefixes() {
     return ['cc,', 'cc ', 'cc.', 'hey cc,', 'hey cc ', 'atlas,', 'atlas ', 'hey atlas,', 'hey atlas ']
@@ -399,7 +399,7 @@ export default class WhatsAppAdapter extends BaseAdapter {
   }
 
   /**
-   * Check if this is a self-chat message (from Frank's own number with CC/Atlas prefix)
+   * Check if this is a self-chat message (from Frank's own number with Atlas prefix)
    */
   _isSelfChat(msg, text) {
     if (!msg.key.fromMe) return false
@@ -446,7 +446,7 @@ export default class WhatsAppAdapter extends BaseAdapter {
       }
 
       if (!isGroup) {
-        // Check if "CC," prefix activates the session
+        // Check if "Atlas," prefix activates the session
         if (this._isSelfChat(msg, text)) {
           text = this._stripSelfChatPrefix(text)
           this._activateSelfChat(jid)

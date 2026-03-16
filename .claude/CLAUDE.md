@@ -1,8 +1,8 @@
-# CC-WAG: Claude Code WhatsApp Gateway
+# Atlas: WhatsApp AI Executive Assistant
 
 ## Architecture
 
-CC-WAG connects WhatsApp to Claude via the Claude Agent SDK. Messages flow:
+Atlas connects WhatsApp to Claude via the Claude Agent SDK. Messages flow:
 WhatsApp (Baileys) -> Gateway -> Agent Runner -> Claude Agent -> Claude SDK -> response -> WhatsApp
 
 ## Directory Structure
@@ -59,7 +59,7 @@ Delete any feature file → Atlas works without it. Zero coupling.
 - Plugin architecture: each feature = 1 isolated file
 - Smart model routing: Haiku for simple, Sonnet default, Opus for analysis
 - Observation memory: JSONL-based, keyword search, auto-injected context
-- Self-chat mode: Frank messages himself with "CC," prefix to trigger the agent
+- Self-chat mode: Frank messages himself with "Atlas," prefix to trigger the agent
 - Google Tasks via `gws` CLI (not Notion, not MCP)
 - Claude provider only (no opencode provider)
 - ESM modules throughout (.js extensions in imports)
@@ -68,9 +68,9 @@ Delete any feature file → Atlas works without it. Zero coupling.
 
 ## Self-Chat Flow
 
-1. Frank sends "CC, what's on my schedule today" to himself on WhatsApp
+1. Frank sends "Atlas, what's on my schedule today" to himself on WhatsApp
 2. Baileys receives fromMe message
-3. WhatsApp adapter checks for "CC," prefix (case-insensitive)
+3. WhatsApp adapter checks for "Atlas," prefix (case-insensitive, "CC," still works as legacy)
 4. Strips prefix, processes "what's on my schedule today"
 5. Without prefix, fromMe messages are ignored (normal WhatsApp usage)
 

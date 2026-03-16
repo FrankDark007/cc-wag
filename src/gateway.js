@@ -13,7 +13,7 @@ import CommandHandler from './commands/handler.js'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 /**
- * CC-WAG: Claude Code WhatsApp Gateway
+ * Atlas: WhatsApp AI Executive Assistant
  * Routes messages between WhatsApp and Claude agent
  */
 class Gateway {
@@ -180,7 +180,7 @@ class Gateway {
 
   async start() {
     console.log('='.repeat(50))
-    console.log('CC-WAG: Claude Code WhatsApp Gateway')
+    console.log('Atlas: WhatsApp AI Executive Assistant')
     console.log('='.repeat(50))
     console.log(`Agent ID: ${config.agentId}`)
     console.log(`Workspace: /Users/ghost/Projects/cc-wag/`)
@@ -367,14 +367,14 @@ class Gateway {
         if (!wa || !wa.latestQr) {
           res.writeHead(200, { 'Content-Type': 'text/html' })
           const status = wa?.myJid ? 'WhatsApp is connected.' : 'No QR code available. Waiting for WhatsApp...'
-          res.end(`<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="refresh" content="5"><title>CC-WAG QR</title><style>body{font-family:system-ui;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#111;color:#fff}</style></head><body><p>${status}</p></body></html>`)
+          res.end(`<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="refresh" content="5"><title>Atlas QR</title><style>body{font-family:system-ui;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#111;color:#fff}</style></head><body><p>${status}</p></body></html>`)
           return
         }
 
         try {
           const qrDataUrl = await QRCode.toDataURL(wa.latestQr, { width: 400, margin: 2 })
           res.writeHead(200, { 'Content-Type': 'text/html' })
-          res.end(`<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="refresh" content="10"><title>CC-WAG QR</title><style>body{font-family:system-ui;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#111;color:#fff}img{border-radius:12px}</style></head><body><h2>Scan with WhatsApp</h2><img src="${qrDataUrl}" alt="QR Code"/><p>Page refreshes automatically.</p></body></html>`)
+          res.end(`<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="refresh" content="10"><title>Atlas QR</title><style>body{font-family:system-ui;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#111;color:#fff}img{border-radius:12px}</style></head><body><h2>Scan with WhatsApp</h2><img src="${qrDataUrl}" alt="QR Code"/><p>Page refreshes automatically.</p></body></html>`)
         } catch (err) {
           res.writeHead(500, { 'Content-Type': 'text/plain' })
           res.end('Failed to generate QR')
@@ -480,7 +480,7 @@ class Gateway {
       res.writeHead(200, { 'Content-Type': 'application/json' })
       const wa = this.adapters.get('whatsapp')
       res.end(JSON.stringify({
-        name: 'CC-WAG',
+        name: 'Atlas',
         status: 'ok',
         whatsapp: { connected: !!wa?.myJid }
       }))

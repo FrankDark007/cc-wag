@@ -2,7 +2,7 @@ import { execSync } from 'child_process'
 import fs from 'fs'
 
 /**
- * Slash command handler for CC-WAG
+ * Slash command handler for Atlas
  * Processes commands like /new, /reset, /status, /memory, /model, /queue, /help, /stop, /todo
  */
 export default class CommandHandler {
@@ -595,7 +595,7 @@ export default class CommandHandler {
 
   handleHelp() {
     const lines = [
-      'CC-WAG Commands',
+      'Atlas Commands',
       '',
       '/new or /reset - Start fresh session',
       '/status - Show session status',

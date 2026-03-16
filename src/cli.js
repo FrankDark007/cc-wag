@@ -19,7 +19,7 @@ function print(msg, color = '') {
 }
 
 async function startGateway() {
-  print('\nStarting CC-WAG Gateway...\n', colors.green)
+  print('\nStarting Atlas Gateway...\n', colors.green)
   await import('./gateway.js')
 }
 
@@ -80,7 +80,7 @@ async function terminalChat() {
               if (isFirstText) {
                 content = content.replace(/^[\s\n\r]+/, '')
                 if (!content) continue
-                process.stdout.write('\n' + colors.cyan + '  CC: ' + colors.reset + content)
+                process.stdout.write('\n' + colors.cyan + '  Atlas: ' + colors.reset + content)
                 isFirstText = false
               } else {
                 process.stdout.write(content)
@@ -108,11 +108,11 @@ async function terminalChat() {
 }
 
 function showHelp() {
-  print('\nCC-WAG: Claude Code WhatsApp Gateway\n', colors.cyan + colors.bold)
+  print('\nAtlas: WhatsApp AI Executive Assistant\n', colors.cyan + colors.bold)
   print('Usage: node src/cli.js [command]\n', colors.bold)
   print('Commands:')
   print('  start    Start the WhatsApp gateway', colors.green)
-  print('  chat     Terminal chat with CC', colors.cyan)
+  print('  chat     Terminal chat with Atlas', colors.cyan)
   print('  help     Show this help message', colors.dim)
   print('')
   print('Run without arguments for help.')

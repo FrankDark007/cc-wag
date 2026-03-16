@@ -93,7 +93,7 @@ export default class AgentRunner extends EventEmitter {
         chatId,
         image,
         mcpServers: this.mcpServers || {},
-        botName: meta.isAtlas ? 'Atlas' : 'CC',
+        botName: 'Atlas',
         resolve,
         reject,
         queuedAt: Date.now()
@@ -237,7 +237,7 @@ export default class AgentRunner extends EventEmitter {
 
       // Standard tool approval
       const reason = options.decisionReason || ''
-      const name = this._currentBotName === 'Atlas' ? '🔱 *Atlas*' : '🤖 CC'
+      const name = '🔱 *Atlas*'
       let prompt = `${name} wants to use: ${toolName}`
       if (reason) prompt += `\n${reason}`
 
@@ -276,7 +276,7 @@ export default class AgentRunner extends EventEmitter {
     })
 
     // Set current bot name for tool approval prompts
-    this._currentBotName = botName || 'CC'
+    this._currentBotName = botName || 'Atlas'
 
     // Create canUseTool callback for messaging platforms
     const canUseTool = this.createMessagingCanUseTool(adapter, chatId)
@@ -302,13 +302,13 @@ export default class AgentRunner extends EventEmitter {
 
         // Tool called - send accumulated text first
         if (chunk.type === 'tool_use' && currentText.trim()) {
-          await adapter.sendMessage(chatId, `${botName === 'Atlas' ? '🔱 *Atlas:*' : '🤖 CC:'} ${currentText.trim()}`)
+          await adapter.sendMessage(chatId, `🔱 *Atlas:* ${currentText.trim()}`)
           currentText = ''
         }
 
         // Done - send any remaining text
         if (chunk.type === 'done' && currentText.trim()) {
-          await adapter.sendMessage(chatId, `${botName === 'Atlas' ? '🔱 *Atlas:*' : '🤖 CC:'} ${currentText.trim()}`)
+          await adapter.sendMessage(chatId, `🔱 *Atlas:* ${currentText.trim()}`)
         }
       }
 
