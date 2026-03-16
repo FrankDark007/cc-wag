@@ -9,14 +9,14 @@ WhatsApp (Baileys) -> Gateway -> Agent Runner -> Claude Agent -> Claude SDK -> r
 
 ```
 src/
-  gateway.js          - Main entry point, HTTP server, adapter orchestration
+  gateway.js          - Main entry, HTTP server, plugin loader
   cli.js              - CLI for start/chat commands
   config.js           - Environment config, allowlists, agent settings
   adapters/
     base.js           - Base adapter interface
     whatsapp.js       - Baileys WhatsApp adapter with self-chat detection
   agent/
-    claude-agent.js   - Claude agent with system prompt, memory, MCP tools
+    claude-agent.js   - Claude agent with system prompt, memory, observation context
     runner.js         - Queue-based agent run coordinator
   providers/
     base-provider.js  - Provider interface
@@ -24,25 +24,41 @@ src/
   sessions/
     manager.js        - Session + JSONL transcript manager
   memory/
-    manager.js        - Memory system (MEMORY.md + daily logs)
+    manager.js        - Memory (MEMORY.md + daily logs + observations JSONL)
   tools/
     cron.js           - Cron/reminder scheduling MCP server
     gateway-mcp.js    - Gateway messaging MCP tools
   commands/
-    handler.js        - Slash command handler (/new, /model, /todo, etc)
+    handler.js        - /new /model /todo /todos /inbox /briefing /summary /eod
+  features/           - Plugin directory (auto-loaded at startup)
+    model-router.js   - Smart Haiku/Sonnet/Opus routing by complexity
+    morning-briefing.js - 7:30 AM briefing + /briefing command
+    calendar-alerts.js  - 30-min pre-event WhatsApp alerts
+    email-watcher.js    - VIP email triage alerts every 15 min
+    daily-summary.js    - 6 PM end-of-day recap + /summary command
 config/
-  system-prompt.md    - System prompt template
+  system-prompt.md    - Atlas personality, commitment detection, team inbox
   launchd/            - macOS launchd plist for daemon mode
 workspace/            - Agent workspace (memory, cron jobs)
+  memory/
+    observations.jsonl  - Structured observation memory (JSONL)
+    team-inbox.jsonl    - Team message log
 auth_whatsapp/        - Baileys auth state (gitignored)
 transcripts/          - JSONL conversation transcripts (gitignored)
 logs/                 - Log files (gitignored)
 ```
 
+## Plugin Architecture
+
+Features auto-load from `src/features/*.js` at startup. Each exports `register(gateway)`.
+Delete any feature file → Atlas works without it. Zero coupling.
+
 ## Key Design Decisions
 
 - WhatsApp only (no telegram/signal/imessage adapters)
-- No Composio - stripped entirely
+- Plugin architecture: each feature = 1 isolated file
+- Smart model routing: Haiku for simple, Sonnet default, Opus for analysis
+- Observation memory: JSONL-based, keyword search, auto-injected context
 - Self-chat mode: Frank messages himself with "CC," prefix to trigger the agent
 - Google Tasks via `gws` CLI (not Notion, not MCP)
 - Claude provider only (no opencode provider)

@@ -34,21 +34,21 @@ Gateway.js auto-loads all features at startup.
 
 | Session | Feature | File | Status |
 |---------|---------|------|--------|
-| 1 | Smart Model Routing | src/features/model-router.js | |
-| 2 | Enhanced Task Capture | src/commands/handler.js | |
-| 3 | Morning Briefing | src/features/morning-briefing.js | |
-| 4 | Commitment Tracking | config/system-prompt.md | |
-| 5 | Team Message Organizer | config/system-prompt.md | |
+| 1 | Smart Model Routing | src/features/model-router.js | ✅ |
+| 2 | Enhanced Task Capture | src/commands/handler.js | ✅ |
+| 3 | Morning Briefing | src/features/morning-briefing.js | ✅ |
+| 4 | Commitment Tracking | config/system-prompt.md | ✅ |
+| 5 | Team Message Organizer | config/system-prompt.md + handler.js | ✅ |
 
 ## Week 2: Atlas Gets Proactive
 
 | Session | Feature | File | Status |
 |---------|---------|------|--------|
-| 6 | Calendar Alerts | src/features/calendar-alerts.js | |
-| 7 | Email Triage Alerts | src/features/email-watcher.js | |
-| 8 | Observation Memory Writer | src/memory/manager.js | |
-| 9 | Observation Memory Reader | src/memory/manager.js | |
-| 10 | End-of-Day Summary | src/features/daily-summary.js | |
+| 6 | Calendar Alerts | src/features/calendar-alerts.js | ✅ |
+| 7 | Email Triage Alerts | src/features/email-watcher.js | ✅ |
+| 8 | Observation Memory Writer | src/memory/manager.js | ✅ |
+| 9 | Observation Memory Reader | src/memory/manager.js + claude-agent.js | ✅ |
+| 10 | End-of-Day Summary | src/features/daily-summary.js | ✅ |
 
 ## Week 3+: Specialists & Domain Knowledge
 
