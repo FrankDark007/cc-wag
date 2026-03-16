@@ -510,7 +510,8 @@ class Gateway {
 
             // Authenticate with location secret
             const expectedSecret = config.location.secret
-            if (expectedSecret && secret !== expectedSecret) {
+            if (!expectedSecret || secret !== expectedSecret) {
+              if (!expectedSecret) console.error('[Location] LOCATION_SECRET not configured — rejecting request')
               res.writeHead(401, { 'Content-Type': 'application/json' })
               res.end(JSON.stringify({ error: 'Invalid secret' }))
               return
