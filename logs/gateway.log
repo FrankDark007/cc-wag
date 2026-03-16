@@ -1,0 +1,1260 @@
+==================================================
+CC-WAG: Claude Code WhatsApp Gateway
+==================================================
+Agent ID: cc-wag
+Workspace: /Users/ghost/Projects/cc-wag/
+Model: claude-sonnet-4-5-20250929
+
+[Security] WhatsApp: DMs=+17034981581, +12024598844 | Groups=NONE (all blocked)
+[Provider] Claude ready
+[Gateway] Initializing WhatsApp adapter...
+[WhatsApp] Adapter starting...
+
+[Gateway] Ready and listening for messages
+[Gateway] Using Claude Agent SDK with memory + cron
+[Gateway] Commands: /help, /new, /status, /memory, /stop, /todo
+[HTTP] Listening on port 4096 (QR at /qr, health at /health, send at POST /api/send)
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Auto-allowed self-DM (phone): 17034981581@s.whatsapp.net
+[WhatsApp] Auto-allowed self-DM (LID): 174796696477830@lid
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Resolved +17034981581 -> LID 174796696477830@lid
+[WhatsApp] Resolved +12024598844 -> LID 49886229692465@lid
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+
+[Gateway] Shutting down...
+[WhatsApp] Connection closed. Status: undefined
+[WhatsApp] Reconnecting in 2s...
+[WhatsApp] Adapter stopped
+[Gateway] Goodbye!
+==================================================
+CC-WAG: Claude Code WhatsApp Gateway
+==================================================
+Agent ID: cc-wag
+Workspace: /Users/ghost/Projects/cc-wag/
+Model: claude-sonnet-4-5-20250929
+
+[Security] WhatsApp: DMs=+17034981581, +12024598844 | Groups=NONE (all blocked)
+[Provider] Claude ready
+[Gateway] Initializing WhatsApp adapter...
+[WhatsApp] Adapter starting...
+
+[Gateway] Ready and listening for messages
+[Gateway] Using Claude Agent SDK with memory + cron
+[Gateway] Commands: /help, /new, /status, /memory, /stop, /todo
+[HTTP] Listening on port 4096 (QR at /qr, health at /health, send at POST /api/send)
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Auto-allowed self-DM (phone): 17034981581@s.whatsapp.net
+[WhatsApp] Auto-allowed self-DM (LID): 174796696477830@lid
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Resolved +17034981581 -> LID 174796696477830@lid
+[WhatsApp] Resolved +12024598844 -> LID 49886229692465@lid
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+
+[Gateway] Shutting down...
+[WhatsApp] Connection closed. Status: undefined
+[WhatsApp] Reconnecting in 2s...
+[WhatsApp] Adapter stopped
+[Gateway] Goodbye!
+==================================================
+Atlas: WhatsApp AI Executive Assistant
+==================================================
+Agent ID: cc-wag
+Workspace: /Users/ghost/Projects/cc-wag/
+Model: claude-sonnet-4-5-20250929
+
+[Security] WhatsApp: DMs=+17034981581, +12024598844 | Groups=NONE (all blocked)
+[Provider] Claude ready
+[Gateway] Initializing WhatsApp adapter...
+[WhatsApp] Adapter starting...
+[CalendarAlerts] 30-min pre-event alerts enabled (checking every 5 min)
+[Features] Loaded: calendar-alerts.js
+[DailySummary] Scheduled at 18:00 PM Mon-Sat, /summary and /eod commands enabled
+[Features] Loaded: daily-summary.js
+[DeadlineEnforcer] Active — checks at 7:35am + every 4h (8/12/4/8), Mon-Sat
+[Features] Loaded: deadline-enforcer.js
+[EmailWatcher] VIP email alerts enabled (checking every 15 min)
+[Features] Loaded: email-watcher.js
+[JobTracker] Loaded — /job, /jobs commands enabled
+[Features] Loaded: job-tracker.js
+[ModelRouter] Smart model routing enabled (Haiku/Sonnet/Opus)
+[Features] Loaded: model-router.js
+[MorningBriefing] Scheduled at 7:30 AM Mon-Sat, /briefing command enabled
+[Features] Loaded: morning-briefing.js
+
+[Gateway] Ready and listening for messages
+[Gateway] Using Claude Agent SDK with memory + cron
+[Gateway] Commands: /help, /new, /status, /memory, /stop, /todo
+[HTTP] Listening on port 4096 (QR at /qr, health at /health, send at POST /api/send)
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Auto-allowed self-DM (phone): 17034981581@s.whatsapp.net
+[WhatsApp] Auto-allowed self-DM (LID): 174796696477830@lid
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Resolved +17034981581 -> LID 174796696477830@lid
+[WhatsApp] Resolved +12024598844 -> LID 49886229692465@lid
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text=""
+Closing session: [session keys redacted]
+}
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="Atlas is now tied into my xactimate and project pr"
+[WhatsApp] Self-chat activated, stripped prefix: "is now tied into my xactimate and project progress"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:17033405356@s.whatsapp.net
+  From: 17033405356@s.whatsapp.net
+  Group: false
+  Text: is now tied into my xactimate and project progress. you can just say Atlas /scope Wigenton and it wi...
+[WHATSAPP] Processing...
+[ModelRouter] complex → opus-4
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="Atlas is now tied into my xactimate and project pr"
+[WhatsApp] Self-chat activated, stripped prefix: "is now tied into my xactimate and project progress"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:17033405356@s.whatsapp.net
+  From: 17033405356@s.whatsapp.net
+  Group: false
+  Text: is now tied into my xactimate and project progress. you can just say Atlas /scope Wigenton and it wi...
+[WHATSAPP] Processing...
+[Queue] Queued: position 2, 1 pending
+[Queue] Message queued at position 1 for agent:cc-wag:whatsapp:dm:17033405356@s.whatsapp.net
+[Queue] Completed in 7362ms
+[Queue] Processing (waited 5352ms, 0 remaining)
+[Queue] Processing after 5s wait
+[ModelRouter] complex → opus-4
+[WHATSAPP] Done
+[WhatsApp] messages.upsert: type=append, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="🔱 *Atlas:* That's awesome Frank. So you've got Xa"
+
+[Gateway] Shutting down...
+[WhatsApp] Connection closed. Status: undefined
+[WhatsApp] Reconnecting in 2s...
+[WhatsApp] Adapter stopped
+[Gateway] Goodbye!
+==================================================
+Atlas: WhatsApp AI Executive Assistant
+==================================================
+Agent ID: cc-wag
+Workspace: /Users/ghost/Projects/cc-wag/
+Model: claude-sonnet-4-5-20250929
+
+[Security] WhatsApp: DMs=+17034981581, +12024598844 | Groups=NONE (all blocked)
+[Provider] Claude ready
+[Gateway] Initializing WhatsApp adapter...
+[WhatsApp] Adapter starting...
+[CalendarAlerts] 30-min pre-event alerts enabled (checking every 5 min)
+[Features] Loaded: calendar-alerts.js
+[DailySummary] Scheduled at 18:00 PM Mon-Sat, /summary and /eod commands enabled
+[Features] Loaded: daily-summary.js
+[DeadlineEnforcer] Active — checks at 7:35am + every 4h (8/12/4/8), Mon-Sat
+[Features] Loaded: deadline-enforcer.js
+[EmailWatcher] VIP email alerts enabled (checking every 15 min)
+[Features] Loaded: email-watcher.js
+[JobTracker] Loaded — /job, /jobs commands enabled
+[Features] Loaded: job-tracker.js
+[ModelRouter] Smart model routing enabled (Haiku/Sonnet/Opus)
+[Features] Loaded: model-router.js
+[MorningBriefing] Scheduled at 7:30 AM Mon-Sat, /briefing command enabled
+[Features] Loaded: morning-briefing.js
+[ScopeAssistant] Loaded — /scope command enabled
+[Features] Loaded: scope-assistant.js
+
+[Gateway] Ready and listening for messages
+[Gateway] Using Claude Agent SDK with memory + cron
+[Gateway] Commands: /help, /new, /status, /memory, /stop, /todo
+[HTTP] Listening on port 4096 (QR at /qr, health at /health, send at POST /api/send)
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Auto-allowed self-DM (phone): 17034981581@s.whatsapp.net
+[WhatsApp] Auto-allowed self-DM (LID): 174796696477830@lid
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Resolved +17034981581 -> LID 174796696477830@lid
+[WhatsApp] Resolved +12024598844 -> LID 49886229692465@lid
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="any of those 59 folders in the google drive folder"
+
+[Gateway] Shutting down...
+[WhatsApp] Connection closed. Status: undefined
+[WhatsApp] Reconnecting in 2s...
+[WhatsApp] Adapter stopped
+[Gateway] Goodbye!
+==================================================
+Atlas: WhatsApp AI Executive Assistant
+==================================================
+Agent ID: cc-wag
+Workspace: /Users/ghost/Projects/cc-wag/
+Model: claude-sonnet-4-5-20250929
+
+[Security] WhatsApp: DMs=+17034981581, +12024598844 | Groups=NONE (all blocked)
+[Provider] Claude ready
+[Gateway] Initializing WhatsApp adapter...
+[WhatsApp] Adapter starting...
+[CalendarAlerts] 30-min pre-event alerts enabled (checking every 5 min)
+[Features] Loaded: calendar-alerts.js
+[DailySummary] Scheduled at 18:00 PM Mon-Sat, /summary and /eod commands enabled
+[Features] Loaded: daily-summary.js
+[DeadlineEnforcer] Active — checks at 7:35am + every 4h (8/12/4/8), Mon-Sat
+[Features] Loaded: deadline-enforcer.js
+[EmailWatcher] VIP email alerts enabled (checking every 15 min)
+[Features] Loaded: email-watcher.js
+[JobTracker] Loaded — /job, /jobs commands enabled
+[Features] Loaded: job-tracker.js
+[ModelRouter] Smart model routing enabled (Haiku/Sonnet/Opus)
+[Features] Loaded: model-router.js
+[MorningBriefing] Scheduled at 10:30 AM Mon-Sat, /briefing command enabled
+[Features] Loaded: morning-briefing.js
+[ScopeAssistant] Loaded — /scope command enabled
+[Features] Loaded: scope-assistant.js
+
+[Gateway] Ready and listening for messages
+[Gateway] Using Claude Agent SDK with memory + cron
+[Gateway] Commands: /help, /new, /status, /memory, /stop, /todo
+[HTTP] Listening on port 4096 (QR at /qr, health at /health, send at POST /api/send)
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Auto-allowed self-DM (phone): 17034981581@s.whatsapp.net
+[WhatsApp] Auto-allowed self-DM (LID): 174796696477830@lid
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Resolved +17034981581 -> LID 174796696477830@lid
+[WhatsApp] Resolved +12024598844 -> LID 49886229692465@lid
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+
+[Gateway] Shutting down...
+[WhatsApp] Connection closed. Status: undefined
+[WhatsApp] Reconnecting in 2s...
+[WhatsApp] Adapter stopped
+[Gateway] Goodbye!
+==================================================
+Atlas: WhatsApp AI Executive Assistant
+==================================================
+Agent ID: cc-wag
+Workspace: /Users/ghost/Projects/cc-wag/
+Model: claude-sonnet-4-5-20250929
+
+[Security] WhatsApp: DMs=+17034981581, +12024598844 | Groups=NONE (all blocked)
+[Provider] Claude ready
+[Gateway] Initializing WhatsApp adapter...
+[WhatsApp] Adapter starting...
+[AdjusterFollowup] Loaded — /followup command, cron at 12pm/4pm/8pm/midnight (no alerts before 10am)
+[Features] Loaded: adjuster-followup.js
+[AdjusterTracker] Loaded — /dispute, /disputes commands enabled
+[Features] Loaded: adjuster-tracker.js
+[CalendarAlerts] 30-min pre-event alerts enabled (checking every 5 min)
+[Features] Loaded: calendar-alerts.js
+[CC-Webhook] Loaded — POST /webhook/companycam (NO WEBHOOK SECRET - signature validation disabled)
+[Features] Loaded: companycam-webhook.js
+[CompanyCam] Loaded — /timeline command enabled
+[Features] Loaded: companycam.js
+[DailySummary] Scheduled at 18:00 PM Mon-Sat, /summary and /eod commands enabled
+[Features] Loaded: daily-summary.js
+[DeadlineEnforcer] Active — checks at 7:35am + every 4h (8/12/4/8), Mon-Sat
+[Features] Loaded: deadline-enforcer.js
+[EmailFiler] Loaded — auto-filing attachments every 15 min
+[Features] Loaded: email-filer.js
+[EmailWatcher] VIP email alerts enabled (checking every 15 min)
+[Features] Loaded: email-watcher.js
+[JobTracker] Loaded — /job, /jobs commands enabled
+[Features] Loaded: job-tracker.js
+[LicenseMonitor] Loaded — /license, /licenses commands + weekly Monday 10:30 AM check
+[Features] Loaded: license-monitor.js
+[LienTracker] Loaded — /lien, /liens commands + daily 10:35 AM check
+[Features] Loaded: lien-tracker.js
+[ModelRouter] Smart model routing enabled (Haiku/Sonnet/Opus)
+[Features] Loaded: model-router.js
+[MorningBriefing] Scheduled at 10:30 AM Mon-Sat, /briefing command enabled
+[Features] Loaded: morning-briefing.js
+[PaymentNudge] Loaded — /nudge command enabled
+[Features] Loaded: payment-nudge.js
+[PaymentReceipt] Loaded — /receipt command enabled
+[Features] Loaded: payment-receipt.js
+[RevenueDashboard] Loaded — /revenue commands enabled
+[Features] Loaded: revenue-dashboard.js
+[ScopeAssistant] Loaded — /scope command enabled
+[Features] Loaded: scope-assistant.js
+
+[Gateway] Ready and listening for messages
+[Gateway] Using Claude Agent SDK with memory + cron
+[Gateway] Commands: /help, /new, /status, /memory, /stop, /todo
+[HTTP] Listening on port 4096 (QR at /qr, health at /health, send at POST /api/send)
+[CC-Webhook] Route registered: POST /webhook/companycam
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Auto-allowed self-DM (phone): 17034981581@s.whatsapp.net
+[WhatsApp] Auto-allowed self-DM (LID): 174796696477830@lid
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Resolved +17034981581 -> LID 174796696477830@lid
+[WhatsApp] Resolved +12024598844 -> LID 49886229692465@lid
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+
+[Gateway] Shutting down...
+[WhatsApp] Connection closed. Status: undefined
+[WhatsApp] Reconnecting in 2s...
+[WhatsApp] Adapter stopped
+[Gateway] Goodbye!
+==================================================
+Atlas: WhatsApp AI Executive Assistant
+==================================================
+Agent ID: cc-wag
+Workspace: /Users/ghost/Projects/cc-wag/
+Model: claude-sonnet-4-5-20250929
+
+[Security] WhatsApp: DMs=+17034981581, +12024598844 | Groups=NONE (all blocked)
+[Provider] Claude ready
+[Gateway] Initializing WhatsApp adapter...
+[WhatsApp] Adapter starting...
+[AdjusterFollowup] Loaded — /followup command, cron at 12pm/4pm/8pm/midnight (no alerts before 10am)
+[Features] Loaded: adjuster-followup.js
+[AdjusterTracker] Loaded — /dispute, /disputes commands enabled
+[Features] Loaded: adjuster-tracker.js
+[CalendarAlerts] 30-min pre-event alerts enabled (checking every 5 min)
+[Features] Loaded: calendar-alerts.js
+[CC-Webhook] Loaded — POST /webhook/companycam (NO WEBHOOK SECRET - signature validation disabled)
+[Features] Loaded: companycam-webhook.js
+[CompanyCam] Loaded — /timeline command enabled
+[Features] Loaded: companycam.js
+[DailySummary] Scheduled at 18:00 PM Mon-Sat, /summary and /eod commands enabled
+[Features] Loaded: daily-summary.js
+[DeadlineEnforcer] Active — checks at 7:35am + every 4h (8/12/4/8), Mon-Sat
+[Features] Loaded: deadline-enforcer.js
+[DocPackager] Loaded — /package command enabled
+[Features] Loaded: doc-packager.js
+[EmailActions] Loaded — scanning emails every 30 min, /actions command enabled
+[Features] Loaded: email-actions.js
+[EmailFiler] Loaded — auto-filing attachments every 15 min
+[Features] Loaded: email-filer.js
+[EmailWatcher] VIP email alerts enabled (checking every 15 min)
+[Features] Loaded: email-watcher.js
+[JobTracker] Loaded — /job, /jobs commands enabled
+[Features] Loaded: job-tracker.js
+[LicenseMonitor] Loaded — /license, /licenses commands + weekly Monday 10:30 AM check
+[Features] Loaded: license-monitor.js
+[LienTracker] Loaded — /lien, /liens commands + daily 10:35 AM check
+[Features] Loaded: lien-tracker.js
+[ModelRouter] Smart model routing enabled (Haiku/Sonnet/Opus)
+[Features] Loaded: model-router.js
+[MorningBriefing] Scheduled at 10:30 AM Mon-Sat, /briefing command enabled
+[Features] Loaded: morning-briefing.js
+[PaymentNudge] Loaded — /nudge command enabled
+[Features] Loaded: payment-nudge.js
+[PaymentReceipt] Loaded — /receipt command enabled
+[Features] Loaded: payment-receipt.js
+[RevenueDashboard] Loaded — /revenue commands enabled
+[Features] Loaded: revenue-dashboard.js
+[ScopeAssistant] Loaded — /scope command enabled
+[Features] Loaded: scope-assistant.js
+
+[Gateway] Ready and listening for messages
+[Gateway] Using Claude Agent SDK with memory + cron
+[Gateway] Commands: /help, /new, /status, /memory, /stop, /todo
+[HTTP] Listening on port 4096 (QR at /qr, health at /health, send at POST /api/send)
+[CC-Webhook] Route registered: POST /webhook/companycam
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Auto-allowed self-DM (phone): 17034981581@s.whatsapp.net
+[WhatsApp] Auto-allowed self-DM (LID): 174796696477830@lid
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Resolved +17034981581 -> LID 174796696477830@lid
+[WhatsApp] Resolved +12024598844 -> LID 49886229692465@lid
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+
+[Gateway] Shutting down...
+[WhatsApp] Connection closed. Status: undefined
+[WhatsApp] Reconnecting in 2s...
+[WhatsApp] Adapter stopped
+[Gateway] Goodbye!
+==================================================
+Atlas: WhatsApp AI Executive Assistant
+==================================================
+Agent ID: cc-wag
+Workspace: /Users/ghost/Projects/cc-wag/
+Model: claude-sonnet-4-5-20250929
+
+[Security] WhatsApp: DMs=+17034981581, +12024598844 | Groups=NONE (all blocked)
+[Provider] Claude ready
+[Gateway] Initializing WhatsApp adapter...
+[WhatsApp] Adapter starting...
+[AdjusterFollowup] Loaded — /followup command, cron at 12pm/4pm/8pm/midnight (no alerts before 10am)
+[Features] Loaded: adjuster-followup.js
+[AdjusterTracker] Loaded — /dispute, /disputes commands enabled
+[Features] Loaded: adjuster-tracker.js
+[CalendarAlerts] 30-min pre-event alerts enabled (checking every 5 min)
+[Features] Loaded: calendar-alerts.js
+[CC-Webhook] Loaded — POST /webhook/companycam (NO WEBHOOK SECRET - signature validation disabled)
+[Features] Loaded: companycam-webhook.js
+[CompanyCam] Loaded — /timeline command enabled
+[Features] Loaded: companycam.js
+[DailySummary] Scheduled at 18:00 PM Mon-Sat, /summary and /eod commands enabled
+[Features] Loaded: daily-summary.js
+[DeadlineEnforcer] Active — checks at 7:35am + every 4h (8/12/4/8), Mon-Sat
+[Features] Loaded: deadline-enforcer.js
+[DocPackager] Loaded — /package command enabled
+[Features] Loaded: doc-packager.js
+[EmailActions] Loaded — scanning emails every 30 min, /actions command enabled
+[Features] Loaded: email-actions.js
+[EmailFiler] Loaded — auto-filing attachments every 15 min
+[Features] Loaded: email-filer.js
+[EmailWatcher] VIP email alerts enabled (checking every 15 min)
+[Features] Loaded: email-watcher.js
+[IntakeBot] Loaded — intake flow for unknown contacts + /intakes command
+[Features] Loaded: intake-bot.js
+[JobTracker] Loaded — /job, /jobs commands enabled
+[Features] Loaded: job-tracker.js
+[LicenseMonitor] Loaded — /license, /licenses commands + weekly Monday 10:30 AM check
+[Features] Loaded: license-monitor.js
+[LienTracker] Loaded — /lien, /liens commands + daily 10:35 AM check
+[Features] Loaded: lien-tracker.js
+[ModelRouter] Smart model routing enabled (Haiku/Sonnet/Opus)
+[Features] Loaded: model-router.js
+[MorningBriefing] Scheduled at 10:30 AM Mon-Sat, /briefing command enabled
+[Features] Loaded: morning-briefing.js
+[PaymentNudge] Loaded — /nudge command enabled
+[Features] Loaded: payment-nudge.js
+[PaymentReceipt] Loaded — /receipt command enabled
+[Features] Loaded: payment-receipt.js
+[RevenueDashboard] Loaded — /revenue commands enabled
+[Features] Loaded: revenue-dashboard.js
+[ScopeAssistant] Loaded — /scope command enabled
+[Features] Loaded: scope-assistant.js
+
+[Gateway] Ready and listening for messages
+[Gateway] Using Claude Agent SDK with memory + cron
+[Gateway] Commands: /help, /new, /status, /memory, /stop, /todo
+[HTTP] Listening on port 4096 (QR at /qr, health at /health, send at POST /api/send)
+[CC-Webhook] Route registered: POST /webhook/companycam
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Auto-allowed self-DM (phone): 17034981581@s.whatsapp.net
+[WhatsApp] Auto-allowed self-DM (LID): 174796696477830@lid
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Resolved +17034981581 -> LID 174796696477830@lid
+[WhatsApp] Resolved +12024598844 -> LID 49886229692465@lid
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="Do NOT fuck with it. you have admin access. if you"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text="Atlas"
+[WhatsApp] Self-chat activated, stripped prefix: ""
+Closing session: [session keys redacted]
+}
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="Atlas"
+[WhatsApp] Self-chat activated, stripped prefix: ""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="Hey, Atlas are you up and running ?"
+[WhatsApp] Self-chat (active session): "Hey, Atlas are you up and running ?"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: Hey, Atlas are you up and running ?
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Self-chat session expired (30min inactivity)
+[WhatsApp] Self-chat session expired (30min inactivity)
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="Atlas are you running?"
+[WhatsApp] Self-chat activated, stripped prefix: "are you running?"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: are you running?
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="CC, Hello"
+[WhatsApp] Self-chat activated, stripped prefix: "Hello"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: Hello
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="https://youtu.be/2kbINqpluM0?si=JcjUmd4-BLASIcgO"
+[WhatsApp] Self-chat (active session): "https://youtu.be/2kbINqpluM0?si=JcjUmd4-BLASIcgO"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: https://youtu.be/2kbINqpluM0?si=JcjUmd4-BLASIcgO
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="Look into setting up Obsidian to use with CC and A"
+[WhatsApp] Self-chat (active session): "Look into setting up Obsidian to use with CC and A"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: Look into setting up Obsidian to use with CC and Atlas
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="https://youtu.be/jlj9GFjRIcI?si=91FY9SopA7358y0U"
+[WhatsApp] Self-chat (active session): "https://youtu.be/jlj9GFjRIcI?si=91FY9SopA7358y0U"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: https://youtu.be/jlj9GFjRIcI?si=91FY9SopA7358y0U
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Self-chat session expired (30min inactivity)
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=12024598844@s.whatsapp.net, text="https://www.instagram.com/reel/DV7L2TqkZhC/?igsh=a"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=12024598844@s.whatsapp.net, text="That was yesterday at Katie’s cars and coffee"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=17036287600@s.whatsapp.net, text=""
+[LicenseMonitor] Weekly check — no licenses tracked
+[MorningBriefing] Sent daily briefing
+[WhatsApp] messages.upsert: type=append, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text="🔱 *Atlas Morning Briefing*
+
+🔱 *Atlas Daily Brief"
+[LienTracker] Daily check — no critical deadlines
+[WhatsApp] messages.upsert: type=append, count=1
+[WhatsApp] Message: fromMe=false, jid=120363409324479005@g.us, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=120363409324479005@g.us, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=120363409324479005@g.us, text="Updated for 1 month wages, corrected withheld tota"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=status@broadcast, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=status@broadcast, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=15713429805@s.whatsapp.net, text="I'll let you know one of these days, otherwise I'l"
+[AdjusterFollowup] 12:00 check — no overdue disputes
+[WhatsApp] Connection closed. Status: 428
+[WhatsApp] Reconnecting in 2s...
+[WhatsApp] Adapter starting...
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=51539624366203@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=51539624366203@lid, text=""
+Closing session: [session keys redacted]
+}
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=51539624366203@lid, text="https://drive.google.com/drive/folders/1K36eMUZ-Ss"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="https://drive.google.com/drive/folders/1K36eMUZ-Ss"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=51539624366203@lid, text="Is this different than the list I have?"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+Closing session: [session keys redacted]
+}
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="No, this is the same as the list you have I organi"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=17033405356@s.whatsapp.net, text="No, this is the same as the list you have I organi"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="I’m about to just send them one drive link and ask"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="I’m going to call them because I know I haven’t re"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=51539624366203@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="I CCed you in the email"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=51539624366203@lid, text=""
+Closing session: [session keys redacted]
+}
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=51539624366203@lid, text="Okay, thanks"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="Okay, thanks"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="I need wigenton today"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=51539624366203@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=120363409324479005@g.us, text="Thank you!"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=51539624366203@lid, text="I hope your generator is full of fuel"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=false, jid=status@broadcast, text=""
+[WhatsApp] Connection closed. Status: 500
+[WhatsApp] Reconnecting in 2s...
+[WhatsApp] Adapter starting...
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="my power already went out"
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17033405356@s.whatsapp.net, text="been on the generator since 9am"
+
+[Gateway] Shutting down...
+[WhatsApp] Connection closed. Status: undefined
+[WhatsApp] Reconnecting in 2s...
+[WhatsApp] Adapter stopped
+[Gateway] Goodbye!
+==================================================
+Atlas: WhatsApp AI Executive Assistant
+==================================================
+Agent ID: cc-wag
+Workspace: /Users/ghost/Projects/cc-wag/
+Model: claude-sonnet-4-5-20250929
+
+[Security] WhatsApp: DMs=+17034981581, +12024598844 | Groups=NONE (all blocked)
+[Provider] Claude ready
+[Gateway] Initializing WhatsApp adapter...
+[WhatsApp] Adapter starting...
+[AdjusterFollowup] Loaded — /followup command, cron at 12pm/4pm/8pm/midnight (no alerts before 10am)
+[Features] Loaded: adjuster-followup.js
+[AdjusterTracker] Loaded — /dispute, /disputes commands enabled
+[Features] Loaded: adjuster-tracker.js
+[CalendarAlerts] 30-min pre-event alerts enabled (checking every 5 min)
+[Features] Loaded: calendar-alerts.js
+[CCSpawner] Feature loaded -- /cc commands enabled
+[Features] Loaded: cc-spawner.js
+[CC-Webhook] Loaded — POST /webhook/companycam (NO WEBHOOK SECRET - signature validation disabled)
+[Features] Loaded: companycam-webhook.js
+[CompanyCam] Loaded — /timeline command enabled
+[Features] Loaded: companycam.js
+[DailySummary] Scheduled at 18:00 PM Mon-Sat, /summary and /eod commands enabled
+[Features] Loaded: daily-summary.js
+[DataIntegrator] Created empty disputes.json
+[DataIntegrator] Feature loaded — gateway.dataIntegrator available, /dashboard enabled
+[Features] Loaded: data-integrator.js
+[DeadlineEnforcer] Active — checks at 7:35am + every 4h (8/12/4/8), Mon-Sat
+[Features] Loaded: deadline-enforcer.js
+[DocPackager] Loaded — /package command enabled
+[Features] Loaded: doc-packager.js
+[EmailActions] Loaded — scanning emails every 30 min, /actions command enabled
+[Features] Loaded: email-actions.js
+[EmailFiler] Loaded — auto-filing attachments every 15 min
+[Features] Loaded: email-filer.js
+[EmailWatcher] VIP email alerts enabled (checking every 15 min)
+[Features] Loaded: email-watcher.js
+[EquipmentTracker] Feature loaded — /equip commands, daily alerts at 11:05
+[Features] Loaded: equipment-tracker.js
+[HealthMonitor] Feature loaded — /health commands, daily alert at 10:45 AM
+[Features] Loaded: health-monitor.js
+[InboxMiner] Feature loaded — /mine commands enabled
+[Features] Loaded: inbox-miner.js
+[IntakeBot] Loaded — intake flow for unknown contacts + /intakes command
+[Features] Loaded: intake-bot.js
+[JobAuditor] Feature loaded — /audit commands enabled
+[Features] Loaded: job-auditor.js
+[JobTracker] Loaded — /job, /jobs commands enabled
+[Features] Loaded: job-tracker.js
+[LearningLoop] Feature loaded — passive correction detection + /atlas learn|forget
+[Features] Loaded: learning-loop.js
+[LicenseMonitor] Loaded — /license, /licenses commands + weekly Monday 10:30 AM check
+[Features] Loaded: license-monitor.js
+[LienTracker] Loaded — /lien, /liens commands + daily 10:35 AM check
+[Features] Loaded: lien-tracker.js
+[ModelRouter] Smart model routing enabled (Haiku/Sonnet/Opus)
+[Features] Loaded: model-router.js
+[MondayImporter] Loaded — /monday commands enabled
+[Features] Loaded: monday-importer.js
+[MorningBriefing] Scheduled at 10:30 AM Mon-Sat, /briefing command enabled
+[Features] Loaded: morning-briefing.js
+[PaymentNudge] Loaded — /nudge command enabled
+[Features] Loaded: payment-nudge.js
+[PaymentReceipt] Loaded — /receipt command enabled
+[Features] Loaded: payment-receipt.js
+[PluginUpdater] Feature loaded — /atlas upgrade|diagnose commands
+[Features] Loaded: plugin-updater.js
+[PushbackAssistant] Feature loaded — /pushback and /rate commands enabled
+[Features] Loaded: pushback-assistant.js
+[RevenueDashboard] Loaded — /revenue commands enabled
+[Features] Loaded: revenue-dashboard.js
+[ScopeAssistant] KB loaded: 4 file(s) (line_items, scope_templates, equipment_mapping, pushback_responses)
+[ScopeAssistant] Loaded — /scope and /xact commands enabled
+[Features] Loaded: scope-assistant.js
+[SelfRestart] Feature loaded — /atlas restart|update|version (method: launchd)
+[Features] Loaded: self-restart.js
+[TaskGen] Feature loaded — /suggest commands, cron every 2h (10am-10pm)
+[Features] Loaded: task-generator.js
+[Workflows] Feature loaded -- /flow commands enabled
+[Features] Loaded: workflows.js
+
+[Gateway] Ready and listening for messages
+[Gateway] Using Claude Agent SDK with memory + cron
+[Gateway] Commands: /help, /new, /status, /memory, /stop, /todo
+[HTTP] Listening on port 4096 (QR at /qr, health at /health, send at POST /api/send)
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Auto-allowed self-DM (phone): 17034981581@s.whatsapp.net
+[WhatsApp] Auto-allowed self-DM (LID): 174796696477830@lid
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Resolved +17034981581 -> LID 174796696477830@lid
+[WhatsApp] Resolved +12024598844 -> LID 49886229692465@lid
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+[CC-Webhook] Route registered: POST /webhook/companycam
+[TaskGen] Sent 60 suggestions to Frank
+[WhatsApp] messages.upsert: type=append, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text="💡 *Atlas Suggestions*
+━━━━━━━━━━━━━━━━━━━
+
+1. 📁 "
+
+[Gateway] Shutting down...
+[WhatsApp] Connection closed. Status: undefined
+[WhatsApp] Reconnecting in 2s...
+[WhatsApp] Adapter stopped
+[Gateway] Goodbye!
+==================================================
+Atlas: WhatsApp AI Executive Assistant
+==================================================
+Agent ID: cc-wag
+Workspace: /Users/ghost/Projects/cc-wag/
+Model: claude-sonnet-4-5-20250929
+
+[Security] WhatsApp: DMs=+17034981581, +12024598844 | Groups=NONE (all blocked)
+[Provider] Claude ready
+[Gateway] Initializing WhatsApp adapter...
+[WhatsApp] Adapter starting...
+[AdjusterFollowup] Loaded — /followup command, cron at 12pm/4pm/8pm/midnight (no alerts before 10am)
+[Features] Loaded: adjuster-followup.js
+[AdjusterTracker] Loaded — /dispute, /disputes commands enabled
+[Features] Loaded: adjuster-tracker.js
+[CalendarAlerts] 30-min pre-event alerts enabled (checking every 5 min)
+[Features] Loaded: calendar-alerts.js
+[CCSpawner] Feature loaded -- /cc commands enabled
+[Features] Loaded: cc-spawner.js
+[CC-Webhook] Loaded — POST /webhook/companycam (NO WEBHOOK SECRET - signature validation disabled)
+[Features] Loaded: companycam-webhook.js
+[CompanyCam] Loaded — /timeline command enabled
+[Features] Loaded: companycam.js
+[DailySummary] Scheduled at 18:00 PM Mon-Sat, /summary and /eod commands enabled
+[Features] Loaded: daily-summary.js
+[DataIntegrator] Feature loaded — gateway.dataIntegrator available, /dashboard enabled
+[Features] Loaded: data-integrator.js
+[DeadlineEnforcer] Active — checks at 7:35am + every 4h (8/12/4/8), Mon-Sat
+[Features] Loaded: deadline-enforcer.js
+[DocPackager] Loaded — /package command enabled
+[Features] Loaded: doc-packager.js
+[EmailActions] Loaded — scanning emails every 30 min, /actions command enabled
+[Features] Loaded: email-actions.js
+[EmailFiler] Loaded — auto-filing attachments every 15 min
+[Features] Loaded: email-filer.js
+[EmailWatcher] VIP email alerts enabled (checking every 15 min)
+[Features] Loaded: email-watcher.js
+[EquipmentTracker] Feature loaded — /equip commands, daily alerts at 11:05
+[Features] Loaded: equipment-tracker.js
+[HealthMonitor] Feature loaded — /health commands, daily alert at 10:45 AM
+[Features] Loaded: health-monitor.js
+[InboxMiner] Feature loaded — /mine commands enabled
+[Features] Loaded: inbox-miner.js
+[IntakeBot] Loaded — intake flow for unknown contacts + /intakes command
+[Features] Loaded: intake-bot.js
+[JobAuditor] Feature loaded — /audit commands enabled
+[Features] Loaded: job-auditor.js
+[JobTracker] Loaded — /job, /jobs commands enabled
+[Features] Loaded: job-tracker.js
+[LearningLoop] Feature loaded — passive correction detection + /atlas learn|forget
+[Features] Loaded: learning-loop.js
+[LicenseMonitor] Loaded — /license, /licenses commands + weekly Monday 10:30 AM check
+[Features] Loaded: license-monitor.js
+[LienTracker] Loaded — /lien, /liens commands + daily 10:35 AM check
+[Features] Loaded: lien-tracker.js
+[ModelRouter] Smart model routing enabled (Haiku/Sonnet/Opus)
+[Features] Loaded: model-router.js
+[MondayImporter] Loaded — /monday commands enabled
+[Features] Loaded: monday-importer.js
+[MorningBriefing] Scheduled at 10:30 AM Mon-Sat, /briefing command enabled
+[Features] Loaded: morning-briefing.js
+[PaymentNudge] Loaded — /nudge command enabled
+[Features] Loaded: payment-nudge.js
+[PaymentReceipt] Loaded — /receipt command enabled
+[Features] Loaded: payment-receipt.js
+[PluginUpdater] Feature loaded — /atlas upgrade|diagnose commands
+[Features] Loaded: plugin-updater.js
+[PushbackAssistant] Feature loaded — /pushback and /rate commands enabled
+[Features] Loaded: pushback-assistant.js
+[RevenueDashboard] Loaded — /revenue commands enabled
+[Features] Loaded: revenue-dashboard.js
+[ScopeAssistant] KB loaded: 4 file(s) (line_items, scope_templates, equipment_mapping, pushback_responses)
+[ScopeAssistant] Loaded — /scope and /xact commands enabled
+[Features] Loaded: scope-assistant.js
+[SelfRestart] Feature loaded — /atlas restart|update|version (method: launchd)
+[Features] Loaded: self-restart.js
+[TaskGen] Feature loaded — /suggest commands, cron every 2h (10am-10pm)
+[Features] Loaded: task-generator.js
+[Workflows] Feature loaded -- /flow commands enabled
+[Features] Loaded: workflows.js
+
+[Gateway] Ready and listening for messages
+[Gateway] Using Claude Agent SDK with memory + cron
+[Gateway] Commands: /help, /new, /status, /memory, /stop, /todo
+[HTTP] Listening on port 4096 (QR at /qr, health at /health, send at POST /api/send)
+[CC-Webhook] Route registered: POST /webhook/companycam
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Auto-allowed self-DM (phone): 17034981581@s.whatsapp.net
+[WhatsApp] Auto-allowed self-DM (LID): 174796696477830@lid
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Resolved +17034981581 -> LID 174796696477830@lid
+[WhatsApp] Resolved +12024598844 -> LID 49886229692465@lid
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+[TaskGen] Sent 60 suggestions to Frank
+[WhatsApp] messages.upsert: type=append, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text="💡 *Atlas Suggestions*
+━━━━━━━━━━━━━━━━━━━
+
+1. 📁 "
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+Closing session: [session keys redacted]
+}
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="atlas, can you confirm that you have access to thi"
+[WhatsApp] Self-chat activated, stripped prefix: "can you confirm that you have access to this googl"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: can you confirm that you have access to this google drive folder: https://drive.google.com/drive/fol...
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text="atlas, can you confirm that you have access to thi"
+[WhatsApp] Self-chat activated, stripped prefix: "can you confirm that you have access to this googl"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:17034981581@s.whatsapp.net
+  From: 17034981581@s.whatsapp.net
+  Group: false
+  Text: can you confirm that you have access to this google drive folder: https://drive.google.com/drive/fol...
+[WHATSAPP] Command handled: can
+Closing session: [session keys redacted]
+}
+[WhatsApp] messages.upsert: type=append, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text="Acting on:
+- /audit fix FD-001
+- /audit fix FD-008"
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="atlas, I want you to to fetch this google drive fo"
+[WhatsApp] Self-chat activated, stripped prefix: "I want you to to fetch this google drive folder an"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: I want you to to fetch this google drive folder and confirm that you have access to these files
+[LearningLoop] New preference learned: I want you to to fetch this google drive folder and confirm that you have access to these files
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="https://drive.google.com/drive/folders/1QYQysnw8kY"
+[WhatsApp] Self-chat (active session): "https://drive.google.com/drive/folders/1QYQysnw8kY"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: https://drive.google.com/drive/folders/1QYQysnw8kYfwY14fgPgfAx5nlqlmfSxW
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="Atlas are you online?"
+[WhatsApp] Self-chat activated, stripped prefix: "are you online?"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: are you online?
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+
+[Gateway] Shutting down...
+[WhatsApp] Connection closed. Status: undefined
+[WhatsApp] Reconnecting in 2s...
+[WhatsApp] Adapter stopped
+[Gateway] Goodbye!
+==================================================
+Atlas: WhatsApp AI Executive Assistant
+==================================================
+Agent ID: cc-wag
+Workspace: /Users/ghost/Projects/cc-wag/
+Model: claude-sonnet-4-5-20250929
+
+[Security] WhatsApp: DMs=+17034981581, +12024598844 | Groups=NONE (all blocked)
+[Provider] Claude ready
+[Gateway] Initializing WhatsApp adapter...
+[WhatsApp] Adapter starting...
+[AdjusterFollowup] Loaded — /followup command, cron at 12pm/4pm/8pm/midnight (no alerts before 10am)
+[Features] Loaded: adjuster-followup.js
+[AdjusterTracker] Loaded — /dispute, /disputes commands enabled
+[Features] Loaded: adjuster-tracker.js
+[CalendarAlerts] 30-min pre-event alerts enabled (checking every 5 min)
+[Features] Loaded: calendar-alerts.js
+[CCSpawner] Feature loaded -- /cc commands enabled
+[Features] Loaded: cc-spawner.js
+[CC-Webhook] Loaded — POST /webhook/companycam (NO WEBHOOK SECRET - signature validation disabled)
+[Features] Loaded: companycam-webhook.js
+[CompanyCam] Loaded — /timeline command enabled
+[Features] Loaded: companycam.js
+[DailySummary] Scheduled at 18:00 PM Mon-Sat, /summary and /eod commands enabled
+[Features] Loaded: daily-summary.js
+[DataIntegrator] Feature loaded — gateway.dataIntegrator available, /dashboard enabled
+[Features] Loaded: data-integrator.js
+[DeadlineEnforcer] Active — checks at 7:35am + every 4h (8/12/4/8), Mon-Sat
+[Features] Loaded: deadline-enforcer.js
+[DebugLogger] /log on|off|clear|status commands enabled
+[Features] Loaded: debug-logger.js
+[DocPackager] Loaded — /package command enabled
+[Features] Loaded: doc-packager.js
+[EmailActions] Loaded — scanning emails every 30 min, /actions command enabled
+[Features] Loaded: email-actions.js
+[EmailFiler] Loaded — auto-filing attachments every 15 min
+[Features] Loaded: email-filer.js
+[EmailWatcher] VIP email alerts enabled (checking every 15 min)
+[Features] Loaded: email-watcher.js
+[EquipmentTracker] Feature loaded — /equip commands, daily alerts at 11:05
+[Features] Loaded: equipment-tracker.js
+[HealthMonitor] Feature loaded — /health commands, daily alert at 10:45 AM
+[Features] Loaded: health-monitor.js
+[InboxMiner] Feature loaded — /mine commands enabled
+[Features] Loaded: inbox-miner.js
+[IntakeBot] Loaded — intake flow for unknown contacts + /intakes command
+[Features] Loaded: intake-bot.js
+[JobAuditor] Feature loaded — /audit commands enabled
+[Features] Loaded: job-auditor.js
+[JobTracker] Loaded — /job, /jobs commands enabled
+[Features] Loaded: job-tracker.js
+[LearningLoop] Feature loaded — passive correction detection + /atlas learn|forget
+[Features] Loaded: learning-loop.js
+[LicenseMonitor] Loaded — /license, /licenses commands + weekly Monday 10:30 AM check
+[Features] Loaded: license-monitor.js
+[LienTracker] Loaded — /lien, /liens commands + daily 10:35 AM check
+[Features] Loaded: lien-tracker.js
+[ModelRouter] Smart model routing enabled (Haiku/Sonnet/Opus)
+[Features] Loaded: model-router.js
+[MondayImporter] Loaded — /monday commands enabled
+[Features] Loaded: monday-importer.js
+[MorningBriefing] Scheduled at 10:30 AM Mon-Sat, /briefing command enabled
+[Features] Loaded: morning-briefing.js
+[PaymentNudge] Loaded — /nudge command enabled
+[Features] Loaded: payment-nudge.js
+[PaymentReceipt] Loaded — /receipt command enabled
+[Features] Loaded: payment-receipt.js
+[PluginUpdater] Feature loaded — /atlas upgrade|diagnose commands
+[Features] Loaded: plugin-updater.js
+[PushbackAssistant] Feature loaded — /pushback and /rate commands enabled
+[Features] Loaded: pushback-assistant.js
+[RevenueDashboard] Loaded — /revenue commands enabled
+[Features] Loaded: revenue-dashboard.js
+[ScopeAssistant] KB loaded: 4 file(s) (line_items, scope_templates, equipment_mapping, pushback_responses)
+[ScopeAssistant] Loaded — /scope and /xact commands enabled
+[Features] Loaded: scope-assistant.js
+[SelfRestart] Feature loaded — /atlas restart|update|version (method: launchd)
+[Features] Loaded: self-restart.js
+[TaskGen] Feature loaded — /suggest commands, cron every 2h (10am-10pm)
+[Features] Loaded: task-generator.js
+[Workflows] Feature loaded -- /flow commands enabled
+[Features] Loaded: workflows.js
+
+[Gateway] Ready and listening for messages
+[Gateway] Using Claude Agent SDK with memory + cron
+[Gateway] Commands: /help, /new, /status, /memory, /stop, /todo
+[HTTP] Listening on port 4096 (QR at /qr, health at /health, send at POST /api/send)
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Auto-allowed self-DM (phone): 17034981581@s.whatsapp.net
+[WhatsApp] Auto-allowed self-DM (LID): 174796696477830@lid
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Resolved +17034981581 -> LID 174796696477830@lid
+[WhatsApp] Resolved +12024598844 -> LID 49886229692465@lid
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+[CC-Webhook] Route registered: POST /webhook/companycam
+[WhatsApp] messages.upsert: type=notify, count=4
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="atlas, can you confirm that you have access to thi"
+[WhatsApp] Self-chat activated, stripped prefix: "can you confirm that you have access to this googl"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: can you confirm that you have access to this google drive folder: https://drive.google.com/drive/fol...
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="atlas, I want you to to fetch this google drive fo"
+[WhatsApp] Self-chat activated, stripped prefix: "I want you to to fetch this google drive folder an"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: I want you to to fetch this google drive folder and confirm that you have access to these files
+[LearningLoop] Reinforced preference: I want you to to fetch this google drive folder and confirm that you have access to these files (2x)
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="https://drive.google.com/drive/folders/1QYQysnw8kY"
+[WhatsApp] Self-chat (active session): "https://drive.google.com/drive/folders/1QYQysnw8kY"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: https://drive.google.com/drive/folders/1QYQysnw8kYfwY14fgPgfAx5nlqlmfSxW
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="Atlas are you online?"
+[WhatsApp] Self-chat activated, stripped prefix: "are you online?"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: are you online?
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[TaskGen] Sent 60 suggestions to Frank
+[WhatsApp] messages.upsert: type=append, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text="💡 *Atlas Suggestions*
+━━━━━━━━━━━━━━━━━━━
+
+1. 📁 "
+Closing session: [session keys redacted]
+}
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] messages.upsert: type=notify, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+
+[Gateway] Shutting down...
+[WhatsApp] Connection closed. Status: undefined
+[WhatsApp] Reconnecting in 2s...
+[WhatsApp] Adapter stopped
+[Gateway] Goodbye!
+==================================================
+Atlas: WhatsApp AI Executive Assistant
+==================================================
+Agent ID: cc-wag
+Workspace: /Users/ghost/Projects/cc-wag/
+Model: claude-sonnet-4-5-20250929
+
+[Security] WhatsApp: DMs=+17034981581, +12024598844 | Groups=NONE (all blocked)
+[Provider] Claude ready
+[Gateway] Initializing WhatsApp adapter...
+[WhatsApp] Adapter starting...
+[AdjusterFollowup] Loaded — /followup command, cron at 12pm/4pm/8pm/midnight (no alerts before 10am)
+[Features] Loaded: adjuster-followup.js
+[AdjusterTracker] Loaded — /dispute, /disputes commands enabled
+[Features] Loaded: adjuster-tracker.js
+[CalendarAlerts] 30-min pre-event alerts enabled (checking every 5 min)
+[Features] Loaded: calendar-alerts.js
+[CCSpawner] Feature loaded -- /cc commands enabled
+[Features] Loaded: cc-spawner.js
+[CC-Webhook] Loaded — POST /webhook/companycam (NO WEBHOOK SECRET - signature validation disabled)
+[Features] Loaded: companycam-webhook.js
+[CompanyCam] Loaded — /timeline command enabled
+[Features] Loaded: companycam.js
+[DailySummary] Scheduled at 18:00 PM Mon-Sat, /summary and /eod commands enabled
+[Features] Loaded: daily-summary.js
+[DataIntegrator] Feature loaded — gateway.dataIntegrator available, /dashboard enabled
+[Features] Loaded: data-integrator.js
+[DeadlineEnforcer] Active — checks at 7:35am + every 4h (8/12/4/8), Mon-Sat
+[Features] Loaded: deadline-enforcer.js
+[DebugLogger] /log on|off|clear|status commands enabled
+[Features] Loaded: debug-logger.js
+[DocPackager] Loaded — /package command enabled
+[Features] Loaded: doc-packager.js
+[EmailActions] Loaded — scanning emails every 30 min, /actions command enabled
+[Features] Loaded: email-actions.js
+[EmailFiler] Loaded — auto-filing attachments every 15 min
+[Features] Loaded: email-filer.js
+[EmailWatcher] VIP email alerts enabled (checking every 15 min)
+[Features] Loaded: email-watcher.js
+[EquipmentTracker] Feature loaded — /equip commands, daily alerts at 11:05
+[Features] Loaded: equipment-tracker.js
+[HealthMonitor] Feature loaded — /health commands, daily alert at 10:45 AM
+[Features] Loaded: health-monitor.js
+[InboxMiner] Feature loaded — /mine commands enabled
+[Features] Loaded: inbox-miner.js
+[IntakeBot] Loaded — intake flow for unknown contacts + /intakes command
+[Features] Loaded: intake-bot.js
+[JobAuditor] Feature loaded — /audit commands enabled
+[Features] Loaded: job-auditor.js
+[JobTracker] Loaded — /job, /jobs commands enabled
+[Features] Loaded: job-tracker.js
+[LearningLoop] Feature loaded — passive correction detection + /atlas learn|forget
+[Features] Loaded: learning-loop.js
+[LicenseMonitor] Loaded — /license, /licenses commands + weekly Monday 10:30 AM check
+[Features] Loaded: license-monitor.js
+[LienTracker] Loaded — /lien, /liens commands + daily 10:35 AM check
+[Features] Loaded: lien-tracker.js
+[ModelRouter] Smart model routing enabled (Haiku/Sonnet/Opus)
+[Features] Loaded: model-router.js
+[MondayImporter] Loaded — /monday commands enabled
+[Features] Loaded: monday-importer.js
+[MorningBriefing] Scheduled at 10:30 AM Mon-Sat, /briefing command enabled
+[Features] Loaded: morning-briefing.js
+[PaymentNudge] Loaded — /nudge command enabled
+[Features] Loaded: payment-nudge.js
+[PaymentReceipt] Loaded — /receipt command enabled
+[Features] Loaded: payment-receipt.js
+[PluginUpdater] Feature loaded — /atlas upgrade|diagnose commands
+[Features] Loaded: plugin-updater.js
+[PushbackAssistant] Feature loaded — /pushback and /rate commands enabled
+[Features] Loaded: pushback-assistant.js
+[RevenueDashboard] Loaded — /revenue commands enabled
+[Features] Loaded: revenue-dashboard.js
+[ScopeAssistant] KB loaded: 4 file(s) (line_items, scope_templates, equipment_mapping, pushback_responses)
+[ScopeAssistant] Loaded — /scope and /xact commands enabled
+[Features] Loaded: scope-assistant.js
+[SelfRestart] Feature loaded — /atlas restart|update|version (method: launchd)
+[Features] Loaded: self-restart.js
+[TaskGen] Feature loaded — /suggest commands, cron every 2h (10am-10pm)
+[Features] Loaded: task-generator.js
+[Workflows] Feature loaded -- /flow commands enabled
+[Features] Loaded: workflows.js
+
+[Gateway] Ready and listening for messages
+[Gateway] Using Claude Agent SDK with memory + cron
+[Gateway] Commands: /help, /new, /status, /memory, /stop, /todo
+[HTTP] Listening on port 4096 (QR at /qr, health at /health, send at POST /api/send)
+[CC-Webhook] Route registered: POST /webhook/companycam
+[WhatsApp] Connected as 17034981581:33@s.whatsapp.net (LID: 174796696477830:33@lid)
+[WhatsApp] Auto-allowed self-DM (phone): 17034981581@s.whatsapp.net
+[WhatsApp] Auto-allowed self-DM (LID): 174796696477830@lid
+[WhatsApp] Resolving 3 allowlisted numbers...
+[WhatsApp] Resolved +17034981581 -> LID 174796696477830@lid
+[WhatsApp] Resolved +12024598844 -> LID 49886229692465@lid
+[WhatsApp] Allowlist resolved (2 LID<->phone pairs)
+[WhatsApp] messages.upsert: type=notify, count=8
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="atlas, can you confirm that you have access to thi"
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="atlas, I want you to to fetch this google drive fo"
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="https://drive.google.com/drive/folders/1QYQysnw8kY"
+[WhatsApp] Message: fromMe=true, jid=174796696477830@lid, text="Atlas are you online?"
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text=""
+[WhatsApp] Self-chat activated, stripped prefix: "can you confirm that you have access to this googl"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: can you confirm that you have access to this google drive folder: https://drive.google.com/drive/fol...
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Self-chat activated, stripped prefix: "I want you to to fetch this google drive folder an"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: I want you to to fetch this google drive folder and confirm that you have access to these files
+[LearningLoop] Reinforced preference: I want you to to fetch this google drive folder and confirm that you have access to these files (3x)
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Self-chat (active session): "https://drive.google.com/drive/folders/1QYQysnw8kY"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: https://drive.google.com/drive/folders/1QYQysnw8kYfwY14fgPgfAx5nlqlmfSxW
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Self-chat activated, stripped prefix: "are you online?"
+
+[WHATSAPP] Incoming message:
+  Session: agent:cc-wag:whatsapp:dm:174796696477830@lid
+  From: 174796696477830@lid
+  Group: false
+  Text: are you online?
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[TaskGen] Sent 60 suggestions to Frank
+Closing session: [session keys redacted]
+}
+[WhatsApp] messages.upsert: type=append, count=1
+[WhatsApp] Message: fromMe=true, jid=17034981581@s.whatsapp.net, text="💡 *Atlas Suggestions*
+━━━━━━━━━━━━━━━━━━━
+
+1. 📁 "
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net
+[WhatsApp] Resolved LID to phone JID: +17034981581@s.whatsapp.net

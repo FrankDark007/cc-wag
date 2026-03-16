@@ -1,0 +1,1181 @@
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Closing open session in favor of incoming prekey bundle
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Closing open session in favor of incoming prekey bundle
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+Using keyring backend: keyring
+Using keyring backend: keyring
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Closing open session in favor of incoming prekey bundle
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 51539624366203.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 51539624366203.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 51539624366203.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Closing open session in favor of incoming prekey bundle
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Closing open session in favor of incoming prekey bundle
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 174796696477830.28 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Closing open session in favor of incoming prekey bundle
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Failed to decrypt message with any known session...
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+Session error:Error: Bad MAC Error: Bad MAC
+    at Object.verifyMAC (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/crypto.js:87:15)
+    at SessionCipher.doDecryptWhisperMessage (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:250:16)
+    at async SessionCipher.decryptWithSessions (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:147:29)
+    at async 17034981581.0 [as awaitable] (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/session_cipher.js:171:28)
+    at async _asyncQueueExecutor (/Users/ghost/Projects/cc-wag/node_modules/libsignal/src/queue_job.js:20:29)
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Error: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+[WHATSAPP] Failed to send error message: Timed Out
+[EmailFiler] Command failed: Command failed: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "is:unread has:attachment newer_than:1h" --maxResults 10

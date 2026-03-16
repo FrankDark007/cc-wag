@@ -51,6 +51,16 @@ export default class WhatsAppAdapter extends BaseAdapter {
     const { state, saveCreds } = await useMultiFileAuthState(AUTH_DIR)
     const { version } = await fetchLatestBaileysVersion()
 
+    // Suppress Baileys' internal session key dumps from stdout
+    // (they contain raw crypto buffers that shouldn't be in git-tracked logs)
+    const _origLog = console.log
+    console.log = (...args) => {
+      const first = typeof args[0] === 'string' ? args[0] : ''
+      if (first.includes('Closing session') || first.includes('SessionEntry')) return
+      if (args.some(a => a && typeof a === 'object' && a._chains)) return
+      _origLog.apply(console, args)
+    }
+
     const logger = pino({ level: 'silent' })
 
     this.sock = makeWASocket({

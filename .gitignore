@@ -2,8 +2,6 @@ node_modules/
 auth_whatsapp/
 workspace/*
 !workspace/xactimate-kb/
-logs/
 .env
-*.log
 .DS_Store
 transcripts/
