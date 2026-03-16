@@ -23,6 +23,39 @@ import { spawn, execSync } from 'child_process'
 
 const ROOT = '/Users/ghost/Projects/cc-wag'
 const FEATURES_DIR = path.join(ROOT, 'src/features')
+const AUDIT_FILE = path.join(ROOT, 'workspace', 'cc-audit.jsonl')
+
+const DANGEROUS_PATTERNS = [
+  /rm\s+-rf/i, /curl.*\|.*sh/i, /wget.*\|.*sh/i, /eval\s*\(/i,
+  /process\.env/i, /ANTHROPIC_API_KEY/i, /credentials/i, /\.env\b/i,
+  /auth_whatsapp/i, /ssh\s+/i, /scp\s+/i, /rsync\s+/i
+]
+
+const MAX_TASK_LENGTH = 500
+
+function validateTask(task) {
+  if (!task || typeof task !== 'string') {
+    return { valid: false, reason: 'Task must be a non-empty string' }
+  }
+  if (task.length > MAX_TASK_LENGTH) {
+    return { valid: false, reason: `Task too long (${task.length} chars, max ${MAX_TASK_LENGTH})` }
+  }
+  for (const pattern of DANGEROUS_PATTERNS) {
+    if (pattern.test(task)) {
+      return { valid: false, reason: `Task contains blocked pattern: ${pattern.source}` }
+    }
+  }
+  return { valid: true }
+}
+
+function auditLog(entry) {
+  try {
+    const line = JSON.stringify({ timestamp: new Date().toISOString(), ...entry }) + '\n'
+    fs.appendFileSync(AUDIT_FILE, line)
+  } catch (err) {
+    console.error('[PluginUpdater] Audit log failed:', err.message)
+  }
+}
 
 // ── Analysis ─────────────────────────────────────────────────────────
 
@@ -126,6 +159,7 @@ function spawnCCSession(prompt, gateway) {
       env: { ...process.env, ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY }
     })
     child.unref()
+    auditLog({ action: 'spawn', prompt: prompt.substring(0, 200), result: 'spawned' })
     return true
   } catch (err) {
     console.error('[PluginUpdater] Failed to spawn CC session:', err.message)
@@ -241,6 +275,13 @@ function handleUpgradeAll() {
 function handleDiagnose(problem, gateway) {
   if (!problem) {
     return 'Usage: /atlas diagnose "description of the problem"'
+  }
+
+  // Validate problem string
+  const validation = validateTask(problem)
+  if (!validation.valid) {
+    auditLog({ action: 'diagnose', problem, result: 'rejected', reason: validation.reason })
+    return `Diagnosis rejected: ${validation.reason}`
   }
 
   // Search codebase for relevant code
