@@ -72,6 +72,9 @@ export default class WhatsAppAdapter extends BaseAdapter {
       generateHighQualityLinkPreview: false
     })
 
+    // Restore console.log — suppression was only needed during Baileys init
+    console.log = _origLog
+
     this.sock.ev.on('connection.update', (update) => {
       const { connection, lastDisconnect, qr } = update
 
