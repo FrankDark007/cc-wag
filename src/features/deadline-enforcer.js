@@ -39,7 +39,7 @@ function loadJobs() {
     if (!fs.existsSync(JOBS_FILE)) return []
     const raw = fs.readFileSync(JOBS_FILE, 'utf-8')
     const data = JSON.parse(raw)
-    return Array.isArray(data) ? data : []
+    return Array.isArray(data) ? data : (data?.jobs || [])
   } catch {
     return []
   }
