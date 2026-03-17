@@ -17,8 +17,34 @@ class CronScheduler extends EventEmitter {
     super()
     this.jobs = new Map()
     this.timers = new Map()
+    this.maxDailyAgentInvocations = 10
+    this._dailyAgentInvocations = 0
+    this._dailyResetDate = new Date().toDateString()
     this.ensureDir()
     this.loadJobs()
+  }
+
+  /**
+   * Check and increment daily agent invocation counter.
+   * Returns true if invocation is allowed, false if limit reached.
+   */
+  checkAgentInvocationLimit() {
+    const today = new Date().toDateString()
+    if (today !== this._dailyResetDate) {
+      this._dailyAgentInvocations = 0
+      this._dailyResetDate = today
+    }
+
+    if (this._dailyAgentInvocations >= this.maxDailyAgentInvocations) {
+      console.warn(`[Cron] Daily agent invocation limit reached (${this.maxDailyAgentInvocations}). Skipping.`)
+      return false
+    }
+
+    this._dailyAgentInvocations++
+    if (this._dailyAgentInvocations >= this.maxDailyAgentInvocations - 2) {
+      console.warn(`[Cron] Approaching daily agent limit: ${this._dailyAgentInvocations}/${this.maxDailyAgentInvocations}`)
+    }
+    return true
   }
 
   ensureDir() {

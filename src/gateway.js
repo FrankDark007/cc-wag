@@ -73,6 +73,18 @@ class Gateway {
         return
       }
 
+      // Check WhatsApp connection before invoking agent (no point burning tokens if we can't deliver)
+      if (invokeAgent && !this.isWhatsAppReady()) {
+        console.warn(`[Cron] WhatsApp not ready — skipping agent invocation for job ${jobId} to save tokens`)
+        return
+      }
+
+      // Check daily agent invocation limit
+      if (invokeAgent && !this.agentRunner.agent.cronScheduler.checkAgentInvocationLimit()) {
+        console.warn(`[Cron] Daily agent limit reached — skipping job ${jobId}`)
+        return
+      }
+
       try {
         if (invokeAgent) {
           console.log(`[Cron] Invoking agent with: ${message}`)
@@ -96,6 +108,22 @@ class Gateway {
         console.error(`[Cron] Failed to execute job:`, err.message)
       }
     })
+  }
+
+  /**
+   * Check if WhatsApp adapter is ready to deliver messages.
+   * For Twilio: adapter exists and has valid credentials.
+   * For Baileys: adapter exists and has a connected socket.
+   */
+  isWhatsAppReady() {
+    const wa = this.adapters.get('whatsapp')
+    if (!wa) return false
+    // Twilio adapter: no persistent socket, check credentials exist
+    if (wa._webhookHandler !== undefined) {
+      return !!(wa.accountSid && wa.authToken && wa.whatsappNumber)
+    }
+    // Baileys adapter: check socket connection
+    return !!wa.myJid
   }
 
   /**
@@ -493,9 +521,15 @@ class Gateway {
       if (req.url === '/health') {
         res.writeHead(200, { 'Content-Type': 'application/json' })
         const wa = this.adapters.get('whatsapp')
+        const adapterType = process.env.WHATSAPP_ADAPTER || 'baileys'
+        // Twilio: connected = adapter started with valid credentials (no persistent socket)
+        // Baileys: connected = has myJid (socket authenticated)
+        const connected = adapterType === 'twilio'
+          ? !!(wa && wa.accountSid && wa.authToken && wa.whatsappNumber)
+          : !!wa?.myJid
         res.end(JSON.stringify({
           status: 'ok',
-          whatsapp: { connected: !!wa?.myJid },
+          whatsapp: { connected, adapter: adapterType },
           uptime: process.uptime(),
           queued: this.agentRunner.getGlobalStats().totalPending
         }))
