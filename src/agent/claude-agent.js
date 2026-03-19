@@ -153,6 +153,10 @@ export default class ClaudeAgent extends EventEmitter {
     this.sessions = new Map()
     this.abortControllers = new Map()
 
+    // Plugin hook arrays — features register pre/post processing hooks
+    this.preRunHooks = []   // async (params) => modifiedParams | void
+    this.postRunHooks = []  // async (result, params) => void
+
     // Provider setup - Claude only
     this.providerName = 'claude'
     const providerConfig = {
@@ -265,6 +269,16 @@ export default class ClaudeAgent extends EventEmitter {
       canUseTool
     } = params
 
+    // Run pre-run hooks (plugins can modify params)
+    let hookParams = params
+    for (const hook of this.preRunHooks) {
+      const result = await hook(hookParams)
+      if (result) hookParams = result
+    }
+    // Re-destructure in case hooks modified params
+    const hookedMessage = hookParams.message || message
+    const hookedImage = hookParams.image || image
+
     // Store per-request context for async-safe access
     asyncContext.enterWith({ platform, chatId, sessionKey, gateway: this.gateway })
 
@@ -291,8 +305,19 @@ export default class ClaudeAgent extends EventEmitter {
     // Haiku: minimal (~500 chars), Sonnet: core (~3KB), Opus: full with memory (~8KB)
     const memoryContext = modelTier === MODEL_TIER.HAIKU ? null : this.memoryManager.getMemoryContext()
     const cronInfo = modelTier === MODEL_TIER.HAIKU ? null : this.getCronSummary()
-    const observationContext = modelTier === MODEL_TIER.OPUS ? this.memoryManager.getObservationContext(message) : null
-    const systemPrompt = buildSystemPrompt(memoryContext, { sessionKey, platform }, cronInfo, observationContext, modelTier)
+    const observationContext = modelTier === MODEL_TIER.OPUS ? this.memoryManager.getObservationContext(hookedMessage) : null
+    let systemPrompt = buildSystemPrompt(memoryContext, { sessionKey, platform }, cronInfo, observationContext, modelTier)
+
+    // Inject task plan if present (from task-planner plugin)
+    if (hookParams._taskPlanInjection) {
+      systemPrompt += hookParams._taskPlanInjection
+    }
+
+    // Inject recovery context if present (from session-handoff plugin)
+    if (this.gateway?._recoveryContext) {
+      systemPrompt += '\n\n' + this.gateway._recoveryContext
+      this.gateway._recoveryContext = null // Only inject once
+    }
 
     console.log(`[Agent] System prompt: ${systemPrompt.length} chars (${modelTier} tier)`)
 
@@ -390,6 +415,15 @@ export default class ClaudeAgent extends EventEmitter {
 
         if (chunk.type !== 'system') {
           yield chunk
+        }
+      }
+
+      // Run post-run hooks
+      for (const hook of this.postRunHooks) {
+        try {
+          await hook({ fullText, sessionKey, platform, chatId }, hookParams)
+        } catch (hookErr) {
+          console.error('[Agent] Post-run hook error:', hookErr.message)
         }
       }
 

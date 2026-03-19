@@ -85,6 +85,15 @@ export default class CommandHandler {
       case 'inbox':
         return this.handleInbox(args)
 
+      case 'plan':
+        return this.handlePlan(args)
+
+      case 'tasks':
+        return this.handleTasks(args)
+
+      case 'task':
+        return this.handleTask(args)
+
       default:
         // Unknown command, pass to agent
         return { handled: false }
@@ -615,6 +624,61 @@ export default class CommandHandler {
     }
   }
 
+  /**
+   * Handle /plan command — show/manage active task plan
+   */
+  handlePlan(args) {
+    const planner = this.gateway._taskPlanner
+    if (!planner) {
+      return { handled: true, response: 'Task planner not loaded.' }
+    }
+
+    if (!args) {
+      return { handled: true, response: planner.showPlan() }
+    }
+
+    const sub = args.toLowerCase().trim()
+    if (sub === 'cancel') {
+      return { handled: true, response: planner.cancelPlan() }
+    }
+    if (sub === 'skip') {
+      return { handled: true, response: planner.skipStep() }
+    }
+
+    return { handled: true, response: planner.showPlan() }
+  }
+
+  /**
+   * Handle /tasks command — list persistent tasks
+   */
+  handleTasks() {
+    const pt = this.gateway._persistentTasks
+    if (!pt) {
+      return { handled: true, response: 'Persistent tasks not loaded.' }
+    }
+    return { handled: true, response: pt.listTasks() }
+  }
+
+  /**
+   * Handle /task <id> <action> — manage a specific persistent task
+   */
+  handleTask(args) {
+    const pt = this.gateway._persistentTasks
+    if (!pt) {
+      return { handled: true, response: 'Persistent tasks not loaded.' }
+    }
+
+    if (!args) {
+      return { handled: true, response: 'Usage: /task <id> done|cancel|escalate' }
+    }
+
+    const parts = args.trim().split(/\s+/)
+    const taskId = parts[0]
+    const action = parts[1] || 'done'
+
+    return { handled: true, response: pt.handleTaskCommand(taskId, action) }
+  }
+
   handleHelp() {
     const lines = [
       'Atlas Commands',
@@ -636,6 +700,13 @@ export default class CommandHandler {
       '/todo !high @insurance <task> - Priority + category',
       '/todos - List pending tasks',
       '/todos personal - List personal tasks',
+      '/plan - Show active task plan',
+      '/plan cancel - Cancel current plan',
+      '/plan skip - Skip current step',
+      '/tasks - List persistent tasks',
+      '/task <id> done - Mark task complete',
+      '/task <id> cancel - Cancel task',
+      '/task <id> escalate - Force escalate',
       '/whereisfrank - Get Frank\'s live GPS location',
       '/stop - Stop current operation',
       '/help - Show this help'

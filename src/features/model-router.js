@@ -4,7 +4,11 @@
  * - Haiku: greetings, short questions, confirmations, simple lookups
  * - Sonnet: most messages (default) — tasks, emails, scheduling
  * - Opus: analysis, planning, multi-step reasoning, long documents
+ *
+ * Integrates with task-planner: complex/batch tasks auto-route to Opus.
  */
+
+import { classifyComplexity } from './task-planner.js'
 
 const HAIKU = 'claude-haiku-4-5-20251001'
 const SONNET = 'claude-sonnet-4-5-20250929'
@@ -62,6 +66,14 @@ export function classifyMessage(text) {
   if (wordCount >= LONG_MSG_WORDS) {
     return { model: OPUS, reason: 'long' }
   }
+
+  // Task planner integration: complex/batch tasks → Opus
+  try {
+    const taskClassification = classifyComplexity(trimmed)
+    if (taskClassification.complex) {
+      return { model: OPUS, reason: `task-planner:${taskClassification.type}` }
+    }
+  } catch { /* task-planner may not be loaded yet */ }
 
   // Everything else → Sonnet (default — handles 80%+ of messages)
   return { model: SONNET, reason: 'default' }
