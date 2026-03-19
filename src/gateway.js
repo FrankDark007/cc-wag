@@ -644,8 +644,24 @@ class Gateway {
         if (wa && wa._webhookHandler) {
           wa._webhookHandler(req, res)
         } else {
-          res.writeHead(404, { 'Content-Type': 'text/plain' })
-          res.end('Twilio adapter not active')
+          // Fallback: log any incoming SMS even if adapter not active (captures verification codes)
+          let body = ''
+          req.on('data', chunk => { body += chunk })
+          req.on('end', () => {
+            try {
+              const params = new URLSearchParams(body)
+              const from = params.get('From') || ''
+              const msgBody = params.get('Body') || ''
+              if (msgBody) {
+                console.log(`[Twilio-SMS] From: ${from} | Body: ${msgBody}`)
+                // Write to file for easy retrieval
+                fs.appendFileSync(path.join(config.paths.workspace, 'sms-inbox.log'),
+                  `${new Date().toISOString()} | From: ${from} | Body: ${msgBody}\n`)
+              }
+            } catch (e) { /* ignore parse errors */ }
+            res.writeHead(200, { 'Content-Type': 'text/plain' })
+            res.end('')
+          })
         }
         return
       }

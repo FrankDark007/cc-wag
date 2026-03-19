@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 import BaseAdapter from './base.js'
 
 /**
@@ -127,6 +129,20 @@ export default class TwilioWhatsAppAdapter extends BaseAdapter {
 
         if (!from || !msgBody) {
           console.log('[Twilio] Webhook received but no From/Body, ignoring')
+          return
+        }
+
+        // Log ALL incoming messages (captures SMS verification codes, etc.)
+        console.log(`[Twilio-Inbound] From: ${from} | Body: ${msgBody}`)
+
+        // If this is a plain SMS (not whatsapp:), log it and don't process as chat
+        if (!from.startsWith('whatsapp:')) {
+          console.log(`[Twilio-SMS] Plain SMS received — not a WhatsApp message, logging only`)
+          try {
+            const logPath = path.join(process.cwd(), 'workspace', 'sms-inbox.log')
+            fs.appendFileSync(logPath,
+              `${new Date().toISOString()} | From: ${from} | Body: ${msgBody}\n`)
+          } catch { /* ignore */ }
           return
         }
 
