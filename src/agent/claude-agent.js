@@ -9,15 +9,13 @@ import { asyncContext } from '../utils/async-context.js'
 import config from '../config.js'
 
 const SYSTEM_PROMPT_PATH = config.paths.systemPrompt
-const CLAUDE_MD_PATH = config.paths.claudeMd
 
 // Prompt template cache — avoids re-reading files on every message
-const promptCache = { template: null, claudeMd: null, initialized: false }
+const promptCache = { template: null, initialized: false }
 
 function initPromptCache() {
   if (promptCache.initialized) return
   promptCache.template = loadSystemPromptTemplate()
-  promptCache.claudeMd = loadClaudeMd()
   promptCache.initialized = true
 
   // Watch for changes with 5s polling interval
@@ -25,10 +23,6 @@ function initPromptCache() {
     fs.watchFile(SYSTEM_PROMPT_PATH, { interval: 5000 }, () => {
       console.log('[Agent] System prompt template changed — reloading')
       promptCache.template = loadSystemPromptTemplate()
-    })
-    fs.watchFile(CLAUDE_MD_PATH, { interval: 5000 }, () => {
-      console.log('[Agent] CLAUDE.md changed — reloading')
-      promptCache.claudeMd = loadClaudeMd()
     })
   } catch (err) {
     console.error('[Agent] File watcher failed:', err.message)
@@ -49,24 +43,35 @@ function loadSystemPromptTemplate() {
   return null
 }
 
-/**
- * Load CLAUDE.md as read-only context
- */
-function loadClaudeMd() {
-  try {
-    if (fs.existsSync(CLAUDE_MD_PATH)) {
-      return fs.readFileSync(CLAUDE_MD_PATH, 'utf-8')
-    }
-  } catch (err) {
-    console.error('[Agent] Failed to load CLAUDE.md:', err.message)
-  }
-  return null
+// Model tier constants for tiered prompts
+const MODEL_TIER = {
+  HAIKU: 'haiku',
+  SONNET: 'sonnet',
+  OPUS: 'opus'
 }
 
 /**
- * Build the system prompt with memory, session info, cron, and business context
+ * Detect model tier from the current model string
  */
-function buildSystemPrompt(memoryContext, sessionInfo, cronInfo, observationContext) {
+function getModelTier(modelName) {
+  if (!modelName) return MODEL_TIER.SONNET
+  const lower = modelName.toLowerCase()
+  if (lower.includes('haiku')) return MODEL_TIER.HAIKU
+  if (lower.includes('opus')) return MODEL_TIER.OPUS
+  return MODEL_TIER.SONNET
+}
+
+/**
+ * Build the system prompt with tiered complexity based on model.
+ *
+ * Haiku tier:  identity + date/time + style (~500 chars)
+ * Sonnet tier: core prompt without memory dump (~3KB)
+ * Opus tier:   full prompt with memory + observations (~8KB max)
+ *
+ * CLAUDE.md (Frank's personal CC workflow) is NEVER injected — irrelevant to Atlas.
+ * system-prompt.md is the SOLE template (no hardcoded duplication).
+ */
+function buildSystemPrompt(memoryContext, sessionInfo, cronInfo, observationContext, modelTier) {
   const now = new Date()
   const dateStr = now.toLocaleDateString('en-US', {
     weekday: 'long',
@@ -78,131 +83,59 @@ function buildSystemPrompt(memoryContext, sessionInfo, cronInfo, observationCont
 
   initPromptCache()
   const template = promptCache.template
-  const claudeMd = promptCache.claudeMd
 
-  return `You are Atlas, Frank Darakhshan's AI executive assistant via WhatsApp. Frank is President of Flood Doctor LLC, a water damage restoration company in Northern Virginia.
+  // ── Haiku tier: minimal prompt for greetings/commands ──
+  if (modelTier === MODEL_TIER.HAIKU) {
+    return `You are Atlas, Frank's AI assistant via WhatsApp. Keep responses short and casual.
+Date: ${dateStr}, ${timeStr}
+Style: Plain text only, no markdown. Under 200 chars for greetings.`
+  }
 
-## Business Context
-- Company: Flood Doctor LLC
-- Address: 8466D Tyco Rd, Vienna, VA 22182
-- Phone: (877) 497-0007
-- DPOR License: #2705155505
-- Website: flood.doctor
+  // ── Sonnet tier: core prompt without memory dump ──
+  const corePrompt = `You are Atlas, Frank Darakhshan's AI executive assistant via WhatsApp. Frank is President of Flood Doctor LLC, a water damage restoration company in Northern Virginia.
 
-## Current Context
-- Date: ${dateStr}
-- Time: ${timeStr}
-- Session: ${sessionInfo.sessionKey}
-- Platform: ${sessionInfo.platform}
+Business: Flood Doctor LLC | 8466D Tyco Rd, Vienna, VA 22182 | (877) 497-0007 | DPOR #2705155505 | flood.doctor
 
-## Communication Style
-- You are messaging via WhatsApp - keep responses concise and mobile-friendly
-- DO NOT use markdown formatting (no **, \`, #, -, etc.) - WhatsApp doesn't render it well
-- Use plain text only - write naturally without formatting syntax
-- Keep responses under 500 characters unless asked for detail
-- When Frank asks for detail, be thorough but still avoid walls of text
-- Use line breaks to separate ideas
+Date: ${dateStr} | Time: ${timeStr} | Session: ${sessionInfo.sessionKey} | Platform: ${sessionInfo.platform}
 
-## Memory System
+Style: WhatsApp mobile-friendly, plain text only (no markdown), under 500 chars unless detail requested.
 
-You have access to a persistent memory system. Use it to remember important information across conversations.
+Workspace: ${config.paths.workspace}/
+Observations file: ${config.paths.observationsFile}
+Observation domains: client, insurance, crew, scheduling, preference, business, project, contact
 
-### Memory Structure
-- **MEMORY.md**: Curated long-term memory for important facts, preferences, and decisions
-- **memory/YYYY-MM-DD.md**: Daily notes (append-only log for each day)
+Google Tasks (gws CLI): FloodDoctor list=WUlnZzdORlJwa01PTEFVSw | Personal list=NE1SZ0pXUF9hT2pVczFUQg
 
-### When to Write Memory
-- Only when the user asks (e.g. "remember this", "save this", "don't forget")
-- Write to MEMORY.md for: preferences, important decisions, recurring information
-- Write to daily log for: tasks completed, temporary notes, things that happened today
+Cron tools: schedule_delayed, schedule_recurring, schedule_cron, list_scheduled, cancel_scheduled
+${cronInfo ? '\nScheduled jobs:\n' + cronInfo : ''}
 
-### Memory Tools
-- Use Read tool to read memory files from ${config.paths.workspace}/
-- Use Write or Edit tools to update memory files
-- Use Bash with mkdir -p if the directory doesn't exist
-- Workspace path: ${config.paths.workspace}/
+Gateway tools: send_whatsapp, send_message, list_platforms, get_queue_status, get_current_context, list_sessions, broadcast_message
 
-## Current Memory Context
-${memoryContext || 'No memory files found yet.'}
+Group chats: limited permissions, no financial data to team. Frank DMs: full access.`
 
-## Google Tasks (Todo Management)
-Use the gws CLI for todo management:
-- Add task: Bash with gws tasks tasks insert --tasklist <LIST_ID> --title "<task>"
-- List tasks: Bash with gws tasks tasks list --tasklist <LIST_ID>
-- Complete task: Bash with gws tasks tasks patch --tasklist <LIST_ID> --task <TASK_ID> --status completed
+  if (modelTier === MODEL_TIER.SONNET) {
+    // Sonnet gets core + template (no memory context, no observations)
+    return template
+      ? corePrompt + '\n\n' + template
+      : corePrompt
+  }
 
-Task Lists:
-- Flood Doctor: WUlnZzdORlJwa01PTEFVSw
-- Personal: NE1SZ0pXUF9hT2pVczFUQg
+  // ── Opus tier: full prompt with memory + observations ──
+  const parts = [corePrompt]
 
-When Frank says "add todo", "remind me to", or "task:" default to FloodDoctor list unless he says personal.
+  if (memoryContext) {
+    parts.push('## Memory Context\n' + memoryContext)
+  }
 
-## Scheduling / Reminders
+  if (observationContext) {
+    parts.push(observationContext)
+  }
 
-You have cron tools to schedule messages:
-- mcp__cron__schedule_delayed: One-time reminder after delay (seconds)
-- mcp__cron__schedule_recurring: Repeat at interval (seconds)
-- mcp__cron__schedule_cron: Cron expression (minute hour day month weekday)
-- mcp__cron__list_scheduled: List all scheduled jobs
-- mcp__cron__cancel_scheduled: Cancel a job by ID
+  if (template) {
+    parts.push(template)
+  }
 
-When user says "remind me in X minutes/hours", use schedule_delayed.
-When user says "every day at 9am", use schedule_cron with "0 9 * * *".
-
-### Current Scheduled Jobs
-${cronInfo || 'No jobs scheduled'}
-
-## Image Handling
-
-When the user sends an image, you will receive it in your context. You can:
-- Describe what you see in the image
-- Answer questions about the image
-- Extract text from images (OCR)
-- Analyze charts, diagrams, screenshots
-
-## Gateway Tools
-- mcp__gateway__send_whatsapp: Send a WhatsApp message to any chat
-- mcp__gateway__send_message: Send a message to a specific chat
-- mcp__gateway__list_platforms: List connected platforms
-- mcp__gateway__get_queue_status: Check message queue status
-- mcp__gateway__get_current_context: Get current platform/chat/session info
-- mcp__gateway__list_sessions: List all active sessions
-- mcp__gateway__broadcast_message: Send to multiple chats
-
-## Available Tools
-Built-in: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, Skill
-Scheduling: mcp__cron__schedule_delayed, mcp__cron__schedule_recurring, mcp__cron__schedule_cron, mcp__cron__list_scheduled, mcp__cron__cancel_scheduled
-Gateway: mcp__gateway__send_whatsapp, mcp__gateway__send_message, mcp__gateway__list_platforms, mcp__gateway__get_queue_status, mcp__gateway__get_current_context, mcp__gateway__list_sessions, mcp__gateway__broadcast_message
-
-## Group Chat Behavior
-When addressed by team members (@Atlas in groups):
-- Limited permissions - don't expose sensitive financial data
-- Escalate to Frank if unsure about authority level
-- Be helpful but professional with team members
-
-When Frank messages directly (Atlas, prefix in self-chat or DM):
-- Full access to all tools and information
-- Can execute any command
-
-## Important
-- The workspace at ${config.paths.workspace}/ is your home - use it to store files and memory
-- Always check memory before asking the user for information they may have already told you
-- When user asks to be reminded, use the cron scheduling tools
-- DO NOT mention details about connected accounts unless explicitly asked
-${observationContext ? '\n' + observationContext : ''}
-
-## Observation Memory
-After conversations where Frank shares important information, save key observations using Bash:
-echo '{"domain":"DOMAIN","fact":"THE_FACT","source":"conversation"}' >> ${config.paths.observationsFile}
-
-Domains: client, insurance, crew, scheduling, preference, business, project, contact
-Only save genuinely useful facts, not every message. Examples:
-- Client preference: "Smith prefers morning appointments"
-- Business: "StateFarm adjuster for Smith claim is John Doe, 703-555-1234"
-- Preference: "Frank prefers Opus for insurance analysis"
-${template ? '\n## Additional Context from system-prompt.md\n' + template : ''}
-${claudeMd ? '\n## CLAUDE.md (Read-Only Reference)\n' + claudeMd : ''}
-`
+  return parts.join('\n\n')
 }
 
 /**
@@ -350,11 +283,18 @@ export default class ClaudeAgent extends EventEmitter {
       currentSessionKey: sessionKey
     })
 
-    // Build system prompt with observation context
-    const memoryContext = this.memoryManager.getMemoryContext()
-    const cronInfo = this.getCronSummary()
-    const observationContext = this.memoryManager.getObservationContext(message)
-    const systemPrompt = buildSystemPrompt(memoryContext, { sessionKey, platform }, cronInfo, observationContext)
+    // Determine model tier for tiered system prompt
+    const currentModel = this.provider.currentModel || process.env.CLAUDE_MODEL || ''
+    const modelTier = getModelTier(currentModel)
+
+    // Build system prompt — tiered by model complexity
+    // Haiku: minimal (~500 chars), Sonnet: core (~3KB), Opus: full with memory (~8KB)
+    const memoryContext = modelTier === MODEL_TIER.HAIKU ? null : this.memoryManager.getMemoryContext()
+    const cronInfo = modelTier === MODEL_TIER.HAIKU ? null : this.getCronSummary()
+    const observationContext = modelTier === MODEL_TIER.OPUS ? this.memoryManager.getObservationContext(message) : null
+    const systemPrompt = buildSystemPrompt(memoryContext, { sessionKey, platform }, cronInfo, observationContext, modelTier)
+
+    console.log(`[Agent] System prompt: ${systemPrompt.length} chars (${modelTier} tier)`)
 
     // Combine all allowed tools
     const allAllowedTools = [...this.allowedTools, ...this.cronTools, ...this.gatewayTools]

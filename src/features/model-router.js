@@ -18,47 +18,53 @@ const SIMPLE_PATTERNS = [
 ]
 
 // Patterns that indicate complex reasoning (Opus-eligible)
+// Narrowed: removed code/debug/implement/refactor/optimize (delegate to CC)
+// Removed: write me a/draft a/compose a (Sonnet handles drafting fine)
 const COMPLEX_PATTERNS = [
-  /\b(analyze|analysis|compare|evaluate|review|audit|strategy|plan|design|architect)\b/i,
-  /\b(write me a|draft a|compose a|create a detailed|prepare a)\b/i,
+  /\b(analyze|analysis|compare|evaluate|audit|strategy|architect)\b/i,
   /\b(explain why|how does .+ work|what are the pros and cons|break down)\b/i,
-  /\b(insurance claim|xactimate|scope|estimate|line item)\b/i,
-  /\b(code|debug|implement|refactor|optimize)\b/i,
+  /\b(insurance claim|xactimate|scope sheet|estimate review|line item)\b/i,
+  /\b(create a detailed|prepare a comprehensive)\b/i,
 ]
 
 // Word count thresholds
-const SHORT_MSG_WORDS = 8
-const LONG_MSG_WORDS = 50
+const SHORT_MSG_WORDS = 8   // Haiku gate: up to 8 words for simple messages
+const LONG_MSG_WORDS = 150  // Opus gate: 150+ words (was 50)
 
 /**
  * Classify a message and return the optimal model
- * Default is Sonnet. Haiku only for pure greetings. Opus for analysis.
+ * Default is Sonnet. Haiku for greetings/commands. Opus only for genuine analysis.
  */
 export function classifyMessage(text) {
   const trimmed = text.trim()
   const wordCount = trimmed.split(/\s+/).length
 
-  // Only pure greetings/acknowledgments → Haiku (nothing that requires context)
+  // Pure greetings/acknowledgments/commands → Haiku (expanded to 8 words)
   for (const pattern of SIMPLE_PATTERNS) {
-    if (pattern.test(trimmed) && wordCount <= 4 && !trimmed.startsWith('/')) {
+    if (pattern.test(trimmed) && wordCount <= SHORT_MSG_WORDS && !trimmed.startsWith('/')) {
       return { model: HAIKU, reason: 'greeting' }
     }
   }
 
-  // Complex pattern match → Opus
+  // Slash commands always Haiku (routing handled by command handler)
+  if (trimmed.startsWith('/')) {
+    return { model: HAIKU, reason: 'command' }
+  }
+
+  // Complex pattern match → Opus (narrowed patterns)
   for (const pattern of COMPLEX_PATTERNS) {
     if (pattern.test(trimmed)) {
       return { model: OPUS, reason: 'complex' }
     }
   }
 
-  // Long messages likely need more reasoning → Opus
+  // Very long messages need more reasoning → Opus
   if (wordCount >= LONG_MSG_WORDS) {
     return { model: OPUS, reason: 'long' }
   }
 
-  // Everything else → Opus (Frank wants the best)
-  return { model: OPUS, reason: 'default' }
+  // Everything else → Sonnet (default — handles 80%+ of messages)
+  return { model: SONNET, reason: 'default' }
 }
 
 /**

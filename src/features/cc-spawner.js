@@ -146,14 +146,19 @@ function spawnCCSession(taskDescription, gateway) {
     pid: null
   })
 
-  // Spawn claude CLI in non-interactive mode
+  // Spawn claude CLI — uses Max subscription (no API key = free)
+  // Strip ANTHROPIC_API_KEY so CC uses Max subscription instead of burning API tokens
+  const spawnEnv = { ...process.env }
+  delete spawnEnv.ANTHROPIC_API_KEY
+
   const proc = spawn('claude', [
-    '--print',
+    '--yes',
     '--dangerously-skip-permissions',
+    '--max-turns', '30',
     prompt
   ], {
     cwd: PROJECT_ROOT,
-    env: { ...process.env, ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY },
+    env: spawnEnv,
     stdio: ['pipe', 'pipe', 'pipe']
   })
 
