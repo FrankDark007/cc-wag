@@ -25,8 +25,9 @@ export default class BaseAdapter {
    * Send a message to a chat
    * @param {string} chatId - The chat identifier
    * @param {string} text - The message text to send
+   * @param {object} [options] - Optional: { contentSid, contentVariables, template }
    */
-  async sendMessage(chatId, text) {
+  async sendMessage(chatId, text, options = {}) {
     throw new Error('sendMessage() must be implemented by subclass')
   }
 

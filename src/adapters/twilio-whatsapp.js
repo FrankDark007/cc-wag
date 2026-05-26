@@ -58,18 +58,43 @@ export default class TwilioWhatsAppAdapter extends BaseAdapter {
   }
 
   /**
-   * Send a message via Twilio REST API
+   * Resolve a template name to a Twilio Content SID from env vars.
+   * Template "atlas_status_update" -> env TWILIO_TPL_ATLAS_STATUS_UPDATE
    */
-  async sendMessage(chatId, text) {
+  resolveTemplateSid(templateName) {
+    const envKey = `TWILIO_TPL_${templateName.toUpperCase()}`
+    return process.env[envKey] || ''
+  }
+
+  /**
+   * Send a message via Twilio REST API.
+   * @param {string} chatId - Recipient (phone@s.whatsapp.net format)
+   * @param {string} text - Message body (used when no template)
+   * @param {object} [options] - Optional template params:
+   *   contentSid: explicit Twilio Content SID (HX...)
+   *   contentVariables: object of template variables
+   *   template: template name resolved via TWILIO_TPL_* env vars
+   */
+  async sendMessage(chatId, text, options = {}) {
     const phone = chatId.replace('@s.whatsapp.net', '').replace(/^(\d)/, '+$1')
     const from = `whatsapp:${this.whatsappNumber}`
     const to = `whatsapp:${phone}`
 
-    const params = new URLSearchParams({
-      From: from,
-      To: to,
-      Body: text
-    })
+    let contentSid = options.contentSid || ''
+    if (!contentSid && options.template) {
+      contentSid = this.resolveTemplateSid(options.template)
+      if (!contentSid) {
+        throw new Error(`Template "${options.template}" has no Content SID configured (set TWILIO_TPL_${options.template.toUpperCase()})`)
+      }
+    }
+
+    const params = new URLSearchParams({ From: from, To: to })
+    if (contentSid) {
+      params.set('ContentSid', contentSid)
+      params.set('ContentVariables', JSON.stringify(options.contentVariables || {}))
+    } else {
+      params.set('Body', text)
+    }
 
     const response = await fetch(
       `https://api.twilio.com/2010-04-01/Accounts/${this.accountSid}/Messages.json`,
