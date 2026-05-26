@@ -45,6 +45,7 @@ Full project context, architecture, feature inventory, priorities, and operation
 ```
 
 Additional planning docs:
+- `.planning/MINI2-PRODUCTION-ACTIVATION.md` — **Production activation checklist** for mini2 deployment
 - `.planning/META-WHATSAPP-SENDER-GUIDE.md` — **Operator guide** for Frank to register the WhatsApp sender (P0 blocker)
 - `.planning/META-WHATSAPP-SUBMISSION.md` — Technical playbook for the sender registration
 - `.planning/ATLAS-EVOLUTION-ROADMAP.md` — Current forward-looking roadmap (supersedes stale master roadmap)
