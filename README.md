@@ -39,7 +39,8 @@ Full project context, architecture, feature inventory, priorities, and operation
 ```
 
 Additional planning docs:
-- `.planning/META-WHATSAPP-SUBMISSION.md` — Meta/Twilio sender registration playbook
+- `.planning/META-WHATSAPP-SENDER-GUIDE.md` — **Operator guide** for Frank to register the WhatsApp sender (P0 blocker)
+- `.planning/META-WHATSAPP-SUBMISSION.md` — Technical playbook for the sender registration
 - `.planning/ATLAS-MASTER-ROADMAP.md` — Phase roadmap (Phases 1-6 shipped, doc is stale)
 - `.claude/CLAUDE.md` — Architecture notes and design decisions
 
