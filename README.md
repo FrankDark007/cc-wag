@@ -9,15 +9,21 @@ Node.js daemon bridging WhatsApp and the Claude Agent SDK. Built for Frank Darak
 - **Feature-complete** plugin system: 44 feature files under `src/features/`
 - **Twilio** is the production WhatsApp adapter (`WHATSAPP_ADAPTER=twilio`)
 - **Baileys** is legacy/sandbox (WhatsApp Web reverse-engineered client)
-- **59 tests** passing across 4 test files (vitest)
+- **88 tests** passing across 7 test files (vitest)
 - **Production blocker:** Meta WhatsApp Business Sender registration not yet submitted. Twilio Senders array is empty. Requires Frank to complete Facebook OAuth (not delegatable to AI). See `.planning/META-WHATSAPP-SUBMISSION.md`.
 - **Security debt:** 4 credentials were exposed in a prior session context. Must be rotated on the vendor dashboards and in `.env` on the production machine.
 
-## Repository paths
+## Deployment target
 
-- **Production daemon path:** `/Users/ghost/Projects/cc-wag` (Mac Mini M4 Pro, user `ghost`)
-- **This clone may be elsewhere**, e.g. `/Users/ghost2/Projects/cc-wag` (Mac Mini M4, user `ghost2`)
-- **Absolute `/Users/ghost/Projects/cc-wag` paths in code are intentional.** The daemon runs on the primary machine. Do not "fix" these paths unless the handoff document says otherwise.
+Atlas runs on **mini2** (Mac Mini M4, user `ghost2`). The repo can be cloned anywhere — all runtime paths are machine-agnostic.
+
+## Path policy
+
+- **Repo root** is derived automatically from `import.meta.url` in `src/config.js`.
+- **`ATLAS_PROJECT_ROOT`** env var overrides the auto-detected root if set.
+- **Do not hardcode** `/Users/ghost/` or `/Users/ghost2/` in runtime code or scripts.
+- **`config/launchd/*.plist`** files are deployment templates — replace absolute paths with the current machine's repo path before installing.
+- **Shell scripts** derive their own root via `SCRIPT_DIR` + `ATLAS_PROJECT_ROOT` fallback.
 
 ## First commands for a new agent
 
@@ -41,7 +47,8 @@ Full project context, architecture, feature inventory, priorities, and operation
 Additional planning docs:
 - `.planning/META-WHATSAPP-SENDER-GUIDE.md` — **Operator guide** for Frank to register the WhatsApp sender (P0 blocker)
 - `.planning/META-WHATSAPP-SUBMISSION.md` — Technical playbook for the sender registration
-- `.planning/ATLAS-MASTER-ROADMAP.md` — Phase roadmap (Phases 1-6 shipped, doc is stale)
+- `.planning/ATLAS-EVOLUTION-ROADMAP.md` — Current forward-looking roadmap (supersedes stale master roadmap)
+- `.planning/ATLAS-MASTER-ROADMAP.md` — Original phase roadmap (historical, Phases 1-6 shipped)
 - `.claude/CLAUDE.md` — Architecture notes and design decisions
 
 ## Non-negotiable rules
@@ -53,7 +60,7 @@ Additional planning docs:
 5. **Read files before editing.**
 6. **Plugin isolation:** `src/features/` files must not import from each other. Each feature exports `register(gateway)` and is independently removable.
 7. **Node >= 22**, ESM only, `.js` import extensions required.
-8. **Absolute paths in code** (`/Users/ghost/Projects/cc-wag/...`).
+8. **Machine-agnostic paths.** Never hardcode `/Users/ghost/` or `/Users/ghost2/`. Use `config.paths.*` or script `$PROJECT_ROOT`.
 9. **Never claim done without verification.** Build passes, tests green, imports resolve.
 
 ## Verification checklist

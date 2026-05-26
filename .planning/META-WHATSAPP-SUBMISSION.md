@@ -73,8 +73,8 @@ This is where you were previously blocked. Here's the fix — Atlas captures it 
 **SMS path (primary):**
 - Meta sends a 6-digit code via SMS to `+15715821100`
 - Twilio routes it to webhook `https://atlas.vaserv.pro/webhook/twilio`
-- Gateway fallback handler writes it to `/Users/ghost/Projects/cc-wag/workspace/sms-inbox.log`
-- Watch for it with: `tail -f /Users/ghost/Projects/cc-wag/workspace/sms-inbox.log`
+- Gateway fallback handler writes it to `$PROJECT_ROOT/workspace/sms-inbox.log`
+- Watch for it with: `tail -f $PROJECT_ROOT/workspace/sms-inbox.log`
 
 **Voice path (if SMS delayed >60s):**
 - In the Meta popup click **Call me instead**
@@ -124,7 +124,7 @@ Atlas, are you online?
 
 Expected flow (watch the logs):
 ```bash
-tail -f /Users/ghost/Projects/cc-wag/logs/gateway.log
+tail -f $PROJECT_ROOT/logs/gateway.log
 ```
 Should see: `[WHATSAPP] Incoming message:` → `[Agent] Using tool: Skill` → `[Queue] Completed` → reply arrives in your WhatsApp within ~10 s.
 
@@ -215,7 +215,7 @@ Most common rejection reasons and remedies:
 - [ ] Meta Business Manager exists (or you're ready to create one)
 - [ ] LLC Certificate of Organization PDF saved locally
 - [ ] Utility bill or bank statement in LLC name saved locally
-- [ ] `tail -f /Users/ghost/Projects/cc-wag/workspace/sms-inbox.log` open in a terminal to watch for OTP
+- [ ] `tail -f $PROJECT_ROOT/workspace/sms-inbox.log` open in a terminal to watch for OTP
 - [ ] Gateway is up: `curl -s http://localhost:4096/health` returns `"connected":true`
 - [ ] Tunnel is up: `curl -s https://atlas.vaserv.pro/health` returns the same JSON
 - [ ] Display name decision: `Flood Doctor` (primary), `Flood Doctor LLC` (fallback)
@@ -243,7 +243,7 @@ When every box is ticked, Path A end-to-end takes 15–60 min of real attention.
 ## One-command pre-flight
 
 ```bash
-bash /Users/ghost/Projects/cc-wag/scripts/preflight-meta-submission.sh
+bash $PROJECT_ROOT/scripts/preflight-meta-submission.sh
 ```
 
 This script (to be added) runs every readiness check and reports PASS/FAIL. Say the word and I'll write it.

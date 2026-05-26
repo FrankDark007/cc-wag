@@ -67,7 +67,7 @@ In the Meta popup, you will be prompted in this order:
 
 Open a terminal on the production machine:
 ```bash
-tail -f /Users/ghost/Projects/cc-wag/workspace/sms-inbox.log
+tail -f $PROJECT_ROOT/workspace/sms-inbox.log
 ```
 
 When Meta sends the 6-digit code, it appears here within seconds. Type it into the Meta popup.
@@ -165,7 +165,7 @@ After webhook is wired:
 
 Watch logs during the test:
 ```bash
-tail -f /Users/ghost/Projects/cc-wag/logs/gateway.log
+tail -f $PROJECT_ROOT/logs/gateway.log
 ```
 
 Expected: `[WHATSAPP] Incoming message:` > `[Agent] Using tool:` > `[Queue] Completed` > reply in WhatsApp within ~10-15 seconds.

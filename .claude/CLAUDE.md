@@ -57,13 +57,13 @@ Delete any feature file → Atlas works without it. Zero coupling.
 
 - WhatsApp only (no telegram/signal/imessage adapters)
 - Plugin architecture: each feature = 1 isolated file
-- Smart model routing: Haiku for simple, Sonnet default, Opus for analysis
+- Smart model routing: Haiku for trivial, Opus for everything else (default)
 - Observation memory: JSONL-based, keyword search, auto-injected context
 - Self-chat mode: Frank messages himself with "Atlas," prefix to trigger the agent
 - Google Tasks via `gws` CLI (not Notion, not MCP)
 - Claude provider only (no opencode provider)
 - ESM modules throughout (.js extensions in imports)
-- Absolute paths for file operations
+- Machine-agnostic paths (derived from import.meta.url, override with ATLAS_PROJECT_ROOT)
 - Node >= 22 required
 
 ## Self-Chat Flow
@@ -76,11 +76,15 @@ Delete any feature file → Atlas works without it. Zero coupling.
 
 ## Important Paths
 
-- Workspace: /Users/ghost/Projects/cc-wag/workspace/
-- Auth: /Users/ghost/Projects/cc-wag/auth_whatsapp/
-- Transcripts: /Users/ghost/Projects/cc-wag/transcripts/
-- Cron jobs: /Users/ghost/Projects/cc-wag/workspace/cron-jobs.json
-- CLAUDE.md (global): ~/.claude/CLAUDE.md
+All paths are relative to project root (auto-detected or set via `ATLAS_PROJECT_ROOT`):
+
+- Workspace: `workspace/`
+- Auth: `auth_whatsapp/`
+- Transcripts: `transcripts/`
+- Cron jobs: `workspace/cron-jobs.json`
+- CLAUDE.md (global): `~/.claude/CLAUDE.md`
+
+Deployment target: mini2 (Mac Mini M4, user ghost2).
 
 ## Google Tasks List IDs
 
