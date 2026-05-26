@@ -4,11 +4,7 @@
  * - Haiku: greetings, short questions, confirmations, simple lookups
  * - Sonnet: most messages (default) — tasks, emails, scheduling
  * - Opus: analysis, planning, multi-step reasoning, long documents
- *
- * Integrates with task-planner: complex/batch tasks auto-route to Opus.
  */
-
-import { classifyComplexity } from './task-planner.js'
 
 const HAIKU = 'claude-haiku-4-5-20251001'
 const SONNET = 'claude-sonnet-4-5-20250929'
@@ -22,14 +18,34 @@ const SIMPLE_PATTERNS = [
 ]
 
 // Patterns that indicate complex reasoning (Opus-eligible)
-// Narrowed: removed code/debug/implement/refactor/optimize (delegate to CC)
-// Removed: write me a/draft a/compose a (Sonnet handles drafting fine)
 const COMPLEX_PATTERNS = [
   /\b(analyze|analysis|compare|evaluate|audit|strategy|architect)\b/i,
   /\b(explain why|how does .+ work|what are the pros and cons|break down)\b/i,
   /\b(insurance claim|xactimate|scope sheet|estimate review|line item)\b/i,
   /\b(create a detailed|prepare a comprehensive)\b/i,
 ]
+
+// Batch/sequence patterns for task complexity (inlined from task-planner)
+const BATCH_PATTERNS = [
+  /\ball\s+(overdue|pending|unpaid|outstanding)\b/i,
+  /\bevery\s+(adjuster|client|job|invoice|claim)\b/i,
+  /\ball\s+jobs?\s+that\b/i,
+  /\bnudge\s+all\b/i,
+  /\bfollow\s+up\s+with\s+(all|every)\b/i,
+  /\bsend\s+(all|each|every)\b/i,
+  /\bprepare\s+(all|each|every)\b/i,
+]
+
+const SEQUENCE_PATTERNS = [
+  /\bthen\b/i,
+  /\bafter\s+that\b/i,
+  /\band\s+also\b/i,
+  /\band\s+then\b/i,
+  /\bfirst\b.*\bthen\b/i,
+  /\bonce\s+(done|finished|complete)\b/i,
+]
+
+const ACTION_VERBS = /\b(send|email|draft|call|check|scan|review|prepare|create|update|nudge|follow|schedule|analyze|compile|generate|notify|alert|remind)\b/gi
 
 // Word count thresholds
 const SHORT_MSG_WORDS = 8   // Haiku gate: up to 8 words for simple messages
@@ -67,13 +83,24 @@ export function classifyMessage(text) {
     return { model: OPUS, reason: 'long' }
   }
 
-  // Task planner integration: complex/batch tasks → Opus
-  try {
-    const taskClassification = classifyComplexity(trimmed)
-    if (taskClassification.complex) {
-      return { model: OPUS, reason: `task-planner:${taskClassification.type}` }
+  // Batch/sequence detection: complex tasks → Opus
+  for (const pattern of BATCH_PATTERNS) {
+    if (pattern.test(trimmed)) {
+      return { model: OPUS, reason: 'batch' }
     }
-  } catch { /* task-planner may not be loaded yet */ }
+  }
+  for (const pattern of SEQUENCE_PATTERNS) {
+    if (pattern.test(trimmed)) {
+      return { model: OPUS, reason: 'sequence' }
+    }
+  }
+  if (wordCount > 40) {
+    const verbMatches = trimmed.match(ACTION_VERBS) || []
+    const uniqueVerbs = new Set(verbMatches.map(v => v.toLowerCase()))
+    if (uniqueVerbs.size >= 2) {
+      return { model: OPUS, reason: 'multi-action' }
+    }
+  }
 
   // Everything else → Sonnet (default — handles 80%+ of messages)
   return { model: SONNET, reason: 'default' }
