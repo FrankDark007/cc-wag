@@ -202,7 +202,89 @@ Atlas is currently reactive (responds when messaged) except for cron jobs. Make 
 - Daily cron: HTTP health check on all 13 city sites
 - Alert if any site returns non-200 or cert expires within 14 days
 
-### 3.5 SEO pulse integration
+### 3.5 Structured Client Knowledge Pipeline
+
+**Purpose:** Atlas should deeply understand Frank's business context — clients, invoices, adjuster responses, workflow patterns, claim status — without loading raw emails into every prompt.
+
+**Core principle:** Extract once, query forever. Do not stuff raw Gmail/email threads into model context.
+
+#### Three-tier knowledge architecture
+
+**Tier 1 — Always-loaded business snapshot (< strict token cap)**
+- Active client count, total open invoices, broad outstanding dollar range, this week's deadlines, top urgent items.
+- Injected dynamically at runtime, not hardcoded into `config/system-prompt.md`.
+- Stable system prompt stays stable. Volatile business state belongs in runtime context injection.
+
+**Tier 2 — Structured client/job files (loaded on demand)**
+- One JSON file per client/job: `workspace/clients/{client-slug}.json`
+- Master lookup: `workspace/clients-index.json`
+- Atlas loads relevant client file only when Frank mentions a client name, job number, address, adjuster, or insurer.
+- Fields: schema_version, client_slug, name, job_address, insurance_company, adjuster_name, adjuster_contact, loss_date, key dates, line_items_count, total_submitted_range, total_paid, dispute info, last_communication_date, last_communication_summary, notes, last_indexed_at, sources.
+
+**Tier 3 — Raw archive (accessed rarely)**
+- Full Gmail threads remain in Gmail.
+- Access raw messages only when exact wording, direct quotes, or verification are required.
+- Use `gws-frankd gmail` commands to fetch specific messages/threads on demand.
+- Do not store raw email bodies in always-loaded context or client JSON files.
+
+#### Planned features (do not build until after mini2 production activation)
+
+1. **`src/features/client-indexer.js`**
+   - Plugin contract: `export function register(gateway)`
+   - Manual commands first: `/reindex recent`, `/reindex client <name>`, `/reindex all`
+   - Weekly cron only after manual commands are proven.
+   - Uses `gws-frankd` with scoped Gmail queries (last 90 days).
+   - Groups threads by client/job using subject patterns, known addresses, `workspace/jobs.json`.
+   - Extracts structured fields into `workspace/clients/{slug}.json`.
+   - Uses Gemini Flash for cheap extraction if `GEMINI_API_KEY` is available; regex/heuristic fallback otherwise.
+   - Stores source pointers, not raw email bodies.
+
+2. **`src/features/knowledge-loader.js`**
+   - Plugin contract: `export function register(gateway)`
+   - Hooks into agent context pipeline before Claude sees the message.
+   - Scans Frank's message for client names, job numbers, addresses, adjusters, insurers.
+   - If match in `workspace/clients-index.json`, loads that client/job JSON into runtime context.
+   - Injects Tier 1 business snapshot into runtime context.
+   - Does NOT import `client-indexer.js`. Shared file format, zero feature coupling.
+
+3. **`workspace/knowledge/` manually curated files (future)**
+   - `pushback-patterns.json` — common adjuster objections + proven responses.
+   - `workflow-rules.json` — pricing logic, escalation criteria, lien thresholds, IICRC references.
+   - `voice-guide.md` — Frank's writing style (measured, direct, email-first).
+   - Manually curated or separately reviewed, not auto-generated from emails.
+
+#### Cost strategy
+- Gemini Flash for bulk extraction, not Opus.
+- Opus only for high-value reasoning and final drafting.
+- Load 500–5,000 tokens from structured client JSON when relevant, instead of 100K+ raw email tokens.
+- Reindex on demand first, then weekly cron later.
+- Raw Gmail access only for exact quotes or verification.
+
+#### Design constraints
+- 1 feature = 1 file = 1 commit. No cross-feature imports.
+- Delete `client-indexer.js` → Atlas still works. Delete `knowledge-loader.js` → Atlas still works.
+- `client-indexer.js` writes JSON. `knowledge-loader.js` reads JSON. Shared format, not code.
+- All paths through `config.paths`.
+- No raw Gmail context stuffing. No secrets in JSON files.
+- Source pointers required for important extracted claims.
+- `schema_version` in every generated JSON file.
+
+#### Guardrails
+- Build only after mini2 production activation is complete.
+- Do not modify `config/system-prompt.md` to include volatile client data directly.
+- Runtime context injection handles daily/client knowledge.
+- Start with manual `/reindex` commands before weekly cron.
+- Include `schema_version` and source pointers from day one.
+- Keep Tier 1 snapshot under a strict token cap (target: <2K tokens).
+
+#### Existing assets to leverage
+- `workspace/jobs.json` — 60+ jobs already imported from Drive.
+- `workspace/xactimate-kb/` — Xactimate line items and scope templates.
+- `src/features/email-watcher.js` — Gmail query patterns (reference only, do not import).
+- `src/memory/manager.js` — complementary observation memory.
+- `flood-doctor-comms` skill — voice samples and IICRC references.
+
+### 3.6 SEO pulse integration
 - Connect to Mission Control's GSC data (if MC is running on primary Mac, Atlas on mini2 can hit `http://<primary-ip>:3001/api/`)
 - Daily cron: check for position drops > 5 on tracked keywords
 - Weekly summary: top gainers/losers, new keywords ranking
