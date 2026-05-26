@@ -251,6 +251,7 @@ class Gateway {
             accountSid: process.env.TWILIO_ACCOUNT_SID,
             authToken: process.env.TWILIO_AUTH_TOKEN,
             whatsappNumber: process.env.TWILIO_WHATSAPP_NUMBER,
+            webhookUrl: process.env.TWILIO_WEBHOOK_URL,
             allowedDMs: config.whatsapp.allowedDMs,
             allowedGroups: config.whatsapp.allowedGroups,
             respondToMentionsOnly: config.whatsapp.respondToMentionsOnly,

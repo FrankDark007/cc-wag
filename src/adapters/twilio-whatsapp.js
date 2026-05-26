@@ -1,3 +1,4 @@
+import crypto from 'crypto'
 import fs from 'fs'
 import path from 'path'
 import BaseAdapter from './base.js'
@@ -12,7 +13,8 @@ export default class TwilioWhatsAppAdapter extends BaseAdapter {
     super(config)
     this.accountSid = config.accountSid
     this.authToken = config.authToken
-    this.whatsappNumber = config.whatsappNumber // e.g. +14155238886
+    this.whatsappNumber = config.whatsappNumber
+    this.webhookUrl = config.webhookUrl || ''
     this.gateway = null // Set by gateway before start()
 
     // Normalize allowedDMs: accept bare numbers, add @s.whatsapp.net if missing
@@ -43,6 +45,11 @@ export default class TwilioWhatsAppAdapter extends BaseAdapter {
 
     console.log(`[Twilio] WhatsApp adapter started (number: ${this.whatsappNumber})`)
     console.log(`[Twilio] Webhook endpoint: POST /webhook/twilio`)
+    if (this.webhookUrl) {
+      console.log(`[Twilio] Signature validation ENABLED (${this.webhookUrl})`)
+    } else {
+      console.log(`[Twilio] Signature validation DISABLED (set TWILIO_WEBHOOK_URL to enable)`)
+    }
   }
 
   async stop() {
@@ -96,6 +103,31 @@ export default class TwilioWhatsAppAdapter extends BaseAdapter {
   }
 
   /**
+   * Validate X-Twilio-Signature per Twilio's HMAC-SHA1 spec.
+   * Returns true if valid, false if invalid. Skips validation when webhookUrl is not set.
+   */
+  validateSignature(signature, url, params) {
+    if (!this.webhookUrl || !this.authToken) return true
+
+    const validationUrl = url || this.webhookUrl
+    const keys = Object.keys(params).sort()
+    let data = validationUrl
+    for (const key of keys) {
+      data += key + params[key]
+    }
+
+    const expected = crypto
+      .createHmac('sha1', this.authToken)
+      .update(data)
+      .digest('base64')
+
+    const sigBuf = Buffer.from(signature || '')
+    const expBuf = Buffer.from(expected)
+    if (sigBuf.length !== expBuf.length) return false
+    return crypto.timingSafeEqual(sigBuf, expBuf)
+  }
+
+  /**
    * Handle incoming Twilio webhook POST
    * Twilio sends application/x-www-form-urlencoded body
    */
@@ -118,6 +150,24 @@ export default class TwilioWhatsAppAdapter extends BaseAdapter {
     req.on('end', () => {
       try {
         const params = new URLSearchParams(body)
+
+        if (this.webhookUrl) {
+          const signature = req.headers['x-twilio-signature'] || ''
+          const paramObj = Object.fromEntries(params)
+          let valid = false
+          try {
+            valid = this.validateSignature(signature, this.webhookUrl, paramObj)
+          } catch {
+            valid = false
+          }
+          if (!valid) {
+            console.warn('[Twilio] Webhook rejected — invalid signature')
+            res.writeHead(403, { 'Content-Type': 'text/plain' })
+            res.end('Forbidden')
+            return
+          }
+        }
+
         const from = params.get('From') || ''       // whatsapp:+17034981581
         const msgBody = params.get('Body') || ''
         const messageSid = params.get('MessageSid') || ''
