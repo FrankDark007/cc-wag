@@ -5,6 +5,9 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "${ATLAS_PROJECT_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 
+# launchd has minimal PATH — add common node locations
+export PATH="$HOME/local/node/bin:$HOME/.fnm:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
+
 # Source .env file
 if [ -f .env ]; then
   set -a
@@ -12,5 +15,4 @@ if [ -f .env ]; then
   set +a
 fi
 
-NODE_BIN="${NODE_BIN:-$(command -v node || echo /opt/homebrew/bin/node)}"
-exec "$NODE_BIN" src/gateway.js
+exec node src/gateway.js
