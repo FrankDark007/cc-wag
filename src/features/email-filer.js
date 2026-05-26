@@ -142,7 +142,7 @@ function matchEmailToJob(from, subject) {
  */
 function findEmailsWithAttachments(state) {
   const query = 'is:unread has:attachment newer_than:1h'
-  const raw = run(`${GWS_WORK} gmail users messages list --q "${query}" --maxResults 10`)
+  const raw = run(`${GWS_WORK} gmail users messages list --params '{"userId":"me","q":"${query}","maxResults":10}'`)
   const parsed = parseJSON(raw)
   if (!parsed) return []
 

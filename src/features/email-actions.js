@@ -186,7 +186,7 @@ function extractActionItem(from, subject, snippet) {
 
 function scanRecentEmails(state) {
   const query = 'is:unread newer_than:2h'
-  const raw = run(`${GWS_WORK} gmail users messages list --q "${query}" --maxResults 20`)
+  const raw = run(`${GWS_WORK} gmail users messages list --params '{"userId":"me","q":"${query}","maxResults":20}'`)
   const parsed = parseJSON(raw)
   if (!parsed) return []
 

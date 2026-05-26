@@ -32,7 +32,7 @@ function run(cmd, timeoutMs = 15000) {
  */
 function getUpcomingEvents() {
   // Get today's events in JSON format
-  const raw = run(`${GWS} calendar events list --calendarId primary --timeMin "${new Date().toISOString()}" --timeMax "${endOfDay()}" --singleEvents true --orderBy startTime --maxResults 10`)
+  const raw = run(`${GWS} calendar events list --params '{"calendarId":"primary","timeMin":"${new Date().toISOString()}","timeMax":"${endOfDay()}","singleEvents":true,"orderBy":"startTime","maxResults":10}'`)
   if (!raw) return []
 
   try {

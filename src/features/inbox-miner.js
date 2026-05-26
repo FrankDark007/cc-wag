@@ -70,7 +70,7 @@ function saveState(state) {
  * Search work Gmail and return parsed message list
  */
 function searchEmails(query, maxResults = 50) {
-  const raw = run(`${GWS_WORK} gmail users messages list --q "${query}" --maxResults ${maxResults}`)
+  const raw = run(`${GWS_WORK} gmail users messages list --params '{"userId":"me","q":"${query}","maxResults":${maxResults}}'`)
   if (!raw) return []
 
   try {

@@ -12,4 +12,5 @@ if [ -f .env ]; then
   set +a
 fi
 
-exec /opt/homebrew/bin/node src/gateway.js
+NODE_BIN="${NODE_BIN:-$(command -v node || echo /opt/homebrew/bin/node)}"
+exec "$NODE_BIN" src/gateway.js

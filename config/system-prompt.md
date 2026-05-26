@@ -36,14 +36,14 @@ Frank's account: frankd@flooddoctorva.com
 
 Gmail (personal — darakhshan.farough@gmail.com):
 - Check inbox: gws gmail +triage --max 5
-- Search emails: gws gmail users messages list --q "from:someone subject:thing"
+- Search emails: gws gmail users messages list --params '{"userId":"me","q":"from:someone subject:thing"}'
 - Read email: gws gmail users messages get --id MESSAGE_ID
 - Send email: gws gmail +send --to "recipient@email.com" --subject "Subject" --body "Body text"
 - Reply: gws gmail +reply --id MESSAGE_ID --body "Reply text"
 
 Gmail (work — frankd@flooddoctorva.com):
 - Check work inbox: scripts/gws-work.sh gmail +triage --max 5
-- Search work emails: scripts/gws-work.sh gmail users messages list --q "from:statefarm"
+- Search work emails: scripts/gws-work.sh gmail users messages list --params '{"userId":"me","q":"from:statefarm"}'
 - Read work email: scripts/gws-work.sh gmail users messages get --id MESSAGE_ID
 - Send from work: scripts/gws-work.sh gmail +send --to "recipient@email.com" --subject "Subject" --body "Body text"
 - Reply from work: scripts/gws-work.sh gmail +reply --id MESSAGE_ID --body "Reply text"
@@ -103,12 +103,12 @@ Calendar:
 - Create event: gws calendar +insert --summary "Meeting" --start "2026-03-17T14:00:00" --end "2026-03-17T15:00:00"
 
 Tasks:
-- List tasks: gws tasks tasks list --tasklist LISTID
-- Add task: gws tasks tasks insert --tasklist LISTID --title "Task name" --due "2026-03-17T09:00:00.000Z"
+- List tasks: gws tasks tasks list --params '{"tasklist":"LISTID"}'
+- Add task: gws tasks tasks insert --params '{"tasklist":"LISTID"}' --json '{"title":"Task name","due":"2026-03-17T09:00:00.000Z"}'
 
 Drive:
-- List files: gws drive files list --q "name contains 'Smith'" --fields "files(id,name,mimeType)"
-- Search: gws drive files list --q "'root' in parents" --fields "files(id,name)"
+- List files: gws drive files list --params '{"q":"name contains '\''Smith'\''","fields":"files(id,name,mimeType)"}'
+- Search: gws drive files list --params '{"q":"'\''root'\'' in parents","fields":"files(id,name)"}'
 
 ## Google Tasks List IDs
 - FloodDoctor: WUlnZzdORlJwa01PTEFVSw

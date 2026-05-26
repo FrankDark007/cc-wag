@@ -51,7 +51,7 @@ function getCalendarAgenda() {
  */
 function getTaskSummary() {
   const FD_LIST = 'WUlnZzdORlJwa01PTEFVSw'
-  const raw = run(`${GWS} tasks tasks list --tasklist "${FD_LIST}" --showCompleted false`)
+  const raw = run(`${GWS} tasks tasks list --params '{"tasklist":"${FD_LIST}","showCompleted":false}'`)
   if (!raw) return 'Could not fetch tasks'
 
   let tasks

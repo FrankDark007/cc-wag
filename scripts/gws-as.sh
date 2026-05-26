@@ -3,6 +3,7 @@
 # Usage: gws-as.sh <account> <gws commands...>
 # Accounts: work, personal, atlas
 
+export GOOGLE_WORKSPACE_CLI_KEYRING_BACKEND=file
 ACCOUNT="$1"
 shift
 

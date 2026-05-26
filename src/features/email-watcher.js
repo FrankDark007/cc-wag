@@ -98,7 +98,7 @@ function isVIP(from, subject) {
 function checkForVIPEmails(state) {
   // Search for unread emails from the last hour
   const query = 'is:unread newer_than:1h'
-  const raw = run(`${GWS_WORK} gmail users messages list --q "${query}" --maxResults 10`)
+  const raw = run(`${GWS_WORK} gmail users messages list --params '{"userId":"me","q":"${query}","maxResults":10}'`)
   if (!raw) return []
 
   let messages
