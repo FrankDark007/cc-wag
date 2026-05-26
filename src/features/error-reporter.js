@@ -20,9 +20,10 @@
 
 import fs from 'fs'
 import path from 'path'
+import config from '../config.js'
 import { scrubSecrets } from '../utils/mask-secrets.js'
 
-const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
+const WORKSPACE = config.paths.workspace
 const ERROR_LOG = path.join(WORKSPACE, 'error-log.json')
 const FRANK_CHAT_ID = '17034981581@s.whatsapp.net'
 const MAX_ERRORS = 200 // keep last 200 errors

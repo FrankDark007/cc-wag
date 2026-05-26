@@ -2,7 +2,9 @@
 # dispatch-task.sh — Queue a task for the CC dispatcher
 # Usage: dispatch-task.sh "prompt text" [workdir]
 
-QUEUE_DIR="/Users/ghost/Projects/cc-wag/workspace/task-queue"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="${ATLAS_PROJECT_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
+QUEUE_DIR="$PROJECT_ROOT/workspace/task-queue"
 TASK_ID="task_$(date +%s)_$(openssl rand -hex 4)"
 PROMPT="$1"
 WORKDIR="${2:-$HOME}"

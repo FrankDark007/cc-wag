@@ -4,7 +4,8 @@
 
 set -u
 
-PROJECT_ROOT="/Users/ghost/Projects/cc-wag"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="${ATLAS_PROJECT_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 ENV_FILE="$PROJECT_ROOT/.env"
 SMS_LOG="$PROJECT_ROOT/workspace/sms-inbox.log"
 TUNNEL_HOST="atlas.vaserv.pro"

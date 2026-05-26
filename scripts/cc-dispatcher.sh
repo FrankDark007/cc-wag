@@ -2,8 +2,10 @@
 # cc-dispatcher.sh — Watches task queue and launches Claude Code sessions
 # Atlas writes task files, this script picks them up and runs them
 
-QUEUE_DIR="/Users/ghost/Projects/cc-wag/workspace/task-queue"
-LOG_FILE="/Users/ghost/Projects/cc-wag/workspace/task-queue/dispatcher.log"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="${ATLAS_PROJECT_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
+QUEUE_DIR="$PROJECT_ROOT/workspace/task-queue"
+LOG_FILE="$PROJECT_ROOT/workspace/task-queue/dispatcher.log"
 POLL_INTERVAL=30  # seconds between checks
 
 log() {

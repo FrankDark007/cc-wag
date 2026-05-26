@@ -3,13 +3,15 @@
 set -euo pipefail
 
 # Paths
-WORKSPACE="/Users/ghost/Projects/cc-wag/workspace/task-queue"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="${ATLAS_PROJECT_ROOT:-$(cd "$SCRIPT_DIR/../.." && pwd)}"
+WORKSPACE="$PROJECT_ROOT/workspace/task-queue"
 SIGNPOST_LAST_ID="$WORKSPACE/signpost-last-id.txt"
 SERVICE_LAST_ID="$WORKSPACE/service-request-last-id.txt"
 ESCALATION_STATE="$WORKSPACE/escalation-state.json"
 LOG_FILE="$WORKSPACE/lead-watcher.log"
 GATEWAY_URL="${GATEWAY_URL:-http://localhost:4096/api/send}"
-GATEWAY_TOKEN="${GATEWAY_API_TOKEN:-$(grep '^GATEWAY_API_TOKEN=' /Users/ghost/Projects/cc-wag/.env 2>/dev/null | cut -d= -f2)}"
+GATEWAY_TOKEN="${GATEWAY_API_TOKEN:-$(grep '^GATEWAY_API_TOKEN=' "$PROJECT_ROOT/.env" 2>/dev/null | cut -d= -f2)}"
 FRANK_CHAT_ID="17034981581@s.whatsapp.net"
 DAVE_CHAT_ID="12024598844@s.whatsapp.net"
 

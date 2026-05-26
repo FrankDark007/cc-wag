@@ -2,8 +2,8 @@
 # gws-work: Run gws commands against frankd@flooddoctorva.com
 # Uses credential file swapping with shlock (macOS) for concurrency safety
 
-GWS_DIR="/Users/ghost/.config/gws"
-WORK_DIR="/Users/ghost/.config/gws-work"
+GWS_DIR="$HOME/.config/gws"
+WORK_DIR="$HOME/.config/gws-work"
 LOCK_FILE="/tmp/gws-work.lock"
 
 # Trap to restore credentials on interrupt

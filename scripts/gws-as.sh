@@ -6,13 +6,13 @@
 ACCOUNT="$1"
 shift
 
-GWS_DIR="/Users/ghost/.config/gws"
+GWS_DIR="$HOME/.config/gws"
 LOCK_FILE="/tmp/gws-as.lock"
 
 case "$ACCOUNT" in
-  work)    SRC_DIR="/Users/ghost/.config/gws-work" ;;
-  personal) SRC_DIR="/Users/ghost/.config/gws-personal" ;;
-  atlas)   SRC_DIR="/Users/ghost/.config/gws-atlas" ;;
+  work)    SRC_DIR="$HOME/.config/gws-work" ;;
+  personal) SRC_DIR="$HOME/.config/gws-personal" ;;
+  atlas)   SRC_DIR="$HOME/.config/gws-atlas" ;;
   *)
     echo "Usage: gws-as.sh <work|personal|atlas> <gws commands...>" >&2
     exit 1

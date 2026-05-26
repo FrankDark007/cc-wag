@@ -4,10 +4,12 @@ set -euo pipefail
 # Contract Detector for Flood Doctor LLC
 # Detects signed e-sign contracts from Gmail and auto-creates Google Drive client folders
 
-LOG_FILE="/Users/ghost/Projects/cc-wag/workspace/task-queue/contract-detector.log"
-STATE_FILE="/Users/ghost/Projects/cc-wag/workspace/task-queue/contract-detector-last-id.txt"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="${ATLAS_PROJECT_ROOT:-$(cd "$SCRIPT_DIR/../.." && pwd)}"
+LOG_FILE="$PROJECT_ROOT/workspace/task-queue/contract-detector.log"
+STATE_FILE="$PROJECT_ROOT/workspace/task-queue/contract-detector-last-id.txt"
 GATEWAY_URL="${GATEWAY_URL:-http://localhost:4096/api/send}"
-GATEWAY_TOKEN="${GATEWAY_API_TOKEN:-$(grep '^GATEWAY_API_TOKEN=' /Users/ghost/Projects/cc-wag/.env 2>/dev/null | cut -d= -f2)}"
+GATEWAY_TOKEN="${GATEWAY_API_TOKEN:-$(grep '^GATEWAY_API_TOKEN=' "$PROJECT_ROOT/.env" 2>/dev/null | cut -d= -f2)}"
 PARENT_FOLDER_ID="1mS6LDPy5s5Cck3_5lzaLRqdEo0gam5vG"
 FRANK_CHAT_ID="17034981581@s.whatsapp.net"
 

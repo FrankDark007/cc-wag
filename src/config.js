@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url'
 import os from 'os'
 
 const __filename = fileURLToPath(import.meta.url)
-const PROJECT_ROOT = path.resolve(path.dirname(__filename), '..')
+const PROJECT_ROOT = process.env.ATLAS_PROJECT_ROOT || path.resolve(path.dirname(__filename), '..')
 
 const parseList = (env) => env ? env.split(',').map(s => s.trim()).filter(Boolean) : []
 

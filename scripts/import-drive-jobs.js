@@ -5,9 +5,13 @@
  */
 
 import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
-const JOBS_FILE = '/Users/ghost/Projects/cc-wag/workspace/jobs.json'
-const DRIVE_DATA = '/Users/ghost/Projects/cc-wag/workspace/drive-invoicing-folders.json'
+const __filename = fileURLToPath(import.meta.url)
+const PROJECT_ROOT = process.env.ATLAS_PROJECT_ROOT || path.resolve(path.dirname(__filename), '..')
+const JOBS_FILE = path.join(PROJECT_ROOT, 'workspace', 'jobs.json')
+const DRIVE_DATA = path.join(PROJECT_ROOT, 'workspace', 'drive-invoicing-folders.json')
 const PARENT_FOLDER_ID = '1QYQysnw8kYfwY14fgPgfAx5nlqlmfSxW'
 
 // Load Drive folder listing

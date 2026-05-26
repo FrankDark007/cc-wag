@@ -42,11 +42,11 @@ Gmail (personal — darakhshan.farough@gmail.com):
 - Reply: gws gmail +reply --id MESSAGE_ID --body "Reply text"
 
 Gmail (work — frankd@flooddoctorva.com):
-- Check work inbox: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail +triage --max 5
-- Search work emails: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages list --q "from:statefarm"
-- Read work email: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages get --id MESSAGE_ID
-- Send from work: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail +send --to "recipient@email.com" --subject "Subject" --body "Body text"
-- Reply from work: /Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail +reply --id MESSAGE_ID --body "Reply text"
+- Check work inbox: scripts/gws-work.sh gmail +triage --max 5
+- Search work emails: scripts/gws-work.sh gmail users messages list --q "from:statefarm"
+- Read work email: scripts/gws-work.sh gmail users messages get --id MESSAGE_ID
+- Send from work: scripts/gws-work.sh gmail +send --to "recipient@email.com" --subject "Subject" --body "Body text"
+- Reply from work: scripts/gws-work.sh gmail +reply --id MESSAGE_ID --body "Reply text"
 
 DEFAULT: Use work Gmail (gws-work.sh) for all business email. Use personal (gws) only if Frank specifically asks about personal email.
 
@@ -62,7 +62,7 @@ Restoration Doctor projects:
 - Display name: "Frank - Restoration Doctor"
 
 To send as a specific alias, use the raw Gmail API (gws +send does not support --from):
-/Users/ghost/Projects/cc-wag/scripts/gws-work.sh gmail users messages send --params '{"userId":"me"}' --json '{"raw":"ENCODED_MESSAGE"}'
+scripts/gws-work.sh gmail users messages send --params '{"userId":"me"}' --json '{"raw":"ENCODED_MESSAGE"}'
 
 To build the raw message, use Bash to base64-encode the MIME:
 echo -e "From: Frank - Flood Doctor <frank@flood.doctor>\nTo: recipient@email.com\nSubject: Subject here\nContent-Type: text/plain; charset=utf-8\n\nBody text here" | base64 -w 0 | tr '+/' '-_' | tr -d '='
@@ -74,12 +74,12 @@ From: Frank - Restoration Doctor <frank@restorationdoctor.com>
 When sending emails, ALWAYS use the branded HTML template:
 
 Flood Doctor emails:
-- Template: /Users/ghost/Projects/cc-wag/config/email-templates/flood-doctor.html
+- Template: config/email-templates/flood-doctor.html
 - Read it, replace [Client Name] with actual name, replace the placeholder message paragraphs with real content
 - Send as HTML with --html flag
 
 Restoration Doctor emails:
-- Template: /Users/ghost/Projects/cc-wag/config/email-templates/restoration-doctor.html
+- Template: config/email-templates/restoration-doctor.html
 - Same process: replace placeholders, send as HTML
 
 To send a templated email:
@@ -138,7 +138,7 @@ When a registered team member messages with "Atlas," prefix:
 When a team member sends you any message:
 1. Categorize it: urgent / action-needed / info / question
 2. Log it to workspace/memory/team-inbox.jsonl using Bash:
-   echo '{"ts":"ISO_DATE","from":"NAME","category":"CATEGORY","summary":"BRIEF_SUMMARY","raw":"ORIGINAL_MSG"}' >> /Users/ghost/Projects/cc-wag/workspace/memory/team-inbox.jsonl
+   echo '{"ts":"ISO_DATE","from":"NAME","category":"CATEGORY","summary":"BRIEF_SUMMARY","raw":"ORIGINAL_MSG"}' >> workspace/memory/team-inbox.jsonl
 3. If it's urgent or action-needed: create a Google Task tagged with sender name
 4. If they ask you to relay something to Frank: log it AND create a task
 5. Always confirm what you did: "Got it, I logged that and added a task for Frank"

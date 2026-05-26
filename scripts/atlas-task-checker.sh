@@ -2,8 +2,10 @@
 # atlas-task-checker.sh — Scan Google Tasks for @Atlas mentions
 # Only launches a CC session if it finds something. No tokens wasted on empty checks.
 
-QUEUE_DIR="/Users/ghost/Projects/cc-wag/workspace/task-queue"
-LOG_FILE="/Users/ghost/Projects/cc-wag/workspace/task-queue/atlas-tasks.log"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="${ATLAS_PROJECT_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
+QUEUE_DIR="$PROJECT_ROOT/workspace/task-queue"
+LOG_FILE="$PROJECT_ROOT/workspace/task-queue/atlas-tasks.log"
 ATLAS_LIST="eENTTTdlNnA0djdpcnpqWQ"
 
 # All task lists to scan for @Atlas mentions
@@ -53,7 +55,7 @@ import json
 task = {
     'id': '$queue_id',
     'prompt': '''Execute this instruction from Frank via Google Tasks: $instruction''',
-    'workdir': '/Users/ghost/Projects/cc-wag',
+    'workdir': '$PROJECT_ROOT',
     'status': 'pending',
     'source': 'google-tasks',
     'source_task_id': '$task_id',
