@@ -9,6 +9,7 @@ import WhatsAppAdapter from './adapters/whatsapp.js'
 import SessionManager from './sessions/manager.js'
 import AgentRunner from './agent/runner.js'
 import CommandHandler from './commands/handler.js'
+import { scrubSecrets } from './utils/mask-secrets.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const MAX_BODY_SIZE = 1024 * 1024 // 1MB
@@ -352,11 +353,11 @@ class Gateway {
     // Prevent crashes from unhandled errors (Bad MAC, libsignal, etc.)
     process.on('unhandledRejection', (err) => {
       if (handleBadMac(err)) return
-      console.error('[Gateway] Unhandled rejection:', err?.message || String(err))
+      console.error('[Gateway] Unhandled rejection:', scrubSecrets(err?.message || String(err)))
     })
     process.on('uncaughtException', (err) => {
       if (handleBadMac(err)) return
-      console.error('[Gateway] Uncaught exception:', err?.message || String(err))
+      console.error('[Gateway] Uncaught exception:', scrubSecrets(err?.message || String(err)))
       // For truly unexpected errors, exit cleanly so launchd restarts us
       setTimeout(() => process.exit(1), 1000)
     })

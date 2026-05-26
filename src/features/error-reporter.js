@@ -20,6 +20,7 @@
 
 import fs from 'fs'
 import path from 'path'
+import { scrubSecrets } from '../utils/mask-secrets.js'
 
 const WORKSPACE = '/Users/ghost/Projects/cc-wag/workspace'
 const ERROR_LOG = path.join(WORKSPACE, 'error-log.json')
@@ -51,8 +52,8 @@ function logError(category, message, details = null) {
   data.errors.push({
     timestamp: new Date().toISOString(),
     category,
-    message,
-    details: details ? String(details).substring(0, 500) : null
+    message: scrubSecrets(message),
+    details: details ? scrubSecrets(String(details).substring(0, 500)) : null
   })
   saveErrors(data)
   return data
@@ -79,7 +80,7 @@ async function alertFrank(gateway, category, message) {
   const alert = [
     '🚨 *Atlas Error*',
     `Category: ${category}`,
-    `Error: ${message.substring(0, 300)}`,
+    `Error: ${scrubSecrets(message).substring(0, 300)}`,
     '',
     `Time: ${new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`,
     'Run /errors for details'
