@@ -26,29 +26,29 @@ describe('classifyMessage', () => {
     expect(result.model).toContain('haiku')
   })
 
-  // ── Sonnet tier (default — most messages) ──
+  // ── Opus tier (default — most messages) ──
 
-  it('routes medium messages to Sonnet (default)', () => {
+  it('routes medium messages to Opus (default)', () => {
     const result = classifyMessage('send a message to the team about tomorrow meeting')
-    expect(result.model).toContain('sonnet')
+    expect(result.model).toContain('opus')
     expect(result.reason).toBe('default')
   })
 
-  it('routes drafting requests to Sonnet (not Opus)', () => {
+  it('routes drafting requests to Opus (default)', () => {
     const result = classifyMessage('write me a quick email to the client')
-    expect(result.model).toContain('sonnet')
+    expect(result.model).toContain('opus')
     expect(result.reason).toBe('default')
   })
 
-  it('routes code requests to Sonnet (delegated to CC)', () => {
+  it('routes code requests to Opus (default)', () => {
     const result = classifyMessage('debug the intake bot feature')
-    expect(result.model).toContain('sonnet')
+    expect(result.model).toContain('opus')
     expect(result.reason).toBe('default')
   })
 
-  it('routes planning requests to Sonnet (not Opus)', () => {
+  it('routes planning requests to Opus (default)', () => {
     const result = classifyMessage('plan the schedule for next week')
-    expect(result.model).toContain('sonnet')
+    expect(result.model).toContain('opus')
     expect(result.reason).toBe('default')
   })
 
@@ -72,10 +72,10 @@ describe('classifyMessage', () => {
     expect(result.reason).toBe('long')
   })
 
-  it('does NOT route 55-word messages to Opus (was bug)', () => {
+  it('routes 55-word messages to Opus (default)', () => {
     const words = Array(55).fill('word').join(' ')
     const result = classifyMessage(words)
-    expect(result.model).toContain('sonnet')
+    expect(result.model).toContain('opus')
     expect(result.reason).toBe('default')
   })
 

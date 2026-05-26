@@ -1,6 +1,57 @@
 import path from 'path'
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 
+describe('config model selection', () => {
+  let origAtlas, origClaude
+
+  beforeEach(() => {
+    origAtlas = process.env.ATLAS_MODEL
+    origClaude = process.env.CLAUDE_MODEL
+  })
+
+  afterEach(() => {
+    if (origAtlas === undefined) delete process.env.ATLAS_MODEL
+    else process.env.ATLAS_MODEL = origAtlas
+    if (origClaude === undefined) delete process.env.CLAUDE_MODEL
+    else process.env.CLAUDE_MODEL = origClaude
+  })
+
+  it('defaults to claude-opus-4-7', async () => {
+    delete process.env.ATLAS_MODEL
+    delete process.env.CLAUDE_MODEL
+    const config = (await import('../src/config.js?model-default')).default
+    expect(config.model).toBe('claude-opus-4-7')
+  })
+
+  it('default is not sonnet', async () => {
+    delete process.env.ATLAS_MODEL
+    delete process.env.CLAUDE_MODEL
+    const config = (await import('../src/config.js?model-nosonnet')).default
+    expect(config.model).not.toContain('sonnet')
+  })
+
+  it('ATLAS_MODEL overrides default', async () => {
+    process.env.ATLAS_MODEL = 'claude-sonnet-4-6'
+    delete process.env.CLAUDE_MODEL
+    const config = (await import('../src/config.js?model-atlas')).default
+    expect(config.model).toBe('claude-sonnet-4-6')
+  })
+
+  it('CLAUDE_MODEL is used as fallback when ATLAS_MODEL unset', async () => {
+    delete process.env.ATLAS_MODEL
+    process.env.CLAUDE_MODEL = 'claude-haiku-4-5-20251001'
+    const config = (await import('../src/config.js?model-claude')).default
+    expect(config.model).toBe('claude-haiku-4-5-20251001')
+  })
+
+  it('ATLAS_MODEL takes precedence over CLAUDE_MODEL', async () => {
+    process.env.ATLAS_MODEL = 'claude-opus-4-7'
+    process.env.CLAUDE_MODEL = 'claude-sonnet-4-6'
+    const config = (await import('../src/config.js?model-priority')).default
+    expect(config.model).toBe('claude-opus-4-7')
+  })
+})
+
 describe('config PROJECT_ROOT', () => {
   let originalEnv
 

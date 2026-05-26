@@ -2,13 +2,11 @@
  * Smart Model Routing
  * Routes messages to optimal Claude model based on complexity:
  * - Haiku: greetings, short questions, confirmations, simple lookups
- * - Sonnet: most messages (default) — tasks, emails, scheduling
- * - Opus: analysis, planning, multi-step reasoning, long documents
+ * - Opus: all other messages (default)
  */
 
 const HAIKU = 'claude-haiku-4-5-20251001'
-const SONNET = 'claude-sonnet-4-5-20250929'
-const OPUS = 'claude-opus-4-6'
+const OPUS = 'claude-opus-4-7'
 
 // Patterns that indicate a simple message (Haiku-eligible)
 const SIMPLE_PATTERNS = [
@@ -53,7 +51,7 @@ const LONG_MSG_WORDS = 150  // Opus gate: 150+ words (was 50)
 
 /**
  * Classify a message and return the optimal model
- * Default is Sonnet. Haiku for greetings/commands. Opus only for genuine analysis.
+ * Default is Opus. Haiku for greetings/commands only.
  */
 export function classifyMessage(text) {
   const trimmed = text.trim()
@@ -102,8 +100,8 @@ export function classifyMessage(text) {
     }
   }
 
-  // Everything else → Sonnet (default — handles 80%+ of messages)
-  return { model: SONNET, reason: 'default' }
+  // Everything else → Opus (default)
+  return { model: OPUS, reason: 'default' }
 }
 
 /**
@@ -155,5 +153,5 @@ export function register(gateway) {
     return originalRun(params)
   }
 
-  console.log('[ModelRouter] Smart model routing enabled (Haiku/Sonnet/Opus)')
+  console.log('[ModelRouter] Smart model routing enabled (Haiku/Opus)')
 }

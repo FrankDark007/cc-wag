@@ -8,8 +8,11 @@ const PROJECT_ROOT = process.env.ATLAS_PROJECT_ROOT || path.resolve(path.dirname
 
 const parseList = (env) => env ? env.split(',').map(s => s.trim()).filter(Boolean) : []
 
+const ATLAS_MODEL = process.env.ATLAS_MODEL || process.env.CLAUDE_MODEL || 'claude-opus-4-7'
+
 export default {
   agentId: 'cc-wag',
+  model: ATLAS_MODEL,
 
   whatsapp: {
     enabled: true,
