@@ -16,18 +16,18 @@ describe('config model selection', () => {
     else process.env.CLAUDE_MODEL = origClaude
   })
 
-  it('defaults to claude-opus-4-7', async () => {
+  it('defaults to null (SDK latest) when no override set', async () => {
     delete process.env.ATLAS_MODEL
     delete process.env.CLAUDE_MODEL
     const config = (await import('../src/config.js?model-default')).default
-    expect(config.model).toBe('claude-opus-4-7')
+    expect(config.model).toBe(null)
   })
 
-  it('default is not sonnet', async () => {
+  it('does not pin a specific version by default', async () => {
     delete process.env.ATLAS_MODEL
     delete process.env.CLAUDE_MODEL
-    const config = (await import('../src/config.js?model-nosonnet')).default
-    expect(config.model).not.toContain('sonnet')
+    const config = (await import('../src/config.js?model-noversion')).default
+    expect(config.model).toBeNull()
   })
 
   it('ATLAS_MODEL overrides default', async () => {

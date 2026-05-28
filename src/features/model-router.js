@@ -2,11 +2,18 @@
  * Smart Model Routing
  * Routes messages to optimal Claude model based on complexity:
  * - Haiku: greetings, short questions, confirmations, simple lookups
- * - Opus: all other messages (default)
+ * - Premium: all other messages — uses ATLAS_MODEL if set, otherwise null
+ *   (null lets the Agent SDK use its latest default, so Atlas always rides
+ *   the newest model without a code change).
  */
 
 const HAIKU = 'claude-haiku-4-5-20251001'
-const OPUS = 'claude-opus-4-7'
+
+// Premium tier model: explicit ATLAS_MODEL override, or null = SDK latest default.
+// Read at call time so an env change takes effect on the next message.
+function premiumModel() {
+  return process.env.ATLAS_MODEL || null
+}
 
 // Patterns that indicate a simple message (Haiku-eligible)
 const SIMPLE_PATTERNS = [
@@ -51,7 +58,7 @@ const LONG_MSG_WORDS = 150  // Opus gate: 150+ words (was 50)
 
 /**
  * Classify a message and return the optimal model
- * Default is Opus. Haiku for greetings/commands only.
+ * Default is the premium tier (SDK latest, or ATLAS_MODEL). Haiku for greetings/commands only.
  */
 export function classifyMessage(text) {
   const trimmed = text.trim()
@@ -72,36 +79,36 @@ export function classifyMessage(text) {
   // Complex pattern match → Opus (narrowed patterns)
   for (const pattern of COMPLEX_PATTERNS) {
     if (pattern.test(trimmed)) {
-      return { model: OPUS, reason: 'complex' }
+      return { model: premiumModel(), reason: 'complex' }
     }
   }
 
-  // Very long messages need more reasoning → Opus
+  // Very long messages need more reasoning → premium tier
   if (wordCount >= LONG_MSG_WORDS) {
-    return { model: OPUS, reason: 'long' }
+    return { model: premiumModel(), reason: 'long' }
   }
 
   // Batch/sequence detection: complex tasks → Opus
   for (const pattern of BATCH_PATTERNS) {
     if (pattern.test(trimmed)) {
-      return { model: OPUS, reason: 'batch' }
+      return { model: premiumModel(), reason: 'batch' }
     }
   }
   for (const pattern of SEQUENCE_PATTERNS) {
     if (pattern.test(trimmed)) {
-      return { model: OPUS, reason: 'sequence' }
+      return { model: premiumModel(), reason: 'sequence' }
     }
   }
   if (wordCount > 40) {
     const verbMatches = trimmed.match(ACTION_VERBS) || []
     const uniqueVerbs = new Set(verbMatches.map(v => v.toLowerCase()))
     if (uniqueVerbs.size >= 2) {
-      return { model: OPUS, reason: 'multi-action' }
+      return { model: premiumModel(), reason: 'multi-action' }
     }
   }
 
-  // Everything else → Opus (default)
-  return { model: OPUS, reason: 'default' }
+  // Everything else → premium tier (SDK latest default, or ATLAS_MODEL override)
+  return { model: premiumModel(), reason: 'default' }
 }
 
 /**
@@ -120,8 +127,11 @@ export function register(gateway) {
     // Only auto-route if no manual model override is set
     if (!provider.currentModel) {
       const { model, reason } = classifyMessage(params.message || '')
-      provider.setModel(model)
-      console.log(`[ModelRouter] ${reason} → ${model.split('-').slice(1, -1).join('-')}`)
+      // model may be null for the premium tier — leave the model unset so the
+      // Agent SDK uses its latest default. Only pin when we have an explicit model.
+      if (model) provider.setModel(model)
+      const label = model ? model.split('-').slice(1, -1).join('-') : 'SDK default'
+      console.log(`[ModelRouter] ${reason} → ${label}`)
 
       // Reset after this run so manual /model selection sticks
       const resetModel = () => {
@@ -153,5 +163,5 @@ export function register(gateway) {
     return originalRun(params)
   }
 
-  console.log('[ModelRouter] Smart model routing enabled (Haiku/Opus)')
+  console.log('[ModelRouter] Smart model routing enabled (Haiku / SDK-latest premium)')
 }

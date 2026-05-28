@@ -214,7 +214,7 @@ class Gateway {
     console.log('='.repeat(50))
     console.log(`Agent ID: ${config.agentId}`)
     console.log(`Workspace: ${config.paths.root}/`)
-    console.log(`Model: ${config.model}`)
+    console.log(`Model: ${config.model || 'SDK default (latest)'}`)
     console.log('')
 
     // Validate config
