@@ -8,9 +8,14 @@ const PROJECT_ROOT = process.env.ATLAS_PROJECT_ROOT || path.resolve(path.dirname
 
 const parseList = (env) => env ? env.split(',').map(s => s.trim()).filter(Boolean) : []
 
-// Optional explicit model override. When unset, the Agent SDK uses its latest
-// default — so Atlas always rides the newest model without a code change.
-const ATLAS_MODEL = process.env.ATLAS_MODEL || process.env.CLAUDE_MODEL || null
+// Resolve the explicit model override. When unset, returns null so the Agent
+// SDK uses its latest default — Atlas always rides the newest model without a
+// code change. ATLAS_MODEL wins over CLAUDE_MODEL.
+export function resolveModel(env = process.env) {
+  return env.ATLAS_MODEL || env.CLAUDE_MODEL || null
+}
+
+const ATLAS_MODEL = resolveModel()
 
 export default {
   agentId: 'cc-wag',

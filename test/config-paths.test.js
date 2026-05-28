@@ -1,54 +1,32 @@
 import path from 'path'
-import { describe, it, expect, beforeEach, afterEach } from 'vitest'
+import { describe, it, expect } from 'vitest'
+import { resolveModel } from '../src/config.js'
 
+// resolveModel is a pure function over an explicit env object, so these tests
+// are independent of any real .env that dotenv may have loaded.
 describe('config model selection', () => {
-  let origAtlas, origClaude
-
-  beforeEach(() => {
-    origAtlas = process.env.ATLAS_MODEL
-    origClaude = process.env.CLAUDE_MODEL
+  it('defaults to null (SDK latest) when no override set', () => {
+    expect(resolveModel({})).toBe(null)
   })
 
-  afterEach(() => {
-    if (origAtlas === undefined) delete process.env.ATLAS_MODEL
-    else process.env.ATLAS_MODEL = origAtlas
-    if (origClaude === undefined) delete process.env.CLAUDE_MODEL
-    else process.env.CLAUDE_MODEL = origClaude
+  it('does not pin a specific version by default', () => {
+    expect(resolveModel({})).toBeNull()
   })
 
-  it('defaults to null (SDK latest) when no override set', async () => {
-    delete process.env.ATLAS_MODEL
-    delete process.env.CLAUDE_MODEL
-    const config = (await import('../src/config.js?model-default')).default
-    expect(config.model).toBe(null)
+  it('ATLAS_MODEL overrides default', () => {
+    expect(resolveModel({ ATLAS_MODEL: 'claude-opus-4-8' })).toBe('claude-opus-4-8')
   })
 
-  it('does not pin a specific version by default', async () => {
-    delete process.env.ATLAS_MODEL
-    delete process.env.CLAUDE_MODEL
-    const config = (await import('../src/config.js?model-noversion')).default
-    expect(config.model).toBeNull()
+  it('CLAUDE_MODEL is used as fallback when ATLAS_MODEL unset', () => {
+    expect(resolveModel({ CLAUDE_MODEL: 'claude-haiku-4-5-20251001' })).toBe('claude-haiku-4-5-20251001')
   })
 
-  it('ATLAS_MODEL overrides default', async () => {
-    process.env.ATLAS_MODEL = 'claude-sonnet-4-6'
-    delete process.env.CLAUDE_MODEL
-    const config = (await import('../src/config.js?model-atlas')).default
-    expect(config.model).toBe('claude-sonnet-4-6')
+  it('ATLAS_MODEL takes precedence over CLAUDE_MODEL', () => {
+    expect(resolveModel({ ATLAS_MODEL: 'claude-opus-4-8', CLAUDE_MODEL: 'claude-sonnet-4-6' })).toBe('claude-opus-4-8')
   })
 
-  it('CLAUDE_MODEL is used as fallback when ATLAS_MODEL unset', async () => {
-    delete process.env.ATLAS_MODEL
-    process.env.CLAUDE_MODEL = 'claude-haiku-4-5-20251001'
-    const config = (await import('../src/config.js?model-claude')).default
-    expect(config.model).toBe('claude-haiku-4-5-20251001')
-  })
-
-  it('ATLAS_MODEL takes precedence over CLAUDE_MODEL', async () => {
-    process.env.ATLAS_MODEL = 'claude-opus-4-7'
-    process.env.CLAUDE_MODEL = 'claude-sonnet-4-6'
-    const config = (await import('../src/config.js?model-priority')).default
-    expect(config.model).toBe('claude-opus-4-7')
+  it('never silently defaults to Sonnet', () => {
+    expect(resolveModel({}) ?? '').not.toContain('sonnet')
   })
 })
 
