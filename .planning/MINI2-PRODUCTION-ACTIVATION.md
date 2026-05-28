@@ -10,7 +10,7 @@ Final operator checklist to activate Atlas on mini2 (Mac Mini M4, user `ghost2`)
 - **Tests:** 88/88 passing
 - **Deployment target:** mini2 / Ghost2
 - **Runtime paths:** machine-agnostic (derived from `import.meta.url`)
-- **Model default:** `ATLAS_MODEL=claude-opus-4-7`
+- **Model default:** `ATLAS_MODEL=claude-opus-4-8` (config default is unset = SDK latest; live .env pins Opus 4.8)
 - **Twilio signature validation:** enabled when `TWILIO_WEBHOOK_URL` is set
 - **Template support:** ready, awaiting Content SIDs after Meta approval
 
@@ -69,7 +69,7 @@ Every required var must show `1 match(es)`. Do not proceed if any required var i
 
 ## 4. Recommended .env policy
 
-- **`ATLAS_MODEL`** — set to `claude-opus-4-7` unless intentionally testing another model. This is the canonical Atlas model setting. `CLAUDE_MODEL` is supported as a fallback but `ATLAS_MODEL` takes precedence.
+- **`ATLAS_MODEL`** — set to `claude-opus-4-8` unless intentionally testing another model. This is the canonical Atlas model setting. Leaving it unset makes Atlas ride the SDK's latest default; pin it to keep a known model. `CLAUDE_MODEL` is supported as a fallback but `ATLAS_MODEL` takes precedence.
 - **`ATLAS_PROJECT_ROOT`** — optional. Config derives repo root automatically from code location. Only set this if running from a non-standard path or testing.
 - **`TWILIO_WEBHOOK_URL`** — must match the exact public URL configured in Twilio Console for signature validation. Production value: `https://atlas.vaserv.pro/webhook/twilio`
 - **`TWILIO_TPL_*`** — leave empty until Twilio approves message templates and provides Content SIDs. Atlas falls back to plain `Body` text when templates are not configured.
