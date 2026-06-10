@@ -148,7 +148,8 @@ function jobCompleteness(job) {
 // ── Dashboard builder ──────────────────────────────────────────────
 
 function buildDashboard() {
-  const jobs = jobData.loadJobs()
+  const _jobsData = jobData.loadJobs()
+  const jobs = Array.isArray(_jobsData) ? _jobsData : (_jobsData?.jobs || [])
   const disputes = loadDisputes()
 
   // Revenue
@@ -242,7 +243,8 @@ function buildDashboard() {
 // ── Briefing sections builder ──────────────────────────────────────
 
 function buildBriefingSections() {
-  const jobs = jobData.loadJobs()
+  const _jobsData = jobData.loadJobs()
+  const jobs = Array.isArray(_jobsData) ? _jobsData : (_jobsData?.jobs || [])
   const disputes = loadDisputes()
   const sections = []
 
